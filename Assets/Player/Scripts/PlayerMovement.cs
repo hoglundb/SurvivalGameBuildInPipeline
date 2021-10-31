@@ -58,7 +58,7 @@ namespace Player
             Vector3 movement = (transform.forward * vert + transform.right * horiz).normalized * Time.deltaTime * _curSpeed;
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                if (movement.magnitude > .1f)
+                if (movement.magnitude > .01f)
                 {
                     _curSpeed = Mathf.Lerp(_curSpeed, _runSpeed, _movementTransitionSpeed * Time.deltaTime);
                 }
