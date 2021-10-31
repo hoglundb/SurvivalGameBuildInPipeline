@@ -68,12 +68,10 @@ namespace Player
                 _curSpeed = Mathf.Lerp(_curSpeed, _walkSpeed, _movementTransitionSpeed * Time.deltaTime);
             }
             _characterController.Move(movement);
-            Debug.LogError(_pitchRotation);
             _pitchRotation -= Input.GetAxis("Mouse Y") * _verticalSensitivity * Time.deltaTime;
             _pitchRotation = Mathf.Clamp(_pitchRotation, -90f, 90f);
             _fpsArms.localRotation = Quaternion.Euler(_pitchRotation, 0f, 0f);
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * _horizontalSensitivity * Time.deltaTime);
-            //_cameraTransform
         }
     }
 }

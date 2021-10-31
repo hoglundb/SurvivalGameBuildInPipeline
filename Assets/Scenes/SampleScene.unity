@@ -1326,25 +1326,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3852054965689268912, guid: 3d05dac6681768c40a5f073e92603cdf, type: 3}
   m_PrefabInstance: {fileID: 973855321}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1737064908 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6168332116100476226, guid: f05231632220e624aba6714f2a24ad2f, type: 3}
-  m_PrefabInstance: {fileID: 1506225796827253049}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1737064912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737064908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e67982a05b4eba14994c09e41b80d1c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hydrationProgressBarUI: {fileID: 224763426889534463}
-  foo: 0
 --- !u!1 &1786865998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,7 +1488,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2131057091
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1578,6 +1559,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1737064912, guid: f05231632220e624aba6714f2a24ad2f, type: 3}
+      propertyPath: _healthStatsUI
+      value: 
+      objectReference: {fileID: 2131057091}
     - target: {fileID: 6168332116100476226, guid: f05231632220e624aba6714f2a24ad2f, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab
@@ -1729,15 +1714,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4034103979658429018, guid: 3d05dac6681768c40a5f073e92603cdf, type: 3}
       propertyPath: BarColor.b
-      value: 0
+      value: 0.095976174
       objectReference: {fileID: 0}
     - target: {fileID: 4034103979658429018, guid: 3d05dac6681768c40a5f073e92603cdf, type: 3}
       propertyPath: BarColor.g
-      value: 0.1682254
+      value: 0.03604484
       objectReference: {fileID: 0}
     - target: {fileID: 4034103979658429018, guid: 3d05dac6681768c40a5f073e92603cdf, type: 3}
       propertyPath: BarColor.r
-      value: 1
+      value: 0.8490566
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d05dac6681768c40a5f073e92603cdf, type: 3}

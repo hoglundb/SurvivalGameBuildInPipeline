@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 8939229707013986354}
   - component: {fileID: 8333443290879136462}
   - component: {fileID: 1501940057}
+  - component: {fileID: 1737064912}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -191,6 +192,27 @@ MonoBehaviour:
   _walkSpeed: 5.1
   _runSpeed: 12.8
   _movementTransitionSpeed: 18
+--- !u!114 &1737064912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6168332116100476226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67982a05b4eba14994c09e41b80d1c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthStatsUI: {fileID: 0}
+  _playerHealthState:
+    _blood: 0.534
+    _carbohydrates: 0.605
+    _protiens: 0.643
+    _minerals: 0.497
+    _vitamins: 0.783
+    _warmth: 0.662
+    _hydration: 0.943
 --- !u!1001 &7888515745432106778
 PrefabInstance:
   m_ObjectHideFlags: 0
