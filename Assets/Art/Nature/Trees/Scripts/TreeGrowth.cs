@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class TreeGrowth : MonoBehaviour
 {
-    [SerializeField] private Transform _treeObj;
-    [SerializeField] private float _minSize;
-    [SerializeField] private float _maxSize;
+    [SerializeField] private float _woodAmountScaleFactor;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +18,4 @@ public class TreeGrowth : MonoBehaviour
     }
 }
 
-public enum TreeTypes
-{ 
-   Broadleaf, 
-   Fir,
-}
+
