@@ -95,7 +95,7 @@ public class GenerateTreeCoordinates : MonoBehaviour
                             int treeTypeIndex = Random.Range(0, _treePrefabs.Count - 1);
                             Vector3 randRot = new Vector3(0f, rand, 0f);
                             var t = GameObject.Instantiate(_treePrefabs[treeTypeIndex], hit.point, Quaternion.Euler(randRot));
-                            float randScale = Random.Range(.7f, 3.5f);
+                            float randScale = Random.Range(.9f, 2f);
                             t.localScale = new Vector3(randScale, randScale, randScale);
                             t.tag = "Tree";
                             t.transform.parent = gameObject.transform;
@@ -119,7 +119,8 @@ public class GenerateTreeCoordinates : MonoBehaviour
         {
             curIndex++;
             if (curIndex >= _spawnedTrees.Count - 1) curIndex = 0;
-            if (_GetDistSquared(_playerReference.position, _spawnedTrees[curIndex].position) > 200000f)
+            float dist = _GetDistSquared(_playerReference.position, _spawnedTrees[curIndex].position);
+            if (dist > 120000f)
             {
                 _spawnedTrees[curIndex].gameObject.SetActive(false);
 
@@ -127,6 +128,13 @@ public class GenerateTreeCoordinates : MonoBehaviour
             else {
                 _spawnedTrees[curIndex].gameObject.SetActive(true);
             }
+            //if (dist > 1000)
+            //{
+            //    _spawnedTrees[curIndex].gameObject.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            //}
+            //else {
+            //    _spawnedTrees[curIndex].gameObject.GetComponentInChildren<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            //}
         }
     }
 
