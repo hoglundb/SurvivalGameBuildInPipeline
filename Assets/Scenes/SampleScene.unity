@@ -925,10 +925,10 @@ MonoBehaviour:
   _averageOffset: 10
   _seed: 0
   _treePrefabs:
-  - {fileID: 4534264641828652, guid: 539fa9bc6500e44708e0f7b2c78cbefe, type: 3}
-  - {fileID: 4071390273635838, guid: abdd95d0229d64588b03d2806d9cc19a, type: 3}
-  - {fileID: 4689083990643298, guid: 7e3c80b421a0d465b80b8e51a763ea9c, type: 3}
-  - {fileID: 4534264641828652, guid: f41642586885949968180791f012ee81, type: 3}
+  - {fileID: 4534264641828652, guid: 82a6bf9ca38d9d443997ccec084ba669, type: 3}
+  - {fileID: 4071390273635838, guid: 78f6b68ad931a824c920d7b953612370, type: 3}
+  - {fileID: 4689083990643298, guid: 1aaf3ef80841d9c4990a27fee328eb1c, type: 3}
+  - {fileID: 4534264641828652, guid: 4663d5cca4ed98548946e758cd5979e2, type: 3}
   _xMin: 0
   _xMax: 5944
   _zMin: -1192.9
