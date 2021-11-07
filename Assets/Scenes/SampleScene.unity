@@ -1579,7 +1579,6 @@ GameObject:
   - component: {fileID: 1296867844}
   - component: {fileID: 1296867847}
   - component: {fileID: 1296867846}
-  - component: {fileID: 1296867845}
   m_Layer: 0
   m_Name: FogShpere2
   m_TagString: Untagged
@@ -1601,19 +1600,6 @@ Transform:
   m_Father: {fileID: 7559774040451911947}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1296867845
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296867843}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1296867846
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1679,7 +1665,6 @@ GameObject:
   - component: {fileID: 1336813444}
   - component: {fileID: 1336813447}
   - component: {fileID: 1336813446}
-  - component: {fileID: 1336813445}
   m_Layer: 0
   m_Name: FogSphere1
   m_TagString: Untagged
@@ -1701,19 +1686,6 @@ Transform:
   m_Father: {fileID: 7559774040451911947}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1336813445
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336813443}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1336813446
 MeshRenderer:
   m_ObjectHideFlags: 0
