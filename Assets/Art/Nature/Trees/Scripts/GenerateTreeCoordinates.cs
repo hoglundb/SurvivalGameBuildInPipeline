@@ -34,6 +34,14 @@ public class GenerateTreeCoordinates : MonoBehaviour
 
     private List<Vector3> _coordinates;
 
+
+    void Awake()
+    {
+        Debug.Log("sdfsfsdfsfsdfsf");
+        _spawnedTrees = new List<Transform>();
+    }
+   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,8 +66,7 @@ public class GenerateTreeCoordinates : MonoBehaviour
     {
         List<Vector3> coordinates = new List<Vector3>();
         _curX = _xMin;
-        _curZ = _zMin;
-
+        _curZ = _zMin;        
         int maxLoopCount = 1000;
         int innerCount = 0; 
         int outerCount = 0;
@@ -95,7 +102,7 @@ public class GenerateTreeCoordinates : MonoBehaviour
                             int treeTypeIndex = Random.Range(0, _treePrefabs.Count - 1);
                             Vector3 randRot = new Vector3(0f, rand, 0f);
                             var t = GameObject.Instantiate(_treePrefabs[treeTypeIndex], hit.point, Quaternion.Euler(randRot));
-                            float randScale = Random.Range(.9f, 2f);
+                            float randScale = Random.Range(1.2f, 3.2f);
                             t.localScale = new Vector3(randScale, randScale, randScale);
                             t.tag = "Tree";
                             t.transform.parent = gameObject.transform;
@@ -115,6 +122,12 @@ public class GenerateTreeCoordinates : MonoBehaviour
     int curIndex = 0;
     private void _DrawTreePosDebugLines()
     {
+        if (_spawnedTrees.Count == 0)
+        {
+            Debug.LogWarning("No trees spawned!");
+            return;
+        }
+
         for (int i = 0; i < 150; i++)
         {
             curIndex++;
@@ -128,13 +141,6 @@ public class GenerateTreeCoordinates : MonoBehaviour
             else {
                 _spawnedTrees[curIndex].gameObject.SetActive(true);
             }
-            //if (dist > 1000)
-            //{
-            //    _spawnedTrees[curIndex].gameObject.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-            //}
-            //else {
-            //    _spawnedTrees[curIndex].gameObject.GetComponentInChildren<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-            //}
         }
     }
 
