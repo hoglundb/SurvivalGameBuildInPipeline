@@ -67,7 +67,6 @@ public class GenerateTreeCoordinates : MonoBehaviour
         List<Vector3> coordinates = new List<Vector3>();
         _curX = _xMin;
         _curZ = _zMin;        
-        int maxLoopCount = 1000;
         int innerCount = 0; 
         int outerCount = 0;
         while (_curX < _xMax)

@@ -40,7 +40,7 @@ namespace Player
 
         // Update is called once per frame
         void Update()
-        {           
+        {        
             _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
 
             if (_isGrounded && _downwardVelocity.y < 0) _downwardVelocity.y = -2f;
