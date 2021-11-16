@@ -132,7 +132,7 @@ public class GenerateTreeCoordinates : MonoBehaviour
             curIndex++;
             if (curIndex >= _spawnedTrees.Count - 1) curIndex = 0;
             float dist = _GetDistSquared(_playerReference.position, _spawnedTrees[curIndex].position);
-            if (dist > 120000f)
+            if (dist > 220000f)
             {
                 _spawnedTrees[curIndex].gameObject.SetActive(false);
 

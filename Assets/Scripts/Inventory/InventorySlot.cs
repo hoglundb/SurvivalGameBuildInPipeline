@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 
 //An inventory slot. This component is present on each UI inventory slot game object. 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private const float _maxWeight = 50;
     private Image _uiImage;
     private Text _itemCountText;
     [SerializeField] private Sprite _emptyItemSprite;
-
+   [SerializeField] Button _button;
    [SerializeField] private GameObject _itemImageReference;
    [SerializeField] private GameObject _itemCountUIReference;
    [SerializeField] private List<GameObject> _itemsInSlot;
@@ -33,8 +34,25 @@ public class InventorySlot : MonoBehaviour
         {
             Debug.LogError("No text component assigned for this inventory slot item count");
         }
+        //_button.GetComponentInChildren<Button>();
     }
 
+
+    public void OnPointerEnter(PointerEventData pointerEventData)
+    {
+        _button.gameObject.transform.localScale = Vector3.one * 1.2f;
+    }
+
+
+    public void OnPointerExit(PointerEventData pointerEventData)
+    {
+        _button.gameObject.transform.localScale = Vector3.one;
+    }
+
+    public void OnHover()
+    { 
+    
+    }
 
     //Returns true if this slot has at least one item present. Returns false otherwise.
     public bool HasItems()

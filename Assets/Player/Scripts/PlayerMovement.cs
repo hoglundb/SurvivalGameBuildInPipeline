@@ -34,7 +34,7 @@ namespace Player
         // Start is called before the first frame update
         void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Confined;
             _pitchRotation = 5f;
         }
 
