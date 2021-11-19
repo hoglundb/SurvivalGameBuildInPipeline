@@ -18,6 +18,11 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
    [SerializeField] private List<GameObject> _itemsInSlot;
    [SerializeField] private float _curWeight = 0;
 
+    public GameObject GetImage()
+    {
+        return _itemImageReference;
+    }
+
 
     private void Awake()
     {
@@ -43,7 +48,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         _button.gameObject.transform.localScale = Vector3.one * 1.2f;
     }
 
-
+     
     public void OnPointerExit(PointerEventData pointerEventData)
     {
         _button.gameObject.transform.localScale = Vector3.one;
