@@ -12,12 +12,13 @@ public class InventorySlotUIController : MonoBehaviour
     private readonly int _numItems = 50;  //queue size
     private static InventorySlotUIController _instance;  //singleton instance of this class so globally exessable by the player.
 
-    private List<GameObject> _inventorySlots; 
-
+    private List<GameObject> _inventorySlots;
+    private Vector3 _startPos;
 
     private void Awake()
     {
         _instance = this;
+        _startPos = transform.position;
 
         //Initialize the drag drop item queue. 
         _dragDropItemObjPool = new Queue<GameObject>();
@@ -29,7 +30,19 @@ public class InventorySlotUIController : MonoBehaviour
             _dragDropItemObjPool.Enqueue(uiElement);
         }
 
-        _inventorySlots = GameObject.FindGameObjectsWithTag("UISlot").ToList();
+        _inventorySlots = GameObject.FindGameObjectsWithTag("UISlot").ToList();        
+    }
+
+
+    public void Hide()
+    {
+        transform.position = Vector3.down * 1000;
+    }
+
+
+    public void Show()
+    {
+        transform.position = _startPos;
     }
 
 

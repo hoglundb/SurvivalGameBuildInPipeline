@@ -31,8 +31,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     //Tells this DragDrop item to reference the specified inventory item game object. Called when item is added to inventory of player manually moves to another slot. 
     public void AssignToItemSlot(GameObject itemSlot)
     {
-       // Debug.LogError("Assigning item " + itemSlot.name + " to dragDrop object");
-        _currentItemSlot = itemSlot;    
+        _currentItemSlot = itemSlot;
+        transform.localScale = Vector3.one * _initialScale;
     }
 
 
@@ -128,7 +128,12 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         //If player is ententionally droping item into game
         else 
         {
-            Debug.LogError("dropping item");
+            _currentItemSlot = null;
+            _previousItemSlot = null;
+            _attachedItemGameObj.SetActive(true);
+            _attachedItemGameObj.GetComponent<InventoryItem>().DropItem();          
+            _attachedItemGameObj = null;
+            gameObject.SetActive(false);
         }
       
     }

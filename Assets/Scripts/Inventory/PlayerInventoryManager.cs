@@ -1,3 +1,4 @@
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,31 +7,58 @@ using UnityEngine;
 //Class to manage the player inventory. Tracks the physical inventory and updates the inventory UI as needed. 
 public class PlayerInventoryManager : MonoBehaviour
 {
-    [Header("UI elements for inventory slots (populated on Awake)")]
-     private List<PlayerInventorySlot> _playerInventorySlots;
     [SerializeField] private GameObject _uiPrompt;
      private GameObject _inventoryUIPanel;
     public LayerMask mask;
 
+    public PlayerMovement _playerMovement;  //Reference the player movement script on this game object.
+
+    public bool _isInventoryInUse;
+
     private void Awake()
     {
-        //_InitPlayerInventory();
+        _isInventoryInUse = false;
         _uiPrompt.SetActive(false);
         _inventoryUIPanel = GameObject.FindGameObjectWithTag("InventoryItemsTab");
+        _playerMovement = GetComponent<PlayerMovement>();
+        Cursor.visible = false;
     }
 
+    private void Start()
+    {
+        InventorySlotUIController.GetInstance().Hide();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            _inventoryUIPanel.SetActive(!_inventoryUIPanel.activeSelf);
-        }
+        //ToggleInventory visability and interactivity
+        ToggleInventory();
 
+        //Player scans the envirnoment using raycasts
         _ScanEnvironmentForItems();
     }
 
+
+
+    private void ToggleInventory()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            _isInventoryInUse = !_isInventoryInUse;
+            if (_isInventoryInUse)
+            {
+                InventorySlotUIController.GetInstance().Show();
+                Cursor.visible = true;
+            }
+            else
+            {
+                InventorySlotUIController.GetInstance().Hide();
+                Cursor.visible = false;
+            }
+            _playerMovement.SetMovementEnablement(!_isInventoryInUse);
+        }
+    }
 
 
     //Called each frame to scan the invironment around the player. Prompt the player if a pickupable item is in range
@@ -55,15 +83,7 @@ public class PlayerInventoryManager : MonoBehaviour
 
     private void PlaceItemInInventory(GameObject gameObj)
     {
-       // Debug.LogError("Placing item in inventory");
         InventorySlotUIController.GetInstance().AddItemToInventory(gameObj);
     }
 }
 
-
-//Serves as a reference to UI slot game objects so we can cache their InventorySlot component. 
-public class PlayerInventorySlot
-{
-    public GameObject slotGameObj;
-    public InventorySlot inventorySlotComponent;
-}

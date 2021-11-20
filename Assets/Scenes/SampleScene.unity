@@ -3346,6 +3346,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2079538629, guid: b4d9c21158f8de4499a8d58e70990471, type: 3}
+      propertyPath: m_Size.y
+      value: 0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079538629, guid: b4d9c21158f8de4499a8d58e70990471, type: 3}
+      propertyPath: m_Center.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079538630, guid: b4d9c21158f8de4499a8d58e70990471, type: 3}
+      propertyPath: m_AngularDrag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8552399132420726627, guid: b4d9c21158f8de4499a8d58e70990471, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -12,6 +12,7 @@ namespace Player
         private bool _isGrounded;
         private float _pitchRotation;
         private float _curSpeed;
+        private bool _isMovementEnabled = true;
 
         [SerializeField] private Transform _cameraTransform;
         [SerializeField] private Transform _fpsArms;
@@ -40,7 +41,9 @@ namespace Player
 
         // Update is called once per frame
         void Update()
-        {        
+        {
+            if (!_isMovementEnabled) return;
+
             _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
 
             if (_isGrounded && _downwardVelocity.y < 0) _downwardVelocity.y = -2f;
@@ -73,6 +76,14 @@ namespace Player
             _fpsArms.localRotation = Quaternion.Euler(_pitchRotation, 0f, 0f);
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * _horizontalSensitivity * Time.deltaTime);
         }
+
+
+        //Sets the enableMovement flag. If set to false the player movement is disabled. Used for when player needs to interact with UI.
+        public void SetMovementEnablement(bool shouldEnable)
+        {
+            _isMovementEnabled = shouldEnable;
+        }
+
     }
 }
 
