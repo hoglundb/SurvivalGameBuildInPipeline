@@ -5,15 +5,4 @@ using UnityEngine;
 public class InventoryItem : MonoBehaviour
 {
     [SerializeField] public InventoryItemScriptableObj inventoryItemObj;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

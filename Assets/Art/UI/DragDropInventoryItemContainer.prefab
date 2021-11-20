@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6778032427358203013
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6778032427358203014}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -59,9 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae828eb461745e645b971239f030bca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteImage: {fileID: 21300018, guid: 1e627bcafe9e32d40ad554880f36b5eb, type: 3}
+  _attachedItemGameObj: {fileID: 0}
   _canvas: {fileID: 0}
-  _startPos: {x: 0, y: 0, z: 0}
 --- !u!225 &6778032427358203012
 CanvasGroup:
   m_ObjectHideFlags: 0

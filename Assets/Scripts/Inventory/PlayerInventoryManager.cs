@@ -14,7 +14,7 @@ public class PlayerInventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        _InitPlayerInventory();
+        //_InitPlayerInventory();
         _uiPrompt.SetActive(false);
         _inventoryUIPanel = GameObject.FindGameObjectWithTag("InventoryItemsTab");
     }
@@ -44,7 +44,7 @@ public class PlayerInventoryManager : MonoBehaviour
                 _uiPrompt.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    TryPlaceItemInInventory(hit.transform.gameObject);
+                    PlaceItemInInventory(hit.transform.gameObject);
                 }
                 return;
             }                      
@@ -53,48 +53,10 @@ public class PlayerInventoryManager : MonoBehaviour
     }
 
 
-    //Called on Awake to intialize the player inventory and set up any game object references. 
-    private void _InitPlayerInventory()
+    private void PlaceItemInInventory(GameObject gameObj)
     {
-        GameObject[] uiSlotGameObjects = GameObject.FindGameObjectsWithTag("UISlot");
-        _playerInventorySlots = new List<PlayerInventorySlot>();
-        foreach (GameObject uiSlot in uiSlotGameObjects)
-        {
-            _playerInventorySlots.Add(new PlayerInventorySlot
-            {
-                slotGameObj = uiSlot,
-                inventorySlotComponent = uiSlot.GetComponent<InventorySlot>(),
-            });
-        }
-    }
-
-
-    //Attempts to put the specified item into the inventory. Returns false if inventory is full. 
-    public bool TryPlaceItemInInventory(GameObject itemGameObj)
-    {
-        //reference the scriptable object on the inventoryitem game object
-        InventoryItemScriptableObj itemScriptableObj = itemGameObj.GetComponent<InventoryItem>().inventoryItemObj;
-        //Check for a partially empty slot that this item can fit into
-        foreach (var s in _playerInventorySlots)
-        {
-            if (s.inventorySlotComponent.HasItemOfThisType(itemScriptableObj))
-            {
-                if (s.inventorySlotComponent.TryAddItem(itemGameObj))
-                {
-                    return true;
-                }
-            }
-        }
-        //add item to first availble inventory slot
-        foreach (var s in _playerInventorySlots)
-        {
-            if (s.inventorySlotComponent.TryAddItem(itemGameObj))
-            {
-                return true;
-            }
-        }
-        Debug.LogWarning("Cannot place item in inventory. Inventory may be full");
-        return false;
+       // Debug.LogError("Placing item in inventory");
+        InventorySlotUIController.GetInstance().AddItemToInventory(gameObj);
     }
 }
 
