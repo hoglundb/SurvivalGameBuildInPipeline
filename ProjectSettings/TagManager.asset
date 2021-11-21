@@ -9,6 +9,7 @@ TagManager:
   - UISlot
   - PickupableItem
   - InventoryItemsTab
+  - QuickSelectUISlot
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 //Represents an inventory item that can be interacted with with the cursor. Can either be attached to the cursor or in an inventory slot. 
-public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private GameObject _attachedItemGameObj; //Game object attached to this drag/drop item. 
     [SerializeField] private Canvas _canvas; //reference to the main canvas UI
@@ -92,7 +92,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         EventSystem.current.RaycastAll(eventData, raycastResults);
         foreach (var result in raycastResults)
         {
-            if (result.gameObject.tag == "UISlot") { return result.gameObject; }
+            if (result.gameObject.tag == "UISlot" || result.gameObject.tag == "QuickSelectUISlot") { return result.gameObject; }
         }
         return null;
     }
@@ -158,4 +158,12 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         _attachedItemGameObj = gameObjToAttach;
     }
 
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.LogError("Right clicked");
+        }
+    }
 }

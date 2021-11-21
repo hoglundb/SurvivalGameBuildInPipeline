@@ -14,6 +14,8 @@ namespace Player
         private float _curSpeed;
         private bool _isMovementEnabled = true;
 
+        [SerializeField] private Transform _lowerSpineBone;
+
         [SerializeField] private Transform _cameraTransform;
         [SerializeField] private Transform _fpsArms;
         [SerializeField] private LayerMask _groundMask;
@@ -26,7 +28,7 @@ namespace Player
         [SerializeField] [Range(0f, 20f)] private float _walkSpeed = 6f;
         [SerializeField] [Range(0f, 20f)] private float _runSpeed = 12f;
         [SerializeField] [Range(0f, 30f)] private float _movementTransitionSpeed = 5f;
-
+        [SerializeField] float lookUpAmount;
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
@@ -37,6 +39,14 @@ namespace Player
         {
             Cursor.lockState = CursorLockMode.Confined;
             _pitchRotation = 5f;
+        }
+
+
+        private void LateUpdate()
+        {
+            Vector3 rot = _lowerSpineBone.transform.localEulerAngles;
+            rot.x = Camera.main.transform.localRotation.eulerAngles.x + lookUpAmount;
+            _lowerSpineBone.transform.localRotation = Quaternion.Euler(rot);
         }
 
         // Update is called once per frame
@@ -73,7 +83,8 @@ namespace Player
             _characterController.Move(movement);
             _pitchRotation -= Input.GetAxis("Mouse Y") * _verticalSensitivity * Time.deltaTime;
             _pitchRotation = Mathf.Clamp(_pitchRotation, -90f, 90f);
-            _fpsArms.localRotation = Quaternion.Euler(_pitchRotation, 0f, 0f);
+            // _fpsArms.localRotation = Quaternion.Euler(_pitchRotation, 0f, 0f);
+            lookUpAmount = _pitchRotation;
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * _horizontalSensitivity * Time.deltaTime);
         }
 
