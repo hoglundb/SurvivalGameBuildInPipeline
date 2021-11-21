@@ -6,8 +6,6 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private Canvas _canvas;
-    [SerializeField] private Vector2 _offset;
     private Vector3 _initialScale;
     private Vector3 _highlightSize;
     private GameObject _currentItemInSlot; //Reference to game object item in this slot. Null if slot is empty. 
@@ -15,7 +13,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void Awake()
     {
         _initialScale = transform.localScale;
-        _highlightSize = Vector3.one * 1.12f;
+        _highlightSize = Vector3.one * 1.08f;
     }
 
 
