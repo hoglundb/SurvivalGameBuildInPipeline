@@ -37,7 +37,6 @@ public class GenerateTreeCoordinates : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("sdfsfsdfsfsdfsf");
         _spawnedTrees = new List<Transform>();
     }
    
@@ -101,11 +100,11 @@ public class GenerateTreeCoordinates : MonoBehaviour
                             int treeTypeIndex = Random.Range(0, _treePrefabs.Count - 1);
                             Vector3 randRot = new Vector3(0f, rand, 0f);
                             var t = GameObject.Instantiate(_treePrefabs[treeTypeIndex], hit.point, Quaternion.Euler(randRot));
-                            float randScale = Random.Range(1.2f, 3.2f);
+                            float randScale = Random.Range(1.0f, 2.0f);
                             t.localScale = new Vector3(randScale, randScale, randScale);
                             t.tag = "Tree";
                             t.transform.parent = gameObject.transform;
-                            t.gameObject.SetActive(false);
+                           // t.gameObject.SetActive(false);
                             coordinates.Add(hit.point);
                             _spawnedTrees.Add(t);
                         }
@@ -121,26 +120,26 @@ public class GenerateTreeCoordinates : MonoBehaviour
     int curIndex = 0;
     private void _DrawTreePosDebugLines()
     {
-        if (_spawnedTrees.Count == 0)
-        {
-            Debug.LogWarning("No trees spawned!");
-            return;
-        }
+        //if (_spawnedTrees.Count == 0)
+        //{
+        //    Debug.LogWarning("No trees spawned!");
+        //    return;
+        //}
 
-        for (int i = 0; i < 150; i++)
-        {
-            curIndex++;
-            if (curIndex >= _spawnedTrees.Count - 1) curIndex = 0;
-            float dist = _GetDistSquared(_playerReference.position, _spawnedTrees[curIndex].position);
-            if (dist > 220000f)
-            {
-                _spawnedTrees[curIndex].gameObject.SetActive(false);
+        //for (int i = 0; i < 150; i++)
+        //{
+        //    curIndex++;
+        //    if (curIndex >= _spawnedTrees.Count - 1) curIndex = 0;
+        //    float dist = _GetDistSquared(_playerReference.position, _spawnedTrees[curIndex].position);
+        //    if (dist > 220000f)
+        //    {
+        //        _spawnedTrees[curIndex].gameObject.SetActive(false);
 
-            }
-            else {
-                _spawnedTrees[curIndex].gameObject.SetActive(true);
-            }
-        }
+        //    }
+        //    else {
+        //        _spawnedTrees[curIndex].gameObject.SetActive(true);
+        //    }
+        //}
     }
 
     private float _GetDistSquared(Vector3 v1, Vector3 v2)

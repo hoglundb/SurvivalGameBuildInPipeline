@@ -6,7 +6,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 {
     [SerializeField] public InventoryItemScriptableObj inventoryItemObj;
 
-    [SerializeField] private Rigidbody _rigidbody;
+    private Rigidbody _rigidbody;
 
     private bool _wasThrownOnGround = false;
 

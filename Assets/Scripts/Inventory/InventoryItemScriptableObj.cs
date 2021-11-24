@@ -8,11 +8,20 @@ public class InventoryItemScriptableObj : ScriptableObject
 {
     [Header("General Item Info")]
     public string ItemName;
-    public float ItemWeight;
     public Sprite ItemUISprite;
 
     [Header("Fields if edible")]
-    public float isConsumable;
-    public float proteinGain;
-    public float mineralGame;
+    public bool isConsumable;
+    [SerializeField] public NutritionStats nutritionStats;
+}
+
+
+
+[System.Serializable]
+public class NutritionStats
+{ 
+    [SerializeField] public float Protein;
+    [SerializeField] public float Mineral;
+    [SerializeField] public float Hydration;
+
 }
