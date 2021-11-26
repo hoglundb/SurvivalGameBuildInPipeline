@@ -173,8 +173,9 @@ GameObject:
   - component: {fileID: 8392476742361714002}
   - component: {fileID: 8392476742376000820}
   - component: {fileID: 8392476742832813723}
-  - component: {fileID: 8392476742832813724}
   - component: {fileID: 7158402673729386737}
+  - component: {fileID: 7169967465820562907}
+  - component: {fileID: 1357799149}
   m_Layer: 0
   m_Name: HarvestableRock
   m_TagString: PickupableItem
@@ -191,7 +192,7 @@ Transform:
   m_GameObject: {fileID: 8392476742362039486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 355.49088, y: 12.181, z: 251.0393}
-  m_LocalScale: {x: 0.22741841, y: 0.22741841, z: 0.22741841}
+  m_LocalScale: {x: 0.15730986, y: 0.15730986, z: 0.15730986}
   m_Children:
   - {fileID: 8392476742361792056}
   - {fileID: 8392476742361710218}
@@ -235,26 +236,13 @@ Rigidbody:
   m_GameObject: {fileID: 8392476742362039486}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!135 &8392476742832813724
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8392476742362039486}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.79
-  m_Center: {x: 0, y: 0.91, z: 0}
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!114 &7158402673729386737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +256,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryItemObj: {fileID: 11400000, guid: 406f6b1618028fc43bfbf695f4a7cb4e, type: 2}
+--- !u!65 &7169967465820562907
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8392476742362039486}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1.4, y: 1, z: 1.4}
+  m_Center: {x: 0, y: 0.83, z: 0}
+--- !u!135 &1357799149
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8392476742362039486}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8
+  m_Center: {x: 0, y: 0.71, z: 0}
 --- !u!1 &8392476742362065094
 GameObject:
   m_ObjectHideFlags: 0

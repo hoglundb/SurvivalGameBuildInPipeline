@@ -34,15 +34,17 @@ public class InventorySlotUIController : MonoBehaviour
     }
 
 
-    public void Hide()
+    //Sets the screen visibility of this canvas element by moving it way off the screen and back. 
+    public void SetVisibility(bool visibility)
     {
-        transform.position = Vector3.down * 1000;
-    }
-
-
-    public void Show()
-    {
-        transform.position = _startPos;
+        if (visibility)
+        {
+            transform.position = _startPos;
+        }
+        else 
+        {
+            transform.position = Vector3.down * 1000;
+        }
     }
 
 

@@ -8,26 +8,29 @@ using UnityEngine;
 public class PlayerInventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject _uiPrompt;
-     private GameObject _inventoryUIPanel;
+
     public LayerMask mask;
 
     public PlayerMovement _playerMovement;  //Reference the player movement script on this game object.
 
     public bool _isInventoryInUse;
 
+    private CanvasController _canvasController;
+
     private void Awake()
     {
         _isInventoryInUse = false;
         _uiPrompt.SetActive(false);
-        _inventoryUIPanel = GameObject.FindGameObjectWithTag("InventoryItemsTab");
         _playerMovement = GetComponent<PlayerMovement>();
         Cursor.visible = false;
     }
 
+
     private void Start()
     {
-        InventorySlotUIController.GetInstance().Hide();
+        _canvasController = CanvasController.GetInstance();        
     }
+
 
     // Update is called once per frame
     void Update()
@@ -40,22 +43,21 @@ public class PlayerInventoryManager : MonoBehaviour
     }
 
 
-
+    //Called every frame to respond to player input to toggle the visibility of the inventory IU. 
     private void ToggleInventory()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             _isInventoryInUse = !_isInventoryInUse;
             if (_isInventoryInUse)
-            {
-                InventorySlotUIController.GetInstance().Show();
+            {            
                 Cursor.visible = true;
             }
             else
             {
-                InventorySlotUIController.GetInstance().Hide();
                 Cursor.visible = false;
             }
+            _canvasController.ToggleInventoryCraftingUI(_isInventoryInUse);
             _playerMovement.SetMovementEnablement(!_isInventoryInUse);
         }
     }
