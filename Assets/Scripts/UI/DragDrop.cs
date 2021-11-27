@@ -28,6 +28,27 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     }
 
 
+
+    public GameObject GetAttachedGameObject()
+    {
+        return _attachedItemGameObj;
+    }
+
+
+
+    //Destroys the attached game object and disables the DragDrop for reuse. Called by the ItemSlot component that this is attached to when item is used to craft something. 
+    public void DestroyAttachedGameObj()
+    {
+        _attachedItemGameObj.SetActive(false);
+        _attachedItemGameObj = null;
+        GetComponent<Image>().sprite = null;
+        _currentItemSlot = _previousItemSlot = null;
+
+        //Finally, have this game object deactivate itself. 
+        gameObject.SetActive(false);
+    }
+
+
     //Tells this DragDrop item to reference the specified inventory item game object. Called when item is added to inventory of player manually moves to another slot. 
     public void AssignToItemSlot(GameObject itemSlot)
     {
@@ -51,7 +72,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
             _currentItemSlot = null;
         }
     }
-
+ 
 
     //Called when pointer enters this item. Increase the size of the transform to highlight it. 
     public void OnPointerEnter(PointerEventData eventData)
@@ -136,6 +157,17 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
             gameObject.SetActive(false);
         }
       
+    }
+
+
+
+    public void Foo()
+    {
+        _currentItemSlot = null;
+        _previousItemSlot = null;
+        _attachedItemGameObj.SetActive(false);
+        _attachedItemGameObj = null;
+         gameObject.SetActive(false);
     }
 
 

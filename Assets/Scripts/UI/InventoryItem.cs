@@ -21,28 +21,38 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         {
             _rigidbody = GetComponentInChildren<Rigidbody>();
         }
-        _initialDrag = _rigidbody.drag;
-        StartCoroutine(StopRollingCoroutine());
+
+        if (gameObject.activeSelf && _rigidbody != null)
+        {
+            _initialDrag = _rigidbody.drag;
+            StartCoroutine(StopRollingCoroutine());
+        }
+       
     }
+
 
     public void DropItem()
     {
+        Debug.LogError("player dropping item");
+        if (gameObject.activeSelf && _rigidbody != null)
+        {
+            return;
+        }
+
         transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1f;
         _randomDropOffset.x = _randomDropOffset.y = _randomDropOffset.z = Random.Range(-.1f, .1f);
         transform.position += _randomDropOffset;
+        gameObject.SetActive(true);
         if (!_wasThrownOnGround)
         {
             _wasThrownOnGround = true;
             transform.up = -1 * transform.up;
-        }
-
-        _rigidbody.drag = _initialDrag;
-        StartCoroutine(StopRollingCoroutine());
+        }     
     }
 
 
-    //Incrementially increases drag on the object to slow it's rolling to a stop. 
-    public IEnumerator StopRollingCoroutine()
+        //Incrementially increases drag on the object to slow it's rolling to a stop. 
+        public IEnumerator StopRollingCoroutine()
     {
         yield return new WaitForSeconds(5f);
         for (int i = 0; i < 10; i++)

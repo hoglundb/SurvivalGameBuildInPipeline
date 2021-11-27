@@ -85,7 +85,7 @@ public class PlayerInventoryManager : MonoBehaviour
 
     private void PlaceItemInInventory(GameObject gameObj)
     {
-        InventorySlotUIController.GetInstance().AddItemToInventory(gameObj);
+        _canvasController.AddItemToInventory(gameObj);;
     }
 }
 
