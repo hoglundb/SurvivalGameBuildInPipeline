@@ -7,13 +7,12 @@ using UnityEngine.EventSystems;
 public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Vector3 _initialScale;
-    private Vector3 _highlightSize;
+    [SerializeField] private float _highlightSize;
     private GameObject _attachedDragDropGameObj; //Reference to DragDrop game object in this slot. Null if slot is empty. The DragDrop object has the actual inventory game object attached to it. 
 
     private void Awake()
     {
         _initialScale = transform.localScale;
-        _highlightSize = Vector3.one * 1.08f;
     }
 
 
@@ -27,7 +26,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {       
         if (_attachedDragDropGameObj == null && Input.GetKey(KeyCode.Mouse0))
         {
-            transform.localScale = _highlightSize;
+            transform.localScale = Vector3.one * _highlightSize;
         }       
     }
 

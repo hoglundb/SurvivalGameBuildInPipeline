@@ -45,12 +45,20 @@ public class InventoryController : MonoBehaviour
     {
         if (visibility)
         {
-            transform.position = _startPos;
+            foreach (var item in _dragDropItemObjPool)
+            {
+                item.transform.GetComponent<RectTransform>().localScale = Vector3.one;
+            }
         }
-        else 
-        {
-            transform.position = Vector3.down * 1000;
-        }
+        gameObject.SetActive(visibility);
+        //if (visibility)
+        //{            
+        //    transform.position = _startPos;
+        //}
+        //else 
+        //{
+        //    transform.position = Vector3.down * 1000;
+        //}
     }
 
 
@@ -67,15 +75,13 @@ public class InventoryController : MonoBehaviour
                 dragDropObj.SetActive(true);
                 dragDropObj.GetComponent<DragDrop>().AttachGameObject(itemToPlaceInInventory);
                 _dragDropItemObjPool.Enqueue(dragDropObj);
-
+                
                 //Tell the item slot it is attached to this dragdrop item. 
                 itemSlotComponent.AssignDragDropItem(dragDropObj);
 
                 //Make the item that was just picked up invisible since only the sprite remains visible in the UI. 
                 itemToPlaceInInventory.SetActive(false);
-
-                Debug.LogError("item " + itemToPlaceInInventory.name + " added to inventory in slot " + itemSlotComponent.name);
-            
+                   
                 return;
             }
         }

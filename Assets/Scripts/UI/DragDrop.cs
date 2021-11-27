@@ -10,10 +10,9 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 {
     [SerializeField] private GameObject _attachedItemGameObj; //Game object attached to this drag/drop item. 
     [SerializeField] private Canvas _canvas; //reference to the main canvas UI
-
+    [SerializeField] private float _highlightSize = 1.12f;
     private GameObject _currentItemSlot; //Reference the item slot this item is currently assigned to. Reassigned with dropped into a new slot by the player. n
     private GameObject _previousItemSlot; //Track previous item slot so we can snap back if player drags this to an already occupied slot. 
-    private readonly float _highlightSize = 1.12f;
     private readonly float _highlightAlpha = .75f;
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
@@ -140,6 +139,15 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
             //Slot we are hovering over is empty, so drop item in that slot. 
             else
             {
+                if (hoveredItemSlot.gameObject.tag == "InventorySlot")
+                {
+                    transform.parent = GameObject.Find("PlayerInventoryPanel").transform;
+                }
+
+                else 
+                {
+                    transform.parent = CanvasController.GetInstance().transform;
+                }
                 transform.position = hoveredItemSlot.transform.position;
                 _currentItemSlot = hoveredItemSlot;
                 _currentItemSlot.GetComponent<ItemSlot>().AssignDragDropItem(gameObject);

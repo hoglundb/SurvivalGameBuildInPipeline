@@ -10,12 +10,10 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
     private bool _wasThrownOnGround = false;
     private float _initialDrag = 1f;
-    private Vector3 _randomDropOffset;
+
 
     private void Awake()
     {
-        _randomDropOffset = new Vector3();
-
         _rigidbody = GetComponent<Rigidbody>();
         if (_rigidbody == null)
         {
@@ -33,21 +31,26 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
     public void DropItem()
     {
-        Debug.LogError("player dropping item");
         if (gameObject.activeSelf && _rigidbody != null)
         {
+            //Debug.LogError("no rigidbody");
             return;
         }
-
-        transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1f;
-        _randomDropOffset.x = _randomDropOffset.y = _randomDropOffset.z = Random.Range(-.1f, .1f);
-        transform.position += _randomDropOffset;
-        gameObject.SetActive(true);
         if (!_wasThrownOnGround)
         {
             _wasThrownOnGround = true;
             transform.up = -1 * transform.up;
-        }     
+        }
+
+        Vector3 newPos = GameObject.Find("PlayerPrefab").transform.position;
+        newPos.y += 10f;
+        Vector3 forwards = GameObject.Find("PlayerPrefab").transform.forward.normalized * .05f;
+        forwards.y = 0;
+        newPos += forwards;
+      //  newPos.z = Random.Range(-.04f, .04f);
+        transform.position = newPos;
+        gameObject.SetActive(true);
+         
     }
 
 

@@ -85,7 +85,6 @@ public class CraftableMenuItem : MonoBehaviour
 
         //Spawn the newly crafted game object. TODO: use object pooling to manage this in the future. 
         GameObject craftedItem = Instantiate(_craftedItemPrefab);
-        craftedItem.transform.parent = transform;
         _canvasController.inventoryController.AddItemToInventory(_craftedItemPrefab);
     }
 
