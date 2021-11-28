@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6857264056021198602}
   - component: {fileID: 6636814419205181811}
   - component: {fileID: 4528832259192631851}
+  - component: {fileID: 1670209899297593449}
   m_Layer: 0
   m_Name: InventoryEquipSlot
   m_TagString: QuickSelectUISlot
@@ -92,6 +93,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _highlightSize: 0.42
+--- !u!114 &1670209899297593449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3278163695340965352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbc98ceafe567b4d8dcf2fd8ccaf99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _highlightedColor: {r: 0, g: 0.5594096, b: 1, a: 0.8235294}
+  _defaultColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 0.8862745}
+  _imageTransform: {fileID: 2203409919898521699}
 --- !u!1 &4528832258335675875
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4528832258335675878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -320,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

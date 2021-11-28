@@ -10,6 +10,13 @@ public class InventoryItemScriptableObj : ScriptableObject
     public string ItemName;
     public Sprite ItemUISprite;
 
+    [Header("Info if item can be equiped")]
+    public bool isEquipable = false;
+    public Vector3 localPosition;
+    public Vector3 localEulers;
+    public string animTriggerHold;
+    public string animTriggerMelee;
+
     [Header("Fields if edible")]
     public bool isConsumable;
     [SerializeField] public NutritionStats nutritionStats;

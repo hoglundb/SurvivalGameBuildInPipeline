@@ -30,7 +30,7 @@ public class InventoryController : MonoBehaviour
         _dragDropItemObjPool = new Queue<GameObject>();
         for (int i = 0; i < _numItems; i++)
         {
-            GameObject uiElement =  GameObject.Instantiate(_dragDropUIPrefab);
+            GameObject uiElement =  GameObject.Instantiate(_dragDropUIPrefab) as GameObject;
             uiElement.transform.parent = transform;
             uiElement.SetActive(false);
             _dragDropItemObjPool.Enqueue(uiElement);
