@@ -24,8 +24,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         {
             _initialDrag = _rigidbody.drag;
             StartCoroutine(StopRollingCoroutine());
-        }
-       
+        }       
     }
 
 
@@ -47,7 +46,6 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         Vector3 forwards = GameObject.Find("PlayerPrefab").transform.forward.normalized * .05f;
         forwards.y = 0;
         newPos += forwards;
-      //  newPos.z = Random.Range(-.04f, .04f);
         transform.position = newPos;
         gameObject.SetActive(true);
          
@@ -55,7 +53,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
 
         //Incrementially increases drag on the object to slow it's rolling to a stop. 
-        public IEnumerator StopRollingCoroutine()
+    public IEnumerator StopRollingCoroutine()
     {
         yield return new WaitForSeconds(5f);
         for (int i = 0; i < 10; i++)

@@ -14,7 +14,7 @@ public class InventoryController : MonoBehaviour
 
     private List<GameObject> _inventorySlots;
     private Vector3 _startPos;
-
+    private GameObject _playerReference;
 
     //Singleton for this class so it is globally accessable to the player
     public static InventoryController GetInstance() { return _instance; }
@@ -40,6 +40,13 @@ public class InventoryController : MonoBehaviour
     }
 
 
+    //Called by the player so this component can set up a reference to the player game object. 
+    public void AssignPlayerReference(GameObject playerReference)
+    {
+        _playerReference = playerReference;
+    }
+
+
     //Sets the screen visibility of this canvas element by moving it way off the screen and back. 
     public void SetVisibility(bool visibility)
     {
@@ -51,14 +58,6 @@ public class InventoryController : MonoBehaviour
             }
         }
         gameObject.SetActive(visibility);
-        //if (visibility)
-        //{            
-        //    transform.position = _startPos;
-        //}
-        //else 
-        //{
-        //    transform.position = Vector3.down * 1000;
-        //}
     }
 
 
@@ -159,5 +158,12 @@ public class InventoryController : MonoBehaviour
         }
 
         return false;
+    }
+
+
+    //Callback for when player updates an item in their equipable enventory. Tells the player to perform the needed updates to refresh weapon animation
+    public void OnPlayerUpdateEquipedItem()
+    {
+        _playerReference.GetComponent<Player.PlayerWeaponController>().OnPlayerUpdateEquipedItem();
     }
 }

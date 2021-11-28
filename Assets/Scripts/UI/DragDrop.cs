@@ -18,6 +18,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private CanvasGroup _canvasGroup;
     private float _initialScale;
 
+
     private void Awake()
     {
         _canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -34,25 +35,15 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     }
 
 
-
-    //Destroys the attached game object and disables the DragDrop for reuse. Called by the ItemSlot component that this is attached to when item is used to craft something. 
-    public void DestroyAttachedGameObj()
-    {
-        _attachedItemGameObj.SetActive(false);
-        _attachedItemGameObj = null;
-        GetComponent<Image>().sprite = null;
-        _currentItemSlot = _previousItemSlot = null;
-
-        //Finally, have this game object deactivate itself. 
-        gameObject.SetActive(false);
-    }
-
-
     //Tells this DragDrop item to reference the specified inventory item game object. Called when item is added to inventory of player manually moves to another slot. 
     public void AssignToItemSlot(GameObject itemSlot)
     {
+        //Attach the game object to this drag drop object.
         _currentItemSlot = itemSlot;
         transform.localScale = Vector3.one * _initialScale;
+
+        //Tell the player an item was moved so equiped item can be updated if needed.
+        InventoryController.GetInstance().OnPlayerUpdateEquipedItem();
     }
 
 
@@ -168,8 +159,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     }
 
 
-
-    public void Foo()
+    //Called when item in this slot is being used to craft another item. In this case we completely destroy it instead of dropping it on the ground. 
+    public void DestroyItem()
     {
         _currentItemSlot = null;
         _previousItemSlot = null;

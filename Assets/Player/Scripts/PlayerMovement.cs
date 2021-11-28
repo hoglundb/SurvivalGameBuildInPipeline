@@ -95,6 +95,12 @@ namespace Player
             _isMovementEnabled = shouldEnable;
         }
 
+
+        public bool IsMovementInabled()
+        {
+            return _isMovementEnabled;
+        }
+
     }
 }
 

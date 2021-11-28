@@ -65,29 +65,10 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     //Removes the item in this slot and completely distroys it. Called when item is used to craft another item. 
     public void DestroyItemInSlot()
     {
-        var dd = _attachedDragDropGameObj.GetComponent<DragDrop>();
-        dd.Foo();
+        var dragDrop = _attachedDragDropGameObj.GetComponent<DragDrop>();
+        dragDrop.DestroyItem();
         _attachedDragDropGameObj.SetActive(false);
         _attachedDragDropGameObj = null;
-       // Debug.LogError("destroying item in slot" + gameObject.name);
-       //DragDrop dd = _attachedDragDropGameObj.GetComponent<DragDrop>();
-       // dd.Foo();
-       // if (_attachedDragDropGameObj != null) _attachedDragDropGameObj.gameObject.SetActive(false);
-       // _attachedDragDropGameObj = null;
-       //_currentItemSlot = null;
-       //_previousItemSlot = null;
-       //_attachedItemGameObj.SetActive(true);
-       //_attachedItemGameObj.GetComponent<InventoryItem>().DropItem();
-       //_attachedItemGameObj = null;
-       //gameObject.SetActive(false);
-
-        ////Free up the attached drag drop item
-        //if (_attachedDragDropGameObj != null)
-        //{
-        //    _attachedDragDropGameObj.GetComponent<DragDrop>().DestroyAttachedGameObj();
-        //    _attachedDragDropGameObj.SetActive(false);
-        //    _attachedDragDropGameObj = null;
-        //}
     }
 }
 
