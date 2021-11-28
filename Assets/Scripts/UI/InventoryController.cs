@@ -20,7 +20,6 @@ public class InventoryController : MonoBehaviour
     public static InventoryController GetInstance() { return _instance; }
 
 
-
     private void Awake()
     {
         _instance = this;
@@ -146,8 +145,7 @@ public class InventoryController : MonoBehaviour
                             }
                         }
                     }
-                }
-              
+                }              
             }
 
             //We are done once we removet the specified quantity of items of this type. 

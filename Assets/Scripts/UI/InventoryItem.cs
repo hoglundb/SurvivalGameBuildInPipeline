@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryItem : MonoBehaviour, IInventoryItem
+public class InventoryItem : MonoBehaviour
 {
     [SerializeField] public InventoryItemScriptableObj inventoryItemObj;
 
@@ -52,7 +52,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
     }
 
 
-        //Incrementially increases drag on the object to slow it's rolling to a stop. 
+   //Incrementially increases drag on the object to slow it's rolling to a stop. 
     public IEnumerator StopRollingCoroutine()
     {
         yield return new WaitForSeconds(5f);
@@ -64,11 +64,4 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
         _rigidbody.drag = 1000f;
     }
-}
-
-
-
-public interface IInventoryItem
-{
-    abstract void DropItem();
 }

@@ -28,7 +28,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     }
 
 
-
     public GameObject GetAttachedGameObject()
     {
         return _attachedItemGameObj;

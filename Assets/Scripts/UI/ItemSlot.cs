@@ -10,6 +10,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private float _highlightSize;
     private GameObject _attachedDragDropGameObj; //Reference to DragDrop game object in this slot. Null if slot is empty. The DragDrop object has the actual inventory game object attached to it. 
 
+
     private void Awake()
     {
         _initialScale = transform.localScale;
