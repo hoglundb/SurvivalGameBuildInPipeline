@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a76d3f04a91f2469fb863a76302456, type: 3}
+  m_Name: BasicBow
+  m_EditorClassIdentifier: 
+  ItemName: 
+  ItemUISprite: {fileID: 21300000, guid: f20b4ae48d98e134b8e8582b8daf4ef6, type: 3}
+  isEquipable: 1
+  equipableItemInfo:
+    equipableItemType: 1
+    parentHand: 0
+    localPosition: {x: 0.036, y: 0.0976, z: 0.0005}
+    localEulers: {x: 285.7568, y: 82.98052, z: 281.6837}
+    animTriggerHold: HoldBow
+    animTriggerMelee: NA
+    animTriggerBowDraw: DrawBow
+    animTriggerBowRelease: ReleaseBow
+    animTriggerReload: ReloadBow
+  equipableItemType: 1
+  parentHand: 0
+  localPosition: {x: 0.036, y: 0.0976, z: 0.0005}
+  localEulers: {x: 285.75677, y: 82.98052, z: 281.68365}
+  animTriggerHold: HoldBow
+  animTriggerMelee: NA
+  animTriggerBowDraw: DrawBow
+  animTriggerBowRelease: ReleaseBow
+  animTriggerReload: ReloadBow
+  isConsumable: 0
+  nutritionStats:
+    Protein: 0
+    Mineral: 0
+    Hydration: 0

@@ -15,10 +15,25 @@ MonoBehaviour:
   ItemName: 0
   ItemUISprite: {fileID: 21300118, guid: 1e627bcafe9e32d40ad554880f36b5eb, type: 3}
   isEquipable: 1
+  equipableItemInfo:
+    equipableItemType: 2
+    parentHand: 1
+    localPosition: {x: 0.009, y: 0.032, z: -0.235}
+    localEulers: {x: 348.4613, y: 4.490654, z: 88.1558}
+    animTriggerHold: HoldAx
+    animTriggerMelee: ChopAxe
+    animTriggerBowDraw: NA
+    animTriggerBowRelease: NA
+    animTriggerReload: NA
+  equipableItemType: 2
+  parentHand: 1
   localPosition: {x: 0.009, y: 0.032, z: -0.235}
   localEulers: {x: 348.46127, y: 4.4906535, z: 88.1558}
   animTriggerHold: HoldAxe
   animTriggerMelee: ChopAxe
+  animTriggerBowDraw: NA
+  animTriggerBowRelease: NA
+  animTriggerReload: NA
   isConsumable: 0
   nutritionStats:
     Protein: 0

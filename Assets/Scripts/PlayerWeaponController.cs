@@ -7,6 +7,7 @@ namespace Player
     public class PlayerWeaponController : MonoBehaviour
     {
         [SerializeField] private Transform _rightHandBone;
+        [SerializeField] private Transform _leftHandBone;
 
         [SerializeField] private List<GameObject> _equipableSlots;
 
@@ -16,9 +17,9 @@ namespace Player
 
         [SerializeField] private bool __savePosRotOnExit;
 
-
         private Animator _anim;
         private PlayerMovement _playerMovement;
+        private Transform _currentHandBone;
 
         private void Awake()
         {
@@ -153,9 +154,12 @@ namespace Player
                 relativePosition = invenItem.inventoryItemObj.localPosition,
                 relativeEulers = invenItem.inventoryItemObj.localEulers,
             };
+
+            _currentHandBone = _rightHandBone;
+            if (_equipedItem.invnentoryItem.inventoryItemObj.parentHand == LeftOrRight.LEFT) _currentHandBone = _leftHandBone;
             _equipedItem.rigidbody.isKinematic = true;
             _equipedItem.gameObj.SetActive(true);
-            _equipedItem.gameObj.transform.parent = _rightHandBone.transform;
+            _equipedItem.gameObj.transform.parent = _currentHandBone.transform;
             _equipedItem.gameObj.transform.localPosition = _equipedItem.relativePosition;
             _equipedItem.gameObj.transform.localRotation = Quaternion.Euler(_equipedItem.relativeEulers);
             _anim.SetTrigger(_equipedItem.invnentoryItem.inventoryItemObj.animTriggerHold);

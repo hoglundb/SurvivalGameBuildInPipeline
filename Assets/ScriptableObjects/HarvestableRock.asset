@@ -15,8 +15,25 @@ MonoBehaviour:
   ItemName: STONE
   ItemUISprite: {fileID: 21300000, guid: 6eb975d59c2c6fd4c8ee507de9bae958, type: 3}
   isEquipable: 0
+  equipableItemInfo:
+    equipableItemType: 0
+    parentHand: 2
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulers: {x: 0, y: 0, z: 0}
+    animTriggerHold: NA
+    animTriggerMelee: NA
+    animTriggerBowDraw: NA
+    animTriggerBowRelease: NA
+    animTriggerReload: NA
+  equipableItemType: 0
+  parentHand: 2
   localPosition: {x: 0, y: 0, z: 0}
   localEulers: {x: 0, y: 0, z: 0}
+  animTriggerHold: NA
+  animTriggerMelee: NA
+  animTriggerBowDraw: NA
+  animTriggerBowRelease: NA
+  animTriggerReload: NA
   isConsumable: 0
   nutritionStats:
     Protein: 0
