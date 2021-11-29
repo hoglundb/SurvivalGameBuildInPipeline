@@ -20,20 +20,11 @@ MonoBehaviour:
     parentHand: 1
     localPosition: {x: 0.009, y: 0.032, z: -0.235}
     localEulers: {x: 348.4613, y: 4.490654, z: 88.1558}
-    animTriggerHold: HoldAx
+    animTriggerHold: HoldAxe
     animTriggerMelee: ChopAxe
     animTriggerBowDraw: NA
     animTriggerBowRelease: NA
     animTriggerReload: NA
-  equipableItemType: 2
-  parentHand: 1
-  localPosition: {x: 0.009, y: 0.032, z: -0.235}
-  localEulers: {x: 348.46127, y: 4.4906535, z: 88.1558}
-  animTriggerHold: HoldAxe
-  animTriggerMelee: ChopAxe
-  animTriggerBowDraw: NA
-  animTriggerBowRelease: NA
-  animTriggerReload: NA
   isConsumable: 0
   nutritionStats:
     Protein: 0

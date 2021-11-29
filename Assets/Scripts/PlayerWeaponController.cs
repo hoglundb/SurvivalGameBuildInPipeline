@@ -33,8 +33,8 @@ namespace Player
             //Save the equipable item setup that was done in the editor
             if (__savePosRotOnExit && _equipedItem != null)
             {
-                _equipedItem.invnentoryItem.inventoryItemObj.localPosition = _equipedItem.gameObj.transform.localPosition;
-                _equipedItem.invnentoryItem.inventoryItemObj.localEulers = _equipedItem.gameObj.transform.localRotation.eulerAngles;
+                _equipedItem.invnentoryItem.inventoryItemObj.equipableItemInfo.localPosition = _equipedItem.gameObj.transform.localPosition;
+                _equipedItem.invnentoryItem.inventoryItemObj.equipableItemInfo.localEulers = _equipedItem.gameObj.transform.localRotation.eulerAngles;
             }
         }
 
@@ -65,7 +65,7 @@ namespace Player
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                _anim.SetTrigger(_equipedItem.invnentoryItem.inventoryItemObj.animTriggerMelee);
+                _anim.SetTrigger(_equipedItem.invnentoryItem.inventoryItemObj.equipableItemInfo.animTriggerMelee);
             }
         }
 
@@ -151,18 +151,18 @@ namespace Player
                 invnentoryItem = invenItem,
                 gameObj = slotGameObj,
                 rigidbody = slotGameObj.GetComponent<Rigidbody>(),
-                relativePosition = invenItem.inventoryItemObj.localPosition,
-                relativeEulers = invenItem.inventoryItemObj.localEulers,
+                relativePosition = invenItem.inventoryItemObj.equipableItemInfo.localPosition,
+                relativeEulers = invenItem.inventoryItemObj.equipableItemInfo.localEulers,
             };
 
             _currentHandBone = _rightHandBone;
-            if (_equipedItem.invnentoryItem.inventoryItemObj.parentHand == LeftOrRight.LEFT) _currentHandBone = _leftHandBone;
+            if (_equipedItem.invnentoryItem.inventoryItemObj.equipableItemInfo.parentHand == LeftOrRight.LEFT) _currentHandBone = _leftHandBone;
             _equipedItem.rigidbody.isKinematic = true;
             _equipedItem.gameObj.SetActive(true);
             _equipedItem.gameObj.transform.parent = _currentHandBone.transform;
             _equipedItem.gameObj.transform.localPosition = _equipedItem.relativePosition;
             _equipedItem.gameObj.transform.localRotation = Quaternion.Euler(_equipedItem.relativeEulers);
-            _anim.SetTrigger(_equipedItem.invnentoryItem.inventoryItemObj.animTriggerHold);
+            _anim.SetTrigger(_equipedItem.invnentoryItem.inventoryItemObj.equipableItemInfo.animTriggerHold);
         }
 
 

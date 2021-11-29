@@ -13,15 +13,7 @@ public class InventoryItemScriptableObj : ScriptableObject
     [Header("Info if item can be equiped")]
     public bool isEquipable = false;
     public EquipableItemInfo equipableItemInfo;
-    public EquipableItemType equipableItemType = EquipableItemType.NONE;
-    public LeftOrRight parentHand = LeftOrRight.NONE;
-    public Vector3 localPosition;
-    public Vector3 localEulers;
-    public string animTriggerHold = "NA"; //Anim trigger name for player holding this item
-    public string animTriggerMelee = "NA"; //Anim trigger name for player malee with this item (if applicable)
-    public string animTriggerBowDraw = "NA"; //Anim trigger name for player drawing this item (if item a bow)
-    public string animTriggerBowRelease = "NA"; //Anim trigger name for player releasing bow (if item is a bow)
-    public string animTriggerReload = "NA"; //Anim trigger name if a reloadable weapon. 
+
     [Header("Fields if edible")]
     public bool isConsumable;
     [SerializeField] public NutritionStats nutritionStats;
