@@ -33,8 +33,8 @@ namespace Player
             //Save the equipable item setup that was done in the editor
             if (__savePosRotOnExit && _equipedItem != null)
             {
-                _equipedItem.invnentoryItem.inventoryItemObj.equipableItemInfo.localPosition = _equipedItem.gameObj.transform.localPosition;
-                _equipedItem.invnentoryItem.inventoryItemObj.equipableItemInfo.localEulers = _equipedItem.gameObj.transform.localRotation.eulerAngles;
+                _equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.localPosition = _equipedItem.gameObj.transform.localPosition;
+                _equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.localEulers = _equipedItem.gameObj.transform.localRotation.eulerAngles;
             }
         }
 
@@ -59,14 +59,69 @@ namespace Player
         }
 
 
+        //Responds to player input based on the type of item the player has equiped
         private void _PlayerInputAction()
         {
             if (_equipedItem == null) return;
 
+            EquipableItemType equipedItemType = _equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.equipableItemType;
+            if (equipedItemType == EquipableItemType.BOW)
+            {
+                _PlayerInputActionBow();
+            }
+            else if (equipedItemType == EquipableItemType.MELEE)
+            {
+                _PlayerInputActionMelee();
+            }
+            else if (equipedItemType == EquipableItemType.GUN)
+            {
+                _PlayerInputActionGun();
+            }
+        }
+
+
+        //Handles player input action when a player has a bow equiped
+        private void _PlayerInputActionBow()
+        {
+            //If player not reloading, aiming or firing. Allow player to draw the bow back
+            AnimatorStateInfo curState = _anim.GetCurrentAnimatorStateInfo(0);
+            if (curState.IsTag("HoldingItemAnimation"))
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    _anim.SetTrigger("DrawBow");
+                }
+            }
+
+            //If player has the bow drawn or is drawing the bow, allow firing upon button release.
+            else if (curState.IsTag("DrawAnimation") || curState.IsTag("AimAnimation"))
+            {
+             
+                if (Input.GetKeyUp(KeyCode.Mouse0))
+                {
+                    _anim.ResetTrigger("DrawBow");
+                    _anim.SetTrigger("FireBow");
+                }
+            }
+
+            //TODO
+        }
+
+
+        //Handles player input action when player has a melee item equiped
+        private void _PlayerInputActionMelee()
+        {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                _anim.SetTrigger(_equipedItem.invnentoryItem.inventoryItemObj.equipableItemInfo.animTriggerMelee);
+                _anim.SetTrigger(_equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.animTriggerMelee);
             }
+        }
+
+
+        //Handles player input action when player has a gun equiped
+        private void _PlayerInputActionGun()
+        { 
+           //TODO
         }
 
 
@@ -147,22 +202,25 @@ namespace Player
             //Reference the equiped item so player can handle it.            
             _equipedItem = new EquipedItemContainer
             {
-                equipableItem = slotGameObj.GetComponent<EquipableItem>(),
-                invnentoryItem = invenItem,
+                equipableItemComponent = slotGameObj.GetComponent<EquipableItem>(),
+                inventoryItemComponent = invenItem,
                 gameObj = slotGameObj,
-                rigidbody = slotGameObj.GetComponent<Rigidbody>(),
+                rigidbodyComponent = slotGameObj.GetComponent<Rigidbody>(),
                 relativePosition = invenItem.inventoryItemObj.equipableItemInfo.localPosition,
                 relativeEulers = invenItem.inventoryItemObj.equipableItemInfo.localEulers,
             };
 
+            //Set the hand bone to parent the item to (item will define which hand holds it in it's scriptable object)
             _currentHandBone = _rightHandBone;
-            if (_equipedItem.invnentoryItem.inventoryItemObj.equipableItemInfo.parentHand == LeftOrRight.LEFT) _currentHandBone = _leftHandBone;
-            _equipedItem.rigidbody.isKinematic = true;
+            if (_equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.parentHand == LeftOrRight.LEFT) _currentHandBone = _leftHandBone;
+
+            //Set the equipable item to be active in the player's hand and kickoff the animation to hold that item
+            _equipedItem.rigidbodyComponent.isKinematic = true;
             _equipedItem.gameObj.SetActive(true);
             _equipedItem.gameObj.transform.parent = _currentHandBone.transform;
             _equipedItem.gameObj.transform.localPosition = _equipedItem.relativePosition;
             _equipedItem.gameObj.transform.localRotation = Quaternion.Euler(_equipedItem.relativeEulers);
-            _anim.SetTrigger(_equipedItem.invnentoryItem.inventoryItemObj.equipableItemInfo.animTriggerHold);
+            _anim.SetTrigger(_equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.animTriggerHold);
         }
 
 
@@ -186,9 +244,9 @@ namespace Player
         private class EquipedItemContainer
         {
             public GameObject gameObj;
-            public InventoryItem invnentoryItem;
-            public EquipableItem equipableItem;
-            public Rigidbody rigidbody;
+            public InventoryItem inventoryItemComponent;
+            public EquipableItem equipableItemComponent;
+            public Rigidbody rigidbodyComponent;
             public Vector3 relativePosition;
             public Vector3 relativeEulers;
         }
