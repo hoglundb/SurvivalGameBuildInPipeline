@@ -77,6 +77,12 @@ public class InventoryController : MonoBehaviour
                 //Tell the item slot it is attached to this dragdrop item. 
                 itemSlotComponent.AssignDragDropItem(dragDropObj);
 
+                //Disable any colliders on the game object we picked up
+                foreach (Collider c in itemToPlaceInInventory.GetComponents<Collider>())
+                {
+                    c.enabled = false;
+                }
+
                 //Make the item that was just picked up invisible since only the sprite remains visible in the UI. 
                 itemToPlaceInInventory.SetActive(false);
                    

@@ -25,6 +25,8 @@ namespace Player
         {
             _anim = GetComponentInChildren<Animator>();
             _playerMovement = GetComponent<PlayerMovement>();
+            _leftHandBone = GameObject.Find("LeftHand").transform;
+            _rightHandBone = GameObject.Find("RightHand").transform;
         }
 
 
@@ -33,8 +35,8 @@ namespace Player
             //Save the equipable item setup that was done in the editor
             if (__savePosRotOnExit && _equipedItem != null)
             {
-                _equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.localPosition = _equipedItem.gameObj.transform.localPosition;
-                _equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.localEulers = _equipedItem.gameObj.transform.localRotation.eulerAngles;
+              //  _equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.localPosition = _equipedItem.gameObj.transform.localPosition;
+               // _equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.localEulers = _equipedItem.gameObj.transform.localRotation.eulerAngles;
             }
         }
 
@@ -85,6 +87,21 @@ namespace Player
         {
             //If player not reloading, aiming or firing. Allow player to draw the bow back
             AnimatorStateInfo curState = _anim.GetCurrentAnimatorStateInfo(0);
+
+            //if no arrow equiped yet, load an arrow from the inventory onto the bow
+            if (!_equipedItem.bowController.HasLoadedArrow())
+            {
+                _anim.SetTrigger("ReloadBow");
+                _equipedItem.bowController.LoadArrow();
+            }
+
+            //The reload cycle tells us we can set the draw amount back to 0
+            if (curState.IsTag("ReloadAnimation"))
+            {
+                _equipedItem.bowController.SetDrawAmount(0);
+            }
+
+
             if (curState.IsTag("HoldingItemAnimation"))
             {
                 if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -96,12 +113,23 @@ namespace Player
             //If player has the bow drawn or is drawing the bow, allow firing upon button release.
             else if (curState.IsTag("DrawAnimation") || curState.IsTag("AimAnimation"))
             {
-             
+                //Player releases the shoot key
                 if (Input.GetKeyUp(KeyCode.Mouse0))
                 {
                     _anim.ResetTrigger("DrawBow");
                     _anim.SetTrigger("FireBow");
+                    _equipedItem.bowController.LooseArrow();
+                    return;
                 }
+                //Player is drawing bow so set bow draw amount to the percent through the draw animation
+                float drawAmount = 1f;
+                if (curState.IsTag("DrawAnimation"))
+                {
+                    drawAmount = _anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                }
+                drawAmount = Mathf.Min(1, drawAmount);
+                _equipedItem.bowController.SetDrawAmount(drawAmount);
+                Debug.LogError(drawAmount);
             }
 
             //TODO
@@ -203,6 +231,7 @@ namespace Player
             _equipedItem = new EquipedItemContainer
             {
                 equipableItemComponent = slotGameObj.GetComponent<EquipableItem>(),
+                bowController = slotGameObj.GetComponent<BowController>(), //Will be null if not a bow
                 inventoryItemComponent = invenItem,
                 gameObj = slotGameObj,
                 rigidbodyComponent = slotGameObj.GetComponent<Rigidbody>(),
@@ -246,6 +275,7 @@ namespace Player
             public GameObject gameObj;
             public InventoryItem inventoryItemComponent;
             public EquipableItem equipableItemComponent;
+            public BowController bowController; //this component will be null if equiped item is not a bow
             public Rigidbody rigidbodyComponent;
             public Vector3 relativePosition;
             public Vector3 relativeEulers;

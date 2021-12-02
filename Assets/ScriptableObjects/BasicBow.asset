@@ -18,22 +18,13 @@ MonoBehaviour:
   equipableItemInfo:
     equipableItemType: 1
     parentHand: 0
-    localPosition: {x: 0.036, y: 0.0976, z: 0.0005}
-    localEulers: {x: 285.7568, y: 82.98052, z: 281.6837}
+    localPosition: {x: 0.0369, y: 0.0942, z: 0.0024}
+    localEulers: {x: 287.86404, y: 63.488808, z: 300.4034}
     animTriggerHold: HoldBow
     animTriggerMelee: NA
     animTriggerBowDraw: DrawBow
     animTriggerBowRelease: ReleaseBow
     animTriggerReload: ReloadBow
-  equipableItemType: 1
-  parentHand: 0
-  localPosition: {x: 0.036, y: 0.0976, z: 0.0005}
-  localEulers: {x: 285.75677, y: 82.98052, z: 281.68365}
-  animTriggerHold: HoldBow
-  animTriggerMelee: NA
-  animTriggerBowDraw: DrawBow
-  animTriggerBowRelease: ReleaseBow
-  animTriggerReload: ReloadBow
   isConsumable: 0
   nutritionStats:
     Protein: 0
