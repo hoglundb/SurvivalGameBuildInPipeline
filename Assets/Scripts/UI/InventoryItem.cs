@@ -28,8 +28,15 @@ public class InventoryItem : MonoBehaviour
     }
 
 
+    //Called from the DragDrop component holding the game object when the player is dropping the item. Re-enable the object and then drop it onto the ground. 
     public void DropItem()
     {
+        //re-enable any coliders on the object the player is dropping. 
+        foreach (Collider c in gameObject.GetComponents<Collider>())
+        {
+            c.enabled = true;
+        }
+
         if (gameObject.activeSelf && _rigidbody != null)
         {
             //Debug.LogError("no rigidbody");
@@ -47,13 +54,14 @@ public class InventoryItem : MonoBehaviour
         forwards.y = 0;
         newPos += forwards;
         transform.position = newPos;
-        gameObject.SetActive(true);
-         
+        gameObject.SetActive(true);     
     }
 
 
-   //Incrementially increases drag on the object to slow it's rolling to a stop. 
-    public IEnumerator StopRollingCoroutine()
+ 
+
+//Incrementially increases drag on the object to slow it's rolling to a stop. 
+public IEnumerator StopRollingCoroutine()
     {
         yield return new WaitForSeconds(5f);
         for (int i = 0; i < 10; i++)

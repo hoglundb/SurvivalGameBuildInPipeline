@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0.6156863}
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9274,10 +9274,6 @@ PrefabInstance:
     - target: {fileID: 2142141331176924149, guid: 84cbd529ba9dd034ba03b4f46e6e9853, type: 3}
       propertyPath: m_Name
       value: BowPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 2142141331176924150, guid: 84cbd529ba9dd034ba03b4f46e6e9853, type: 3}
-      propertyPath: _bowPower
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2142141331176924151, guid: 84cbd529ba9dd034ba03b4f46e6e9853, type: 3}
       propertyPath: m_RootOrder

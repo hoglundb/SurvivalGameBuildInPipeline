@@ -147,8 +147,11 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         //If player is ententionally droping item into game
         else 
         {
+            //Reset the slot
             _currentItemSlot = null;
             _previousItemSlot = null;
+
+            //Activate the game object the player is about to drop and call the DropItem() function on it
             _attachedItemGameObj.SetActive(true);
             _attachedItemGameObj.GetComponent<InventoryItem>().DropItem();          
             _attachedItemGameObj = null;
