@@ -129,10 +129,7 @@ namespace Player
                 }
                 drawAmount = Mathf.Min(1, drawAmount);
                 _equipedItem.bowController.SetDrawAmount(drawAmount);
-                Debug.LogError(drawAmount);
             }
-
-            //TODO
         }
 
 

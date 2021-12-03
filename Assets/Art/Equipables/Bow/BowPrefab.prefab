@@ -128,7 +128,7 @@ MonoBehaviour:
   _arrowEndPos: {x: -0.38, y: 0.79, z: -4.56}
   _arrowLocalRot: {x: 0, y: 90, z: 90}
   _arrowPrefab: {fileID: 5605975853961705076, guid: cd4c1b95f573fff44b919391c72184ac, type: 3}
-  _bowPower: 40
+  _bowPower: 100
   _drawSpeed: 0
 --- !u!1 &2904674466858375478
 GameObject:

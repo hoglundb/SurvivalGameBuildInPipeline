@@ -41,8 +41,15 @@ public class ArrowController : MonoBehaviour
         transform.position = pos;
         _rb.isKinematic = false;
         _rb.velocity = vel;
+        StartCoroutine(DeactivateArrow());
     }
 
+
+    private IEnumerator DeactivateArrow()
+    {
+        yield return new WaitForSeconds(4f);
+        _rb.isKinematic = true;
+    }
 
     private void Update()
     {
