@@ -6,5 +6,6 @@ public enum EquipableItemTypes
 {
     AXE,
     BOW,
+    WAND,
 }    
 

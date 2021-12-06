@@ -37,6 +37,9 @@ public class InventoryItem : MonoBehaviour
             c.enabled = true;
         }
 
+        //Make sure the item is no longer a child of the player's hand
+        transform.SetParent(null);
+
         if (gameObject.activeSelf && _rigidbody != null)
         {
             //Debug.LogError("no rigidbody");
@@ -58,10 +61,8 @@ public class InventoryItem : MonoBehaviour
     }
 
 
- 
-
-//Incrementially increases drag on the object to slow it's rolling to a stop. 
-public IEnumerator StopRollingCoroutine()
+    //Incrementially increases drag on the object to slow it's rolling to a stop. 
+    public IEnumerator StopRollingCoroutine()
     {
         yield return new WaitForSeconds(5f);
         for (int i = 0; i < 10; i++)
@@ -72,4 +73,5 @@ public IEnumerator StopRollingCoroutine()
 
         _rigidbody.drag = 1000f;
     }
+
 }

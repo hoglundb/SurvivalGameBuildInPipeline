@@ -8,6 +8,7 @@ public class ArrowController : MonoBehaviour
 {
     private Rigidbody _rb;
     private bool _isLanched = false;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();

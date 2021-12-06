@@ -79,6 +79,11 @@ namespace Player
             {
                 _PlayerInputActionGun();
             }
+
+            else if (equipedItemType == EquipableItemType.WAND)
+            {
+                _PlayerInputActionWand();
+            }
         }
 
 
@@ -135,6 +140,15 @@ namespace Player
 
         //Handles player input action when player has a melee item equiped
         private void _PlayerInputActionMelee()
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                _anim.SetTrigger(_equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.animTriggerMelee);
+            }
+        }
+
+
+        private void _PlayerInputActionWand()
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {

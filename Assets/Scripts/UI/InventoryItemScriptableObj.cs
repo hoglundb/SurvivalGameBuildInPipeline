@@ -48,6 +48,7 @@ public enum EquipableItemType
     MELEE,
     GUN,
     SPEAR,
+    WAND,
 }
 
 
