@@ -29,7 +29,6 @@ public class CanvasController : MonoBehaviour
     //Toggles visibility of the inventory and crafting UI. Reinitialize the crafting menu based on material availability in the inventory. 
     public void ToggleInventoryCraftingUI(bool shouldShow)
     {
-        craftingController.gameObject.SetActive(shouldShow);
         inventoryController.SetVisibility(shouldShow);
         if (shouldShow)
         {

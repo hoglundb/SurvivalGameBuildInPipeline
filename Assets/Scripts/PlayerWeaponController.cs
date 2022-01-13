@@ -23,10 +23,10 @@ namespace Player
 
         private void Awake()
         {
-            _anim = GetComponentInChildren<Animator>();
-            _playerMovement = GetComponent<PlayerMovement>();
-            _leftHandBone = GameObject.Find("LeftHand").transform;
-            _rightHandBone = GameObject.Find("RightHand").transform;
+            _anim = GetComponentInChildren<Animator>();  //Reference the animator component on this player's avatar
+            _leftHandBone = GameObject.Find("LeftHand").transform; //Reference the avatar's left hand bone
+            _rightHandBone = GameObject.Find("RightHand").transform; //Reference the avatar's right hand bone
+            _playerMovement = GetComponent<PlayerMovement>();  //Reference the player movement script on this player game object            
         }
 
 
@@ -45,7 +45,12 @@ namespace Player
         void Start()
         {
             _UnhighlightAllSlots();
-            InventoryController.GetInstance().AssignPlayerReference(gameObject);
+
+            if (InventoryController.GetInstance() != null)
+            {
+                InventoryController.GetInstance().AssignPlayerReference(gameObject);
+            }
+           
         }
 
 
@@ -148,12 +153,29 @@ namespace Player
         }
 
 
+        private int _curSpellIndex = 1;
         private void _PlayerInputActionWand()
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                _curSpellIndex = 1;
                 _anim.SetTrigger(_equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.animTriggerMelee);
+                StartCoroutine("_PlayerActionCastSpellCoroutine", _equipedItem.wandControllerComponent);
             }
+            else if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                _anim.SetTrigger(_equipedItem.inventoryItemComponent.inventoryItemObj.equipableItemInfo.animTriggerMelee);
+                StartCoroutine("_PlayerActionCastSpellCoroutine", _equipedItem.wandControllerComponent);
+                _curSpellIndex = 2;
+            }
+        }
+
+
+        //Delays the spell casting by the specified amount of time. Then tell the want to cast the spell. 
+        private IEnumerator _PlayerActionCastSpellCoroutine(WandController wandController)
+        {           
+            yield return new WaitForSeconds(.7f);
+            wandController.ShootSpell(Camera.main.transform.forward, _curSpellIndex);
         }
 
 
@@ -243,6 +265,7 @@ namespace Player
             {
                 equipableItemComponent = slotGameObj.GetComponent<EquipableItem>(),
                 bowController = slotGameObj.GetComponent<BowController>(), //Will be null if not a bow
+                wandControllerComponent = slotGameObj.GetComponent<WandController>(), //will be null if not a wand
                 inventoryItemComponent = invenItem,
                 gameObj = slotGameObj,
                 rigidbodyComponent = slotGameObj.GetComponent<Rigidbody>(),
@@ -287,6 +310,7 @@ namespace Player
             public InventoryItem inventoryItemComponent;
             public EquipableItem equipableItemComponent;
             public BowController bowController; //this component will be null if equiped item is not a bow
+            public WandController wandControllerComponent; //This component will be null if equiped item is not a want
             public Rigidbody rigidbodyComponent;
             public Vector3 relativePosition;
             public Vector3 relativeEulers;
