@@ -17,7 +17,8 @@ namespace Player
         private GameObject _itemCurrentlyPlacing = null;
         private Vector3 _lookPoint;
         private FoundationBlock _foundationBlockComponent;
-        private bool _canPlaceCurrentBlock = false;
+
+        private float _heightOffset = 0f;
 
         private void Awake()
         {
@@ -54,14 +55,25 @@ namespace Player
         {
             if (_itemCurrentlyPlacing != null)
             {
-                _ManagePlayerItemPlacement();
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                float scrollAmount = Input.GetAxis("Mouse ScrollWheel");
+                _heightOffset += scrollAmount;
+
+                //Allow player to rotate the base piece
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    Vector3 currentEulers = _itemCurrentlyPlacing.transform.rotation.eulerAngles;
+                    currentEulers.y += 15f;
+                    _itemCurrentlyPlacing.transform.eulerAngles = currentEulers;
+                }
+
+
+                _GetPlacementPoint();
+                if (Input.GetKeyDown(KeyCode.Mouse0) && !_foundationBlockComponent.IsCollidingThisFrame())
                 {
                     _foundationBlockComponent.OnBlockPlace();
                     _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("FoundationBuildingBlock");
                     _InstaciateFoundationPiece(_itemCurrentlyPlacing);
                 }
-
                 _ManageBaseBlockPlacement();
             }
         }
@@ -72,15 +84,17 @@ namespace Player
             GameObject nearestFoundation = _GetNearestBaseBlock(_itemCurrentlyPlacing);
             if (nearestFoundation == null)
             {
-                _itemCurrentlyPlacing.transform.position = _lookPoint;
+                _itemCurrentlyPlacing.transform.position = _lookPoint + Vector3.up * _heightOffset;
             }
             else
             {
                 Vector3 SuggestedPosition = _GetFoundationSuggestedPositionFromLookPoint(nearestFoundation);
+                _itemCurrentlyPlacing.transform.rotation = nearestFoundation.transform.rotation;
+                _heightOffset = 0f;
                  _itemCurrentlyPlacing.transform.position = SuggestedPosition;
             }
 
-            //update the mesh material based on if the block can legally be placed here. The BlockCollistionChecker script on the block actually performs the check.
+            //update the mesh material based on if the block can legally be placed here. The BlockCollistionChecker script on the block actually performs the check.            
             _foundationBlockComponent.UpdatePlacementMaterial(!_foundationBlockComponent.IsCollidingThisFrame());
         }
 
@@ -129,10 +143,9 @@ namespace Player
 
 
         /*Called each frame that the player is in the process of placing an item*/
-        private void _ManagePlayerItemPlacement()
+        private void _GetPlacementPoint()
         {
-            //Raycast from the camera to the terrain
-      
+            //Raycast from the camera to the terrain     
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out hit, 30f))
             {
@@ -142,13 +155,6 @@ namespace Player
                     return;
                 }
             }
-        }
-
-
-        private void LateUpdate()
-        {
-            //Reset this so we know if block is colliding next 
-            _canPlaceCurrentBlock = true;
         }
 
 

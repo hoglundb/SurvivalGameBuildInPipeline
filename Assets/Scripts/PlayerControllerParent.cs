@@ -29,8 +29,7 @@ namespace Player
 
         private void Start()
         {
-           // playerMovementComponent.enabled = false;
-            Cursor.lockState = CursorLockMode.None;
+
         }
 
         // Update is called once per frame
