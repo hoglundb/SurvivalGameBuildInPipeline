@@ -13,10 +13,16 @@ namespace Player
         private PlayerControllerParent _playerControllerParentComponent;
         [SerializeField] private LayerMask _baseBlockMask;
         [SerializeField] private Material _validPlacementMaterial;
-        private int numBlocks = 0;
+        [SerializeField] private Material _invalidPlacementMaterial;
         private GameObject _itemCurrentlyPlacing = null;
         private Vector3 _lookPoint;
+
+        //Components that reference the current selected block. Will be null if no block being placed or block type doesn't have that particular component. 
         private FoundationBlock _foundationBlockComponent;
+        private BlockMaterialManager _blockMaterialComponent;
+        private Geometery.FaceDefinitions _faceDefinitionsComponent;
+        private bool _canPlaceBlock = false;
+        private PlacementMode _placementMode;
 
         private float _heightOffset = 0f;
 
@@ -53,7 +59,10 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
-            if (_itemCurrentlyPlacing != null)
+            if (!_itemCurrentlyPlacing) return;
+
+            //When the player is placing a foundation piece. 
+            if (_placementMode == PlacementMode.FOUNDATION)
             {
                 float scrollAmount = Input.GetAxis("Mouse ScrollWheel");
                 _heightOffset += scrollAmount;
@@ -66,20 +75,42 @@ namespace Player
                     _itemCurrentlyPlacing.transform.eulerAngles = currentEulers;
                 }
 
-
-                _GetPlacementPoint();
+                _GetFoundationPlacementPoint();
                 if (Input.GetKeyDown(KeyCode.Mouse0) && !_foundationBlockComponent.IsCollidingThisFrame())
                 {
                     _foundationBlockComponent.OnBlockPlace();
                     _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("FoundationBuildingBlock");
                     _InstaciateFoundationPiece(_itemCurrentlyPlacing);
                 }
-                _ManageBaseBlockPlacement();
+                _ManageFoundationBlockPlacement();
+            }
+
+            //When the player is placing a non-foundation piece
+            else 
+            {
+                _GetBlockPlacementPoint();
+                _ManageRegularBlockPlacement();
+
+                if (Input.GetKeyDown(KeyCode.Mouse0) && _canPlaceBlock)
+                {
+                    _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("RegularBuildingBlock");
+                    _blockMaterialComponent.ResetMaterial();
+                    GameObject newBlockToPlace = Instantiate(_itemCurrentlyPlacing);
+                    _itemCurrentlyPlacing = null;
+                    _itemCurrentlyPlacing = newBlockToPlace;
+                    _blockMaterialComponent = _itemCurrentlyPlacing.GetComponent<BlockMaterialManager>();
+                    _faceDefinitionsComponent = _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>();
+                    _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("Ignore Raycast");
+                    //var newBlock = Instantiate(_itemCurrentlyPlacing);
+                    //_itemCurrentlyPlacing = null;
+                    //_itemCurrentlyPlacing = newBlock;
+                }
+ 
             }
         }
 
 
-        private void _ManageBaseBlockPlacement()
+        private void _ManageFoundationBlockPlacement()
         {
             GameObject nearestFoundation = _GetNearestBaseBlock(_itemCurrentlyPlacing);
             if (nearestFoundation == null)
@@ -95,7 +126,21 @@ namespace Player
             }
 
             //update the mesh material based on if the block can legally be placed here. The BlockCollistionChecker script on the block actually performs the check.            
-            _foundationBlockComponent.UpdatePlacementMaterial(!_foundationBlockComponent.IsCollidingThisFrame());
+            bool isColliding = _foundationBlockComponent.IsCollidingThisFrame();
+            if (isColliding)
+            {
+                _blockMaterialComponent.UpdatePlacementMaterial(_invalidPlacementMaterial);
+            }
+            else 
+            {
+                _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);
+            }
+        }
+
+
+        private void _ManageRegularBlockPlacement()
+        {
+            _itemCurrentlyPlacing.transform.position = _lookPoint;
         }
 
 
@@ -143,7 +188,7 @@ namespace Player
 
 
         /*Called each frame that the player is in the process of placing an item*/
-        private void _GetPlacementPoint()
+        private void _GetFoundationPlacementPoint()
         {
             //Raycast from the camera to the terrain     
             RaycastHit hit;
@@ -158,22 +203,70 @@ namespace Player
         }
 
 
+        private void _GetBlockPlacementPoint()
+        {
+            RaycastHit hit;
+            _canPlaceBlock = false;
+            _blockMaterialComponent.UpdatePlacementMaterial(_invalidPlacementMaterial);
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out hit, 30f))
+            {
+                //If we hit the ground, just let the player keep dragging the block
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                {
+                    _lookPoint = hit.point + Vector3.up * .1f;
+                    return;
+                }
+
+                //If we hit a foundation piece or another block, get the nearest face. This face will be used as the snap point suggestion. 
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("RegularBuildingBlock") || hit.transform.gameObject.layer == LayerMask.NameToLayer("FoundationBuildingBlock"))
+                {
+                    _itemCurrentlyPlacing.transform.rotation = hit.transform.rotation;
+                    Geometery.FaceDefinitions faceDef = hit.transform.gameObject.GetComponent<Geometery.FaceDefinitions>();
+                    Geometery.BlockFace nearestBlockFace = faceDef.GetNearestBlockFaceToPoint(hit.point);
+                    Vector3 offset = _faceDefinitionsComponent.GetSnapPositionOffset(nearestBlockFace);
+                    _lookPoint = hit.transform.position + nearestBlockFace.position + offset;
+                    _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);
+                    _canPlaceBlock = true;
+                    return;
+           
+                }
+            }
+        }
+
+
         public void OnPlayerSelectItemToPlace(GameObject placableItemPrefab)
         {
+            if (placableItemPrefab.name.Contains("Foundation"))
+            {
+                _placementMode = PlacementMode.FOUNDATION;
+            }
+            else 
+            {
+                _placementMode = PlacementMode.BRICK;
+            }
+        
             _buildingBlockSelectUI.SetActive(false);
             _playerControllerParentComponent.playerMovementComponent.enabled = true;
 
-            _InstaciateFoundationPiece(placableItemPrefab);         
+            _InstaciateFoundationPiece(placableItemPrefab);
+               
         }
 
         private void _InstaciateFoundationPiece(GameObject placableItemPrefab)
-        {            
+        {                        
             _itemCurrentlyPlacing = GameObject.Instantiate(placableItemPrefab);
             _foundationBlockComponent = _itemCurrentlyPlacing.GetComponent<FoundationBlock>();
-            _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("Ignore Raycast");;
-            _foundationBlockComponent.UpdatePlacementMaterial(true);
+            _blockMaterialComponent = _itemCurrentlyPlacing.GetComponent<BlockMaterialManager>();
+            _faceDefinitionsComponent = _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>();
+            _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("Ignore Raycast");
+            _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);
         }
     }
-
 }
 
+
+public enum PlacementMode
+{ 
+   FOUNDATION, 
+   BRICK,
+}

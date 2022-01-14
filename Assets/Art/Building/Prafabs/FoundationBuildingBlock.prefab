@@ -162,7 +162,9 @@ GameObject:
   - component: {fileID: 2079328190981785948}
   - component: {fileID: 1658344849}
   - component: {fileID: 3541658381669305573}
+  - component: {fileID: 1357873507379434719}
   - component: {fileID: 5757840979097879582}
+  - component: {fileID: 765189930007417409}
   m_Layer: 7
   m_Name: FoundationBuildingBlock
   m_TagString: Untagged
@@ -218,9 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774d92302c3e470479d028b2a6054a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _validPlacementMaterial: {fileID: 2100000, guid: 8c22cfad9ea334b48b5c1762020fb637, type: 2}
-  _invalidPlacementMaterial: {fileID: 2100000, guid: 18e7c3204ce78ee48ae63fc92e644b72, type: 2}
-  _childObjWithMesh: {fileID: 7370481296611881662}
 --- !u!114 &3541658381669305573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +240,20 @@ MonoBehaviour:
   _topCorner2: {fileID: 4117131961493183589}
   _topCorner3: {fileID: 7310154067515887877}
   _topCorner4: {fileID: 7969083754158370795}
+--- !u!114 &1357873507379434719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5565925167926727308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fb36f603929664fb3ae2f69548fc19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faces: {fileID: 11400000, guid: 18525ebb2871277489d6318d1084fd70, type: 2}
+  _regenerateFacesOnLoad: 0
 --- !u!54 &5757840979097879582
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -257,6 +270,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &765189930007417409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5565925167926727308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64d930c6f73cca428ef61137caf24e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _childObjWithMesh: {fileID: 7370481296611881662}
 --- !u!1 &6209561120304955252
 GameObject:
   m_ObjectHideFlags: 0

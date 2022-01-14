@@ -1,0 +1,815 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed76dbba4c1eda64288cff8e1c8ba1ec, type: 3}
+  m_Name: FoundationBrickFaces
+  m_EditorClassIdentifier: 
+  faces:
+  - position: {x: 1.9, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: 1.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: 1.7}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: 1.5}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: 1.3}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: 1.1}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: 0.9}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: 0.6999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: 0.4999999}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: 0.29999986}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: 0.09999981}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: -0.10000024}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: -0.30000028}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: -0.50000036}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: -0.7000004}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: -0.90000045}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: -1.1000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: -1.3000005}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: -1.5000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: -1.7000006}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.9, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.7, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.5, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.3, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 1.1, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.9, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.6999999, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.4999999, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.29999986, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: 0.09999981, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.10000024, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.30000028, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.50000036, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.7000004, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -0.90000045, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.1000005, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.3000005, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.5000006, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.7000006, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
+  - position: {x: -1.9000007, y: 0.5, z: -1.9000007}
+    normal: {x: 0, y: 1, z: 0}
