@@ -635,7 +635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8713775331333996306, guid: c01cd8cfa32e3f44085df9764aa12371, type: 3}
       propertyPath: m_Text
-      value: '1X1X1
+      value: '1X2X1
 
 '
       objectReference: {fileID: 0}
