@@ -7,15 +7,18 @@ namespace Geometery
     public class FaceDefinitions : MonoBehaviour
     {
         [Header("Define the block faces")] 
-        public SOBrickFaces faces;
         [SerializeField] private bool _regenerateFacesOnLoad = false;
         [SerializeField] private bool _drawDebugLines = false;
+        [SerializeField] private bool _onStartCreateFaceTransforms = false;
+        [SerializeField] private GameObject _facePrefab;
+        [SerializeField] private List<Transform> _faceTransforms;
 
         private void Awake()
         {    
-            if (_regenerateFacesOnLoad)
+            if (_onStartCreateFaceTransforms)
             {
-                _RegenerateFaces();
+                _faceTransforms = new List<Transform>();
+                _CreateFaceTransforms();
             }
         }
 
@@ -24,45 +27,57 @@ namespace Geometery
         //{
         //    if (_drawDebugLines)
         //    {
-        //        foreach (var f in faces.faces)
+        //        foreach (var f in _faceTransforms)
         //        {
-        //            Debug.DrawRay(transform.position + f.position, f.normal, Color.red);
+        //            Debug.DrawRay(f.position, f.up, Color.red);
         //        }
         //    }
         //}
 
 
         //Returns the face nearest to the specified point. The player calls this to get the suggested face for snapping a new block to this one. 
-        public BlockFace GetNearestBlockFaceToPoint(Vector3 point)
+        public Transform GetNearestBlockFaceToPoint(Vector3 point)
         {
-            float curDistance = 10000f;
-            BlockFace curBlockFace = faces.faces[0];
-            foreach (var face in faces.faces)
+            //float curDistance = 10000f;
+            //BlockFace curBlockFace = faces.faces[0];
+            //foreach (var face in faces.faces)
+            //{
+            //    Vector3 faceCoord = transform.position + face.position;
+            //    float distToFace = Helpers.GetDistanceSquared(point, faceCoord);
+            //    if (distToFace < curDistance)
+            //    {
+            //        curDistance = distToFace;
+            //        curBlockFace = face;
+            //    }
+            //}
+            //return curBlockFace;
+
+            float curDistance = 100000f;
+            Transform curentFaceTransform = _faceTransforms[0];
+            foreach (var f in _faceTransforms)
             {
-                Vector3 faceCoord = transform.position + face.position;
-                float distToFace = Helpers.GetDistanceSquared(point, faceCoord);
+                float distToFace = Helpers.GetDistanceSquared(point, f.position);
                 if (distToFace < curDistance)
                 {
                     curDistance = distToFace;
-                    curBlockFace = face;
+                    curentFaceTransform = f;
                 }
             }
-            return curBlockFace;
+            return curentFaceTransform;
         }
 
 
         //Returns the position this block needs to be in to allign with the face of the other block
-        public Vector3 GetSnapPositionOffset(BlockFace faceOfOtherBlock)
-        {
-            //Given the block's current rotation, find the face whose normal vector is opposite the face of the other block we are snapping to
-            foreach (var f in faces.faces)
+        public Vector3 GetSnapPositionOffset(Transform faceOfPlacedBlockWeWillSnapTo)
+        {            
+            //Get the face of this block best suited to snap to the already placed block's face
+            foreach (var f in _faceTransforms)
             {
-                float angleBetween = Mathf.Abs(Mathf.Abs(Vector3.Angle(f.normal, -faceOfOtherBlock.normal)));
-                Debug.LogError(faces.faces.Count);
+                float angleBetween = Mathf.Abs(Mathf.Abs(Vector3.Angle(f.up, -faceOfPlacedBlockWeWillSnapTo.up)));
                 if (angleBetween< 5f)
                 {
                     Debug.LogError("Found it");
-                    return -f.position;
+                    return -(f.position - f.parent.position);
                 }
             }
             return Vector3.zero;
@@ -76,38 +91,36 @@ namespace Geometery
         //}
 
 
-        //If the geometery chages, we can update the scriptable object this way.
-        private void _RegenerateFaces()
+   
+
+
+        private void _CreateFaceTransforms()
         {
-            faces.faces = null;
-            faces.faces = new List<BlockFace>();
+            if (gameObject.name.Contains("FoundationBuildingBlock"))
+            {
+                float length = 1.6f;
+                float squareSize = .2f;
+                float height = .4f;
 
-            if (faces.name == "FoundationBrickFaces")
-            {                
-                float size = 2;
-                float dims = 20f;
-                float height = .5f;
-                float increment = .2f;
+                float numFacesAlongLength = (length / squareSize) * 2f;
+                float startX = (length - squareSize / 2f);
+                float startY = startX;
 
-                float curX = 0f;
-                float curY = 0f;
-                for(int i = 0; i < dims; i++)
+                float curX = startX;
+                float curY = startY;
+                for (int i = 0; i < numFacesAlongLength; i++)
                 {
-                    
-                    for (int j = 0; j < dims; j++)
+                    for (int j = 0; j < numFacesAlongLength; j++)
                     {
-                       
-                        faces.faces.Add(new BlockFace
-                        {
-                            position =  new Vector3(2 -curX - size / dims, height, 2 -curY - size / dims),
-                            normal = Vector3.up
-                        });
-                        curX += increment;
+                        GameObject newFaceGameObj = Instantiate(_facePrefab);
+                        newFaceGameObj.transform.parent = transform;
+                        newFaceGameObj.transform.localPosition = new Vector3(curX, height, curY);
+                        _faceTransforms.Add(newFaceGameObj.transform);
+                        curY -= squareSize;
                     }
-                    curY += increment;
-                    curX = 0f;
+                    curY = startY;
+                    curX -= squareSize;
                 }
-
             }
         }
 

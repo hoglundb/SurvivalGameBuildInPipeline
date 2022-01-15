@@ -12,7 +12,6 @@ namespace Player
         public PlayerBaseBuildingController playerBaseBuildingComponent;
         public PlayerMovement playerMovementComponent;
 
-        
         /*Singleton pattern so other components can globally access the player. Need to handle differently for implementing mutliplayer*/
         private static PlayerControllerParent _instance;
         private void Awake()
@@ -21,6 +20,7 @@ namespace Player
             playerMovementComponent = GetComponent<PlayerMovement>();
             _instance = this;
             Cursor.lockState = CursorLockMode.Confined;
+
         }
         public static PlayerControllerParent GetInstance()
         {
@@ -35,6 +35,7 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
+
             //If player toggles base building mode, activate/deactivate the child components accordinly. 
             if (Input.GetKeyDown(KeyCode.B))
             {
@@ -55,6 +56,7 @@ namespace Player
                 }
             }
         }
+
     }
 
 

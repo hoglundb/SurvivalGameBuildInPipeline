@@ -15,7 +15,7 @@ namespace Player
         [SerializeField] private Material _validPlacementMaterial;
         [SerializeField] private Material _invalidPlacementMaterial;
         private GameObject _itemCurrentlyPlacing = null;
-        private Vector3 _lookPoint;
+        private Vector3 _lookPoint; 
 
         //Components that reference the current selected block. Will be null if no block being placed or block type doesn't have that particular component. 
         private FoundationBlock _foundationBlockComponent;
@@ -23,7 +23,7 @@ namespace Player
         private Geometery.FaceDefinitions _faceDefinitionsComponent;
         private bool _canPlaceBlock = false;
         private PlacementMode _placementMode;
-
+        [SerializeField] private GameObject _testMassPlacePrefab;
         private float _heightOffset = 0f;
 
         private void Awake()
@@ -31,6 +31,17 @@ namespace Player
             _buildingBlockSelectUI = GameObject.Find("BuildingUIPanel");
             _playerControllerParentComponent = GetComponent<PlayerControllerParent>(); 
             enabled = false;
+
+            //for (int i = 0; i < 10000; i++)
+            //{
+            //    float x = Random.Range(-25, 25);
+            //    float y = Random.Range(-0, 50);
+            //    float z = Random.Range(-25, 25);
+            //    var newTestObj = Instantiate(_testMassPlacePrefab);
+            //    newTestObj.transform.position = transform.position + new Vector3(x, y, z);
+            //    newTestObj.GetComponent<BoxCollider>().enabled = false;
+             
+            //}
         }
 
 
@@ -146,7 +157,7 @@ namespace Player
 
         private Vector3 _GetFoundationSuggestedPositionFromLookPoint(GameObject nearestFoundation)
         {
-            float size = 4;
+            float size = 3.2f;
             Vector3 fromExistingFoundationToPlacingFoundation = _lookPoint - nearestFoundation.transform.position;
             float option1 = Mathf.Abs(Vector3.Angle(_itemCurrentlyPlacing.transform.forward, fromExistingFoundationToPlacingFoundation));
             float option2 = Mathf.Abs(Vector3.Angle(-_itemCurrentlyPlacing.transform.forward, fromExistingFoundationToPlacingFoundation));
@@ -201,7 +212,7 @@ namespace Player
                 }
             }
         }
-
+  
 
         private void _GetBlockPlacementPoint()
         {
@@ -222,9 +233,9 @@ namespace Player
                 {
                     _itemCurrentlyPlacing.transform.rotation = hit.transform.rotation;
                     Geometery.FaceDefinitions faceDef = hit.transform.gameObject.GetComponent<Geometery.FaceDefinitions>();
-                    Geometery.BlockFace nearestBlockFace = faceDef.GetNearestBlockFaceToPoint(hit.point);
-                    Vector3 offset = _faceDefinitionsComponent.GetSnapPositionOffset(nearestBlockFace);
-                    _lookPoint = hit.transform.position + nearestBlockFace.position + offset;
+                    Transform faceToSnapTo = faceDef.GetNearestBlockFaceToPoint(hit.point);
+                      Vector3 offset = _faceDefinitionsComponent.GetSnapPositionOffset(faceToSnapTo);
+                    _lookPoint = faceToSnapTo.position + offset;
                     _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);
                     _canPlaceBlock = true;
                     return;
