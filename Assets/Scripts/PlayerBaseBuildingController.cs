@@ -25,7 +25,7 @@ namespace Player
         private PlacementMode _placementMode;
         [SerializeField] private GameObject _testMassPlacePrefab;
         private float _heightOffset = 0f;
-
+        private GameObject _currentSnappedObject;
         private void Awake()
         {
             _buildingBlockSelectUI = GameObject.Find("BuildingUIPanel");
@@ -97,24 +97,33 @@ namespace Player
             }
 
             //When the player is placing a non-foundation piece
-            else 
+            else
             {
+                float scrollAmount = Input.GetAxis("Mouse ScrollWheel");
+                if(scrollAmount != 0)  _faceDefinitionsComponent.RotateBlock(scrollAmount);
+
                 _GetBlockPlacementPoint();
-                _ManageRegularBlockPlacement();
+                _itemCurrentlyPlacing.transform.position = _lookPoint;
 
                 if (Input.GetKeyDown(KeyCode.Mouse0) && _canPlaceBlock)
                 {
                     _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("RegularBuildingBlock");
                     _blockMaterialComponent.ResetMaterial();
+                    if (_currentSnappedObject.name.Contains("Foundation"))
+                    {
+                        _faceDefinitionsComponent.foundationReference = _currentSnappedObject.transform;
+                    }
+                    else
+                    {
+                        _faceDefinitionsComponent.foundationReference = _currentSnappedObject.GetComponent<Geometery.FaceDefinitions>().foundationReference;
+                    }
+
                     GameObject newBlockToPlace = Instantiate(_itemCurrentlyPlacing);
                     _itemCurrentlyPlacing = null;
                     _itemCurrentlyPlacing = newBlockToPlace;
                     _blockMaterialComponent = _itemCurrentlyPlacing.GetComponent<BlockMaterialManager>();
                     _faceDefinitionsComponent = _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>();
                     _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("Ignore Raycast");
-                    //var newBlock = Instantiate(_itemCurrentlyPlacing);
-                    //_itemCurrentlyPlacing = null;
-                    //_itemCurrentlyPlacing = newBlock;
                 }
  
             }
@@ -146,12 +155,6 @@ namespace Player
             {
                 _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);
             }
-        }
-
-
-        private void _ManageRegularBlockPlacement()
-        {
-            _itemCurrentlyPlacing.transform.position = _lookPoint;
         }
 
 
@@ -231,9 +234,19 @@ namespace Player
                 //If we hit a foundation piece or another block, get the nearest face. This face will be used as the snap point suggestion. 
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("RegularBuildingBlock") || hit.transform.gameObject.layer == LayerMask.NameToLayer("FoundationBuildingBlock"))
                 {
-                    _itemCurrentlyPlacing.transform.rotation = hit.transform.rotation;
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("RegularBuildingBlock"))
+                    {
+                        _itemCurrentlyPlacing.transform.rotation = hit.transform.GetComponent<Geometery.FaceDefinitions>().foundationReference.rotation;
+                    }
+                    else 
+                    {
+                        _itemCurrentlyPlacing.transform.rotation = hit.transform.rotation;
+                    }
+                    
+                    _itemCurrentlyPlacing.transform.Rotate(_faceDefinitionsComponent.GetBlockRotationOffset());
                     Geometery.FaceDefinitions faceDef = hit.transform.gameObject.GetComponent<Geometery.FaceDefinitions>();
                     Transform faceToSnapTo = faceDef.GetNearestBlockFaceToPoint(hit.point);
+                    _currentSnappedObject = faceToSnapTo.transform.parent.gameObject;
                       Vector3 offset = _faceDefinitionsComponent.GetSnapPositionOffset(faceToSnapTo);
                     _lookPoint = faceToSnapTo.position + offset;
                     _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);

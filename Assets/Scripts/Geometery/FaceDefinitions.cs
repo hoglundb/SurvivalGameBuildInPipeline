@@ -12,6 +12,11 @@ namespace Geometery
         [SerializeField] private bool _onStartCreateFaceTransforms = false;
         [SerializeField] private GameObject _facePrefab;
         [SerializeField] private List<Transform> _faceTransforms;
+        [SerializeField] private List<Vector3> _possibleRotations;
+
+        internal Transform foundationReference;
+
+        private int _currentRotationIndex = 0;
 
         private void Awake()
         {    
@@ -20,6 +25,37 @@ namespace Geometery
                 _faceTransforms = new List<Transform>();
                 _CreateFaceTransforms();
             }
+        }
+
+
+        //Cycles through the possible rotations for the block
+        public void RotateBlock(float dir)
+        {
+            Debug.LogError("rotating");
+            if (dir > 0)
+            {
+                _currentRotationIndex++;
+            }
+            else 
+            {
+                _currentRotationIndex--;
+            }
+
+            if (_currentRotationIndex < 0) _currentRotationIndex = _possibleRotations.Count - 1;
+
+            else if (_currentRotationIndex > _possibleRotations.Count - 1) _currentRotationIndex = 0;            
+        }
+
+
+        public Vector3 GetBlockRotationOffset()
+        {
+            return _possibleRotations[_currentRotationIndex];
+        }
+
+
+        public void OnPlaceBlock(Transform foundationRef)
+        {
+            foundationReference = foundationRef;
         }
 
 
@@ -37,21 +73,7 @@ namespace Geometery
 
         //Returns the face nearest to the specified point. The player calls this to get the suggested face for snapping a new block to this one. 
         public Transform GetNearestBlockFaceToPoint(Vector3 point)
-        {
-            //float curDistance = 10000f;
-            //BlockFace curBlockFace = faces.faces[0];
-            //foreach (var face in faces.faces)
-            //{
-            //    Vector3 faceCoord = transform.position + face.position;
-            //    float distToFace = Helpers.GetDistanceSquared(point, faceCoord);
-            //    if (distToFace < curDistance)
-            //    {
-            //        curDistance = distToFace;
-            //        curBlockFace = face;
-            //    }
-            //}
-            //return curBlockFace;
-
+        {         
             float curDistance = 100000f;
             Transform curentFaceTransform = _faceTransforms[0];
             foreach (var f in _faceTransforms)
@@ -76,7 +98,6 @@ namespace Geometery
                 float angleBetween = Mathf.Abs(Mathf.Abs(Vector3.Angle(f.up, -faceOfPlacedBlockWeWillSnapTo.up)));
                 if (angleBetween< 5f)
                 {
-                    Debug.LogError("Found it");
                     return -(f.position - f.parent.position);
                 }
             }
@@ -90,10 +111,7 @@ namespace Geometery
         //    return .5f * face.position;
         //}
 
-
-   
-
-
+  
         private void _CreateFaceTransforms()
         {
             if (gameObject.name.Contains("FoundationBuildingBlock"))

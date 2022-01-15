@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4600671997750047666}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FaceTransform1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9156110397652013649}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FaceTransform1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3987646094992517212}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FaceTransform1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6839744219890973717}
-  m_Layer: 0
+  - component: {fileID: 8353856661037793003}
+  - component: {fileID: 5831956114339936883}
+  - component: {fileID: 9162292711185742280}
+  m_Layer: 2
   m_Name: 1X2X1BlockPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,6 +134,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8353856661037793003
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572438020489992323}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: -0.39, y: 0.19, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5831956114339936883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572438020489992323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64d930c6f73cca428ef61137caf24e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _childObjWithMesh: {fileID: 2912818414621072473}
+--- !u!114 &9162292711185742280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572438020489992323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fb36f603929664fb3ae2f69548fc19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _regenerateFacesOnLoad: 0
+  _drawDebugLines: 0
+  _onStartCreateFaceTransforms: 0
+  _facePrefab: {fileID: 0}
+  _faceTransforms:
+  - {fileID: 6984623606298774329}
+  - {fileID: 4600671997750047666}
+  - {fileID: 3987646094992517212}
+  - {fileID: 6264399965139429760}
+  - {fileID: 3884744695020057124}
+  - {fileID: 9156110397652013649}
+  - {fileID: 4933961566629706762}
+  - {fileID: 2744250904976458699}
+  - {fileID: 235100397361480767}
+  - {fileID: 866255532648439750}
+  _possibleRotations:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 90, z: 0}
+  - {x: 0, y: 0, z: 90}
 --- !u!1 &5301305405295882357
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4933961566629706762}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FaceTransform1 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 235100397361480767}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FaceTransform1 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6984623606298774329}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FaceTransform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 866255532648439750}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FaceTransform1 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2744250904976458699}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FaceTransform1 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3884744695020057124}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FaceTransform1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6264399965139429760}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FaceTransform1 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,12 +452,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6e986bf39a6f9a04ebb7b1c945b0a7ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 18e17600a92dab84db824aa2cd8a499d, type: 2}
     - target: {fileID: 919132149155446097, guid: 6e986bf39a6f9a04ebb7b1c945b0a7ec, type: 3}
       propertyPath: m_Name
       value: 1x2Brick
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6e986bf39a6f9a04ebb7b1c945b0a7ec, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e986bf39a6f9a04ebb7b1c945b0a7ec, type: 3}
+--- !u!1 &2912818414621072473 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6e986bf39a6f9a04ebb7b1c945b0a7ec, type: 3}
+  m_PrefabInstance: {fileID: 2642769912316666120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2533195929562171107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6e986bf39a6f9a04ebb7b1c945b0a7ec, type: 3}

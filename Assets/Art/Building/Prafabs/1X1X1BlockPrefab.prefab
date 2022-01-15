@@ -76,6 +76,8 @@ MonoBehaviour:
   - {fileID: 6657880519831919440}
   - {fileID: 1370745924504560484}
   - {fileID: 5564249607431050449}
+  _possibleRotations:
+  - {x: 0, y: 0, z: 0}
 --- !u!65 &4329125426268278975
 BoxCollider:
   m_ObjectHideFlags: 0
