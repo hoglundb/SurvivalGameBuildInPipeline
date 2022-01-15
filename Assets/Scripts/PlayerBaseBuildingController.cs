@@ -23,25 +23,19 @@ namespace Player
         private Geometery.FaceDefinitions _faceDefinitionsComponent;
         private bool _canPlaceBlock = false;
         private PlacementMode _placementMode;
-        [SerializeField] private GameObject _testMassPlacePrefab;
+
+        [SerializeField] private GameObject _blockFaceHighlightPrefab;
+        private GameObject _blockFaceHighlight;
         private float _heightOffset = 0f;
         private GameObject _currentSnappedObject;
+
         private void Awake()
         {
             _buildingBlockSelectUI = GameObject.Find("BuildingUIPanel");
             _playerControllerParentComponent = GetComponent<PlayerControllerParent>(); 
             enabled = false;
 
-            //for (int i = 0; i < 10000; i++)
-            //{
-            //    float x = Random.Range(-25, 25);
-            //    float y = Random.Range(-0, 50);
-            //    float z = Random.Range(-25, 25);
-            //    var newTestObj = Instantiate(_testMassPlacePrefab);
-            //    newTestObj.transform.position = transform.position + new Vector3(x, y, z);
-            //    newTestObj.GetComponent<BoxCollider>().enabled = false;
-             
-            //}
+            _blockFaceHighlight = Instantiate(_blockFaceHighlightPrefab, Vector3.up * -1000, Quaternion.identity);;
         }
 
 
@@ -119,6 +113,7 @@ namespace Player
                     }
 
                     GameObject newBlockToPlace = Instantiate(_itemCurrentlyPlacing);
+                    newBlockToPlace.GetComponent<Geometery.FaceDefinitions>().SetRotationIndex(_faceDefinitionsComponent.GetBlockRotationIndex());
                     _itemCurrentlyPlacing = null;
                     _itemCurrentlyPlacing = newBlockToPlace;
                     _blockMaterialComponent = _itemCurrentlyPlacing.GetComponent<BlockMaterialManager>();
@@ -217,7 +212,7 @@ namespace Player
         }
   
 
-        private void _GetBlockPlacementPoint()
+        private Transform _GetBlockPlacementPoint()
         {
             RaycastHit hit;
             _canPlaceBlock = false;
@@ -228,7 +223,7 @@ namespace Player
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     _lookPoint = hit.point + Vector3.up * .1f;
-                    return;
+                    return null;
                 }
 
                 //If we hit a foundation piece or another block, get the nearest face. This face will be used as the snap point suggestion. 
@@ -246,15 +241,22 @@ namespace Player
                     _itemCurrentlyPlacing.transform.Rotate(_faceDefinitionsComponent.GetBlockRotationOffset());
                     Geometery.FaceDefinitions faceDef = hit.transform.gameObject.GetComponent<Geometery.FaceDefinitions>();
                     Transform faceToSnapTo = faceDef.GetNearestBlockFaceToPoint(hit.point);
+                    if (faceToSnapTo != null)
+                    {
+                        _blockFaceHighlight.transform.position = faceToSnapTo.position + faceToSnapTo.up.normalized * .001f;
+                        _blockFaceHighlight.transform.up = faceToSnapTo.transform.up;
+                    }
+                   
                     _currentSnappedObject = faceToSnapTo.transform.parent.gameObject;
                       Vector3 offset = _faceDefinitionsComponent.GetSnapPositionOffset(faceToSnapTo);
                     _lookPoint = faceToSnapTo.position + offset;
                     _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);
                     _canPlaceBlock = true;
-                    return;
+                    return faceToSnapTo;
            
                 }
             }
+            return null;
         }
 
 

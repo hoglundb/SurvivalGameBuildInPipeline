@@ -11,7 +11,9 @@ namespace Geometery
         [SerializeField] private bool _drawDebugLines = false;
         [SerializeField] private bool _onStartCreateFaceTransforms = false;
         [SerializeField] private GameObject _facePrefab;
+        [Header("Gets populated on Awake")]
         [SerializeField] private List<Transform> _faceTransforms;
+        [Header("Set this manually")]
         [SerializeField] private List<Vector3> _possibleRotations;
 
         internal Transform foundationReference;
@@ -25,13 +27,22 @@ namespace Geometery
                 _faceTransforms = new List<Transform>();
                 _CreateFaceTransforms();
             }
+
+            _faceTransforms = new List<Transform>();
+            //Harvest all the child objects that are face transforms
+            foreach (Transform child in transform)
+            {
+                if (child.gameObject.name.ToLower().Contains("facetransform"))
+                {
+                    _faceTransforms.Add(child);
+                }
+            }
         }
 
 
         //Cycles through the possible rotations for the block
         public void RotateBlock(float dir)
         {
-            Debug.LogError("rotating");
             if (dir > 0)
             {
                 _currentRotationIndex++;
@@ -47,9 +58,27 @@ namespace Geometery
         }
 
 
+        //Returns the block rotation Euler angles based on the current rotation index. 
         public Vector3 GetBlockRotationOffset()
         {
             return _possibleRotations[_currentRotationIndex];
+        }
+
+
+        //Returns the rotation index of the block. If this block is set and another block is instanciated, this rotation index is copied to the new block. 
+        public int GetBlockRotationIndex()
+        {
+            return _currentRotationIndex;
+        }
+
+
+        //Called when a block is instanciated right after placing another block. The rotation index of this block is copied and set from the previously placed block. 
+        public void SetRotationIndex(int newRotationIndex)
+        {
+            if (newRotationIndex > 0 && newRotationIndex < _possibleRotations.Count)
+            {
+                _currentRotationIndex = newRotationIndex;
+            }
         }
 
 
