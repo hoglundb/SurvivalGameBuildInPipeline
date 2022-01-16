@@ -60,7 +60,6 @@ namespace Player
         }
 
    
-
         // Update is called once per frame
         void Update()
         {
@@ -93,10 +92,20 @@ namespace Player
             //When the player is placing a non-foundation piece
             else
             {
+                //If the player scrolls this sets the rotation offset of the block that is currently being placed. Pass this information to the block. 
                 float scrollAmount = Input.GetAxis("Mouse ScrollWheel");
                 if(scrollAmount != 0)  _faceDefinitionsComponent.RotateBlock(scrollAmount);
 
-                _GetBlockPlacementPoint();
+                //If player right clicks, update the suggested face for the currently placed block. The face only updates within the given rotation. 
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    _faceDefinitionsComponent.NextPlacementOption();
+                }
+
+                //Set the snap point based on the nearby geometery, where the player is aiming ,and the rotation/position offset the player has selected. 
+                _ComputeSnapPoint();
+
+                //Snap the block to it's sugguested position. 
                 _itemCurrentlyPlacing.transform.position = _lookPoint;
 
                 if (Input.GetKeyDown(KeyCode.Mouse0) && _canPlaceBlock)
@@ -212,7 +221,7 @@ namespace Player
         }
   
 
-        private Transform _GetBlockPlacementPoint()
+        private void _ComputeSnapPoint()
         {
             RaycastHit hit;
             _canPlaceBlock = false;
@@ -223,7 +232,7 @@ namespace Player
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     _lookPoint = hit.point + Vector3.up * .1f;
-                    return null;
+                    return;
                 }
 
                 //If we hit a foundation piece or another block, get the nearest face. This face will be used as the snap point suggestion. 
@@ -244,7 +253,7 @@ namespace Player
                     if (faceToSnapTo != null)
                     {
                         _blockFaceHighlight.transform.position = faceToSnapTo.position + faceToSnapTo.up.normalized * .001f;
-                        _blockFaceHighlight.transform.up = faceToSnapTo.transform.up;
+                        _blockFaceHighlight.transform.rotation = faceToSnapTo.transform.rotation;
                     }
                    
                     _currentSnappedObject = faceToSnapTo.transform.parent.gameObject;
@@ -252,11 +261,10 @@ namespace Player
                     _lookPoint = faceToSnapTo.position + offset;
                     _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);
                     _canPlaceBlock = true;
-                    return faceToSnapTo;
-           
+                    return;           
                 }
             }
-            return null;
+            return;
         }
 
 

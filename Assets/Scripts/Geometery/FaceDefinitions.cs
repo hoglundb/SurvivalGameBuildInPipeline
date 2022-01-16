@@ -16,6 +16,8 @@ namespace Geometery
         [Header("Set this manually")]
         [SerializeField] private List<Vector3> _possibleRotations;
 
+        private int _currentPlacementIndex = 0;
+
         internal Transform foundationReference;
 
         private int _currentRotationIndex = 0;
@@ -100,47 +102,61 @@ namespace Geometery
         //}
 
 
-        //Returns the face nearest to the specified point. The player calls this to get the suggested face for snapping a new block to this one. 
+        //Another block calls this to determine the nearest face to it
         public Transform GetNearestBlockFaceToPoint(Vector3 point)
         {         
             float curDistance = 100000f;
-            Transform curentFaceTransform = _faceTransforms[0];
+            Transform nearestFace = _faceTransforms[0];
             foreach (var f in _faceTransforms)
             {
                 float distToFace = Helpers.GetDistanceSquared(point, f.position);
                 if (distToFace < curDistance)
                 {
                     curDistance = distToFace;
-                    curentFaceTransform = f;
+                    nearestFace = f;
                 }
             }
-            return curentFaceTransform;
+            return nearestFace;
         }
 
 
         //Returns the position this block needs to be in to allign with the face of the other block
         public Vector3 GetSnapPositionOffset(Transform faceOfPlacedBlockWeWillSnapTo)
-        {            
-            //Get the face of this block best suited to snap to the already placed block's face
-            foreach (var f in _faceTransforms)
+        {
+            List<Transform> parallelFaces = _FindFacesWithMatchingNormals(faceOfPlacedBlockWeWillSnapTo);
+            if (parallelFaces.Count > 0)
             {
-                float angleBetween = Mathf.Abs(Mathf.Abs(Vector3.Angle(f.up, -faceOfPlacedBlockWeWillSnapTo.up)));
-                if (angleBetween< 5f)
-                {
-                    return -(f.position - f.parent.position);
-                }
+                int index = _currentPlacementIndex % parallelFaces.Count;
+                return -(parallelFaces[index].position - parallelFaces[index].parent.position);
             }
+
             return Vector3.zero;
         }
 
 
-        //public Vector3 GetPlacementPositionOffsetForFace(BlockFace face)
-        //{
-        //    //TODO: for non-squares this will depend on the geometery
-        //    return .5f * face.position;
-        //}
+        private List<Transform> _FindFacesWithMatchingNormals(Transform faceTransformToMatch)
+        {
+            List<Transform> matchingFaces = new List<Transform>();
 
-  
+            foreach (var f in _faceTransforms)
+            { 
+               if(f.up == -faceTransformToMatch.up)                 
+               {
+                    matchingFaces.Add(f);
+               }
+            }
+
+            return matchingFaces;
+        }
+
+
+
+        public void NextPlacementOption()
+        {
+            _currentPlacementIndex++;
+        }
+
+
         private void _CreateFaceTransforms()
         {
             if (gameObject.name.Contains("FoundationBuildingBlock"))
