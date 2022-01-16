@@ -288,6 +288,7 @@ MonoBehaviour:
   _onStartCreateFaceTransforms: 1
   _facePrefab: {fileID: 4560976560678077073, guid: d427d9a89a15fd44193d59235464055b, type: 3}
   _faceTransforms: []
+  _possibleRotations: []
 --- !u!54 &5757840979097879582
 Rigidbody:
   m_ObjectHideFlags: 0
