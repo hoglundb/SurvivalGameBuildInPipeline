@@ -7,6 +7,9 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
+
+        #region PrivateMemberVars
+
         private CharacterController _characterController;
         private Vector3 _downwardVelocity;
         private bool _isGrounded;
@@ -29,6 +32,12 @@ namespace Player
         [SerializeField] [Range(0f, 20f)] private float _runSpeed = 12f;
         [SerializeField] [Range(0f, 30f)] private float _movementTransitionSpeed = 5f;
         [SerializeField] float lookUpAmount;
+
+        #endregion
+
+
+
+        #region MonoCallbacks
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
@@ -87,8 +96,11 @@ namespace Player
             lookUpAmount = _pitchRotation;
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * _horizontalSensitivity * Time.deltaTime);
         }
+        #endregion
 
 
+
+        #region PlayerMovement
         //Sets the enableMovement flag. If set to false the player movement is disabled. Used for when player needs to interact with UI.
         public void SetMovementEnablement(bool shouldEnable)
         {
@@ -100,6 +112,7 @@ namespace Player
         {
             return _isMovementEnabled;
         }
+        #endregion
 
     }
 }

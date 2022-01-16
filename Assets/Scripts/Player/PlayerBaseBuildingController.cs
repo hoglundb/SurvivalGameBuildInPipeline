@@ -9,6 +9,8 @@ namespace Player
 {
     public class PlayerBaseBuildingController : MonoBehaviour
     {
+        #region PrivateMemberVars
+
         private GameObject _buildingBlockSelectUI;
         private PlayerControllerParent _playerControllerParentComponent;
         [SerializeField] private LayerMask _baseBlockMask;
@@ -28,7 +30,11 @@ namespace Player
         private GameObject _blockFaceHighlight;
         private float _heightOffset = 0f;
         private GameObject _currentSnappedObject;
+        #endregion
 
+
+
+        #region MonoCallbacks
         private void Awake()
         {
             _buildingBlockSelectUI = GameObject.Find("BuildingUIPanel");
@@ -134,7 +140,12 @@ namespace Player
             }
         }
 
+        #endregion
 
+
+
+        #region General
+  
         private void _ManageFoundationBlockPlacement()
         {
             GameObject nearestFoundation = _GetNearestBaseBlock(_itemCurrentlyPlacing);
@@ -296,12 +307,8 @@ namespace Player
             _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("Ignore Raycast");
             _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);
         }
+
+        #endregion
     }
 }
 
-
-public enum PlacementMode
-{ 
-   FOUNDATION, 
-   BRICK,
-}

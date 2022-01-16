@@ -6,6 +6,8 @@ namespace Player
 {
     public class PlayerWeaponController : MonoBehaviour
     {
+
+        #region PrivateMemberVars
         [SerializeField] private Transform _rightHandBone;
         [SerializeField] private Transform _leftHandBone;
 
@@ -20,6 +22,12 @@ namespace Player
         private Animator _anim;
         private PlayerMovement _playerMovement;
         private Transform _currentHandBone;
+
+        #endregion
+
+
+
+        #region MonoCallbacks
 
         private void Awake()
         {
@@ -64,7 +72,11 @@ namespace Player
 
             _PlayerInputAction();
         }
+        #endregion
 
+
+
+        #region General
 
         //Responds to player input based on the type of item the player has equiped
         private void _PlayerInputAction()
@@ -315,6 +327,8 @@ namespace Player
             public Vector3 relativePosition;
             public Vector3 relativeEulers;
         }
+
+        #endregion
     }
 }
 
