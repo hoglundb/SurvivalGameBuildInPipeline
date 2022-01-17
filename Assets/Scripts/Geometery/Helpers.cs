@@ -13,6 +13,12 @@ namespace Geometery
                     (pointA.z - pointB.z) * (pointA.z - pointB.z);            
         }
 
+
+        public static float GetDistance(Vector3 pointA, Vector3 pointB)
+        {
+            return Mathf.Sqrt(GetDistanceSquared(pointA, pointB));
+        }
+
     }
 
 }

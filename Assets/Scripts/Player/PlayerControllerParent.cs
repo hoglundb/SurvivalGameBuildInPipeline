@@ -18,7 +18,8 @@ namespace Player
         //Reference to the child component for player movement. Enable this component if allowing player to look around and move. 
         public PlayerMovement playerMovementComponent;
 
-
+        internal Transform rightHandBoneTransform;
+       
         #endregion
 
 
@@ -47,6 +48,8 @@ namespace Player
           
             Cursor.lockState = CursorLockMode.Confined;
             _animator = GetComponentInChildren<Animator>();
+
+            rightHandBoneTransform = GameObject.Find("RightHand").transform;
         }
 
 
@@ -93,7 +96,7 @@ namespace Player
         #region AnimationFunctions
 
         //Child components call this to update the player animation
-        public void UpdatePlayerAnimation(string animTrigger)
+        public void SetAnimationTrigger(string animTrigger)
         {
             _animator.SetTrigger(animTrigger);
         }

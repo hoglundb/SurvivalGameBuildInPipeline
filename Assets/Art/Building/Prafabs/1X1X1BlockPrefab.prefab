@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _regenerateFacesOnLoad: 0
-  _drawDebugLines: 1
+  _drawDebugLines: 0
   _onStartCreateFaceTransforms: 0
   _facePrefab: {fileID: 0}
   _faceTransforms:
