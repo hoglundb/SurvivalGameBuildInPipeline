@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 9186116198840045594}
   - component: {fileID: 6922002936125511941}
   - component: {fileID: 8534378727489537262}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: 1X1X1SlopedBlockPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,6 +207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _childObjWithMesh: {fileID: 4951359671882885295}
+  _meshes:
+  - {fileID: 6896769232003500410}
 --- !u!114 &8534378727489537262
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class BuildBlockUISlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private GameObject _placeableItemPrefab;
+    [SerializeField] private string _placableItemPrefabName;
     [SerializeField] private Color _defaultColor;
     [SerializeField] private Color _selectedColor;
     [SerializeField] private GameObject _itemButtonComponent;
@@ -53,7 +53,7 @@ public class BuildBlockUISlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
     //When player clicks this item, contact the player so the player can manage the placing of the prefab
     private void _OnBuildingBlockBtnClick()
     {
-        _playerControllerParentComponent.playerBaseBuildingComponent.OnPlayerSelectItemToPlace(_placeableItemPrefab);
+        _playerControllerParentComponent.playerBaseBuildingComponent.OnPlayerSelectItemToPlace(_placableItemPrefabName);
     }
 
 

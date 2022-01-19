@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 1780211565785978054}
   - component: {fileID: 6294097759789144801}
   - component: {fileID: 2356719943421030090}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: 2X2X1BlockPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,6 +406,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _childObjWithMesh: {fileID: 6958456292577210248}
+  _meshes:
+  - {fileID: 8904068711666339421}
 --- !u!114 &2356719943421030090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,6 +656,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f848c6fb4fbf38348bd5f497fa05327c, type: 3}
+--- !u!23 &8904068711666339421 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: f848c6fb4fbf38348bd5f497fa05327c, type: 3}
+  m_PrefabInstance: {fileID: 7804754580673680089}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7771725927135130930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f848c6fb4fbf38348bd5f497fa05327c, type: 3}

@@ -26,6 +26,7 @@ namespace Player
         private FoundationBlock _foundationBlockComponent;
         private BlockMaterialManager _blockMaterialComponent;
         private Geometery.FaceDefinitions _faceDefinitionsComponent;
+        private SaveGame _saveGameComponent;
         private bool _canPlaceBlock = false;
         private PlacementMode _placementMode;
 
@@ -43,7 +44,8 @@ namespace Player
         private void Awake()
         {
             _buildingBlockSelectUI = GameObject.Find("BuildingUIPanel");
-            _playerControllerParentComponent = GetComponent<PlayerControllerParent>(); 
+            _playerControllerParentComponent = GetComponent<PlayerControllerParent>();
+            _saveGameComponent = GetComponent<SaveGame>();
             enabled = false;
 
             //Create the block face highlight game object and disable until it is needed by the player. 
@@ -86,10 +88,6 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
-            //_baseBuildingEffect.transform.position = _playerControllerParentComponent.rightHandBoneTransform.position;
-            //_baseBuildingEffect.transform.parent = _playerControllerParentComponent.rightHandBoneTransform.transform;
-            //_baseBuildingEffect.transform.localPosition = .01f * _handSpellOffset;
-
             if (!_itemCurrentlyPlacing) return;
 
             //When the player is placing a foundation piece. 
@@ -113,6 +111,10 @@ namespace Player
                     _foundationBlockComponent.OnBlockPlace();
                     _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("FoundationBuildingBlock");
                     _itemCurrentlyPlacing.GetComponent<BoxCollider>().isTrigger = false;
+
+                    //Add the item the player is placing to the dictionary of placed items so it can be saved by the player. 
+                    SaveGame.GetInstance().AddBlock(_itemCurrentlyPlacing);
+
                     _InstaciateFoundationPiece(_itemCurrentlyPlacing);
                 }
                 _ManageFoundationBlockPlacement();
@@ -140,6 +142,7 @@ namespace Player
                 if (Input.GetKeyDown(KeyCode.Mouse0) && _canPlaceBlock)
                 {
                     _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("RegularBuildingBlock");
+                    SaveGame.GetInstance().AddBlock(_itemCurrentlyPlacing);
                     _PlayBaseBuildingEffect(_faceDefinitionsComponent.transform.position);
                     _blockMaterialComponent.ResetMaterial();
                     if (_currentSnappedObject.name.Contains("Foundation"))
@@ -152,6 +155,7 @@ namespace Player
                     }
 
                     GameObject newBlockToPlace = Instantiate(_itemCurrentlyPlacing);
+                    newBlockToPlace.name = _itemCurrentlyPlacing.name;
                     newBlockToPlace.GetComponent<Geometery.FaceDefinitions>().SetRotationIndex(_faceDefinitionsComponent.GetBlockRotationIndex());
                     _itemCurrentlyPlacing = null;
                     _itemCurrentlyPlacing = newBlockToPlace;
@@ -275,7 +279,15 @@ namespace Player
                 {
                     if (hit.transform.gameObject.layer == LayerMask.NameToLayer("RegularBuildingBlock"))
                     {
-                        _itemCurrentlyPlacing.transform.rotation = hit.transform.GetComponent<Geometery.FaceDefinitions>().foundationReference.rotation;
+                        var hitGameObjectRef = hit.transform.GetComponent<Geometery.FaceDefinitions>();
+
+                        //No foundation reference cansometimes happen for blocks that were spawned from the previous save
+                        if (hitGameObjectRef.foundationReference == null || hitGameObjectRef.foundationReference.rotation == null)
+                        {
+                            hitGameObjectRef.foundationReference = hit.transform;
+                        }
+                            _itemCurrentlyPlacing.transform.rotation = hitGameObjectRef.foundationReference.rotation;
+        
                     }
                     else 
                     {
@@ -303,8 +315,9 @@ namespace Player
         }
 
 
-        public void OnPlayerSelectItemToPlace(GameObject placableItemPrefab)
+        public void OnPlayerSelectItemToPlace(string placableItemPrefabName)
         {
+            GameObject placableItemPrefab = BaseBuildingItems.GetInstance().GetBaseBuildingPrefabByName(placableItemPrefabName);
             if (placableItemPrefab.name.Contains("Foundation"))
             {
                 _placementMode = PlacementMode.FOUNDATION;
@@ -325,6 +338,7 @@ namespace Player
         private void _InstaciateFoundationPiece(GameObject placableItemPrefab)
         {
             _itemCurrentlyPlacing = GameObject.Instantiate(placableItemPrefab);
+            _itemCurrentlyPlacing.name = placableItemPrefab.name;
             _foundationBlockComponent = _itemCurrentlyPlacing.GetComponent<FoundationBlock>();
             _blockMaterialComponent = _itemCurrentlyPlacing.GetComponent<BlockMaterialManager>();
             _faceDefinitionsComponent = _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>();

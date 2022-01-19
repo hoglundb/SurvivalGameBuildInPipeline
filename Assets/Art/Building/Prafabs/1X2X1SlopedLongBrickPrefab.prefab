@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 7136484869003984309}
   - component: {fileID: 3842961470752040298}
   - component: {fileID: 1336296875395452810}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1X2X1SlopedLongBrickPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,6 +253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _childObjWithMesh: {fileID: 8706578806190158243}
+  _meshes:
+  - {fileID: 7193100980920455286}
 --- !u!114 &3842961470752040298
 MonoBehaviour:
   m_ObjectHideFlags: 0

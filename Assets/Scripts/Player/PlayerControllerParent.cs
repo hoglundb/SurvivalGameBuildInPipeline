@@ -50,6 +50,14 @@ namespace Player
             _animator = GetComponentInChildren<Animator>();
 
             rightHandBoneTransform = GameObject.Find("RightHand").transform;
+
+        }
+
+        private void Start()
+        {
+
+            //Load saved data
+            SaveGame.GetInstance().LoadGameFromPlayerPrefs();
         }
 
 
