@@ -11,7 +11,7 @@ namespace Player
     {
         #region PrivateMemberVars
 
-        private GameObject _buildingBlockSelectUI;
+        //private GameObject _buildingBlockSelectUI;
         private PlayerControllerParent _playerControllerParentComponent;
         [SerializeField] private LayerMask _baseBlockMask;
         [SerializeField] private Material _validPlacementMaterial;
@@ -43,7 +43,7 @@ namespace Player
         #region MonoCallbacks
         private void Awake()
         {
-            _buildingBlockSelectUI = GameObject.Find("BuildingUIPanel");
+            //_buildingBlockSelectUI = GameObject.Find("BuildingUIPanel");
             _playerControllerParentComponent = GetComponent<PlayerControllerParent>();
             _saveGameComponent = GetComponent<SaveGame>();
             enabled = false;
@@ -59,11 +59,11 @@ namespace Player
 
         private void OnEnable()
         {
-            //Enable the building UI
-            _buildingBlockSelectUI.SetActive(true);
+            ////Enable the building UI
+            //_buildingBlockSelectUI.SetActive(true);
 
-            //Start the player animation for using magic to place building blocks
-            _playerControllerParentComponent.SetAnimationTrigger("LiftBuildingBlock");
+            ////Start the player animation for using magic to place building blocks
+            //_playerControllerParentComponent.SetAnimationTrigger("LiftBuildingBlock");
 
             _baseBuildingEffect.SetActive(true);
            
@@ -72,10 +72,10 @@ namespace Player
 
         private void OnDisable()
         {
-            if (_buildingBlockSelectUI != null)
-            {
-                _buildingBlockSelectUI.SetActive(false);
-            }
+            //if (_buildingBlockSelectUI != null)
+            //{
+            //    _buildingBlockSelectUI.SetActive(false);
+            //}
           
             if (_itemCurrentlyPlacing != null)
             {
@@ -327,7 +327,7 @@ namespace Player
                 _placementMode = PlacementMode.BRICK;
             }
         
-            _buildingBlockSelectUI.SetActive(false);
+           // _buildingBlockSelectUI.SetActive(false);
             _playerControllerParentComponent.playerMovementComponent.enabled = true;
 
             _InstaciateFoundationPiece(placableItemPrefab);

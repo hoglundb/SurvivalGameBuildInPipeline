@@ -49,7 +49,7 @@ namespace Player
             Cursor.lockState = CursorLockMode.Confined;
             _animator = GetComponentInChildren<Animator>();
 
-            rightHandBoneTransform = GameObject.Find("RightHand").transform;
+            rightHandBoneTransform = GameObject.Find("hand.R").transform;
 
         }
 

@@ -17,7 +17,7 @@ namespace Player
         private float _curSpeed;
         private bool _isMovementEnabled = true;
 
-        [SerializeField] private Transform _lowerSpineBone;
+        private Transform _lowerSpineBone;
 
         [SerializeField] private Transform _cameraTransform;
         [SerializeField] private Transform _fpsArms;
@@ -26,8 +26,8 @@ namespace Player
         [SerializeField] private Transform _groundCheck;
         [SerializeField] private float _jumpHeight;
         [SerializeField] private float _gravity = -10f;
-        [SerializeField] [Range(1f, 200f)] private float _horizontalSensitivity;
-        [SerializeField] [Range(1f, 200f)] private float _verticalSensitivity;
+        [SerializeField] [Range(1f, 300)] private float _horizontalSensitivity;
+        [SerializeField] [Range(1f, 300)] private float _verticalSensitivity;
         [SerializeField] [Range(0f, 20f)] private float _walkSpeed = 6f;
         [SerializeField] [Range(0f, 20f)] private float _runSpeed = 12f;
         [SerializeField] [Range(0f, 30f)] private float _movementTransitionSpeed = 5f;
@@ -41,6 +41,9 @@ namespace Player
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
+            _lowerSpineBone = GameObject.Find("spine.003").transform;
+
+            Camera.main.transform.parent = GameObject.Find("face_end").transform;
         }
 
         // Start is called before the first frame update
@@ -61,6 +64,7 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
+      
             if (!_isMovementEnabled) return;
 
             _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);

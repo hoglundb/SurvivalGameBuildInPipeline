@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64d930c6f73cca428ef61137caf24e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _childObjWithMesh: {fileID: 570845544659545498}
   _meshes:
   - {fileID: 2084305227248585807}
 --- !u!114 &4603580913405002600
@@ -151,7 +150,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0bae6a0d471970944912a4ae82f6c01a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 78afdc8825c590d439c2872662c6aa23, type: 2}
+      objectReference: {fileID: 2100000, guid: 1140ec282f0e3884cb7f87609f4d0dd9, type: 2}
     - target: {fileID: 919132149155446097, guid: 0bae6a0d471970944912a4ae82f6c01a, type: 3}
       propertyPath: m_Name
       value: 1X1Brick
@@ -162,11 +161,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bae6a0d471970944912a4ae82f6c01a, type: 3}
---- !u!1 &570845544659545498 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0bae6a0d471970944912a4ae82f6c01a, type: 3}
-  m_PrefabInstance: {fileID: 805411158541914315}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &911939698836616992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0bae6a0d471970944912a4ae82f6c01a, type: 3}

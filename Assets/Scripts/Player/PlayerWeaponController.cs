@@ -32,8 +32,8 @@ namespace Player
         private void Awake()
         {
             _anim = GetComponentInChildren<Animator>();  //Reference the animator component on this player's avatar
-            _leftHandBone = GameObject.Find("LeftHand").transform; //Reference the avatar's left hand bone
-            _rightHandBone = GameObject.Find("RightHand").transform; //Reference the avatar's right hand bone
+            _leftHandBone = GameObject.Find("hand.L").transform; //Reference the avatar's left hand bone
+            _rightHandBone = GameObject.Find("hand.R").transform; //Reference the avatar's right hand bone
             _playerMovement = GetComponent<PlayerMovement>();  //Reference the player movement script on this player game object            
         }
 
