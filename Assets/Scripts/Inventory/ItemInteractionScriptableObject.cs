@@ -9,5 +9,5 @@ public class ItemInteractionScriptableObject : ScriptableObject
 {
     [SerializeField] public string itemName;
 
-    [SerializeField] PickupItemCategory itemCategory = PickupItemCategory.NONE;
+    [SerializeField] public PickupableItemCategory itemCategory = PickupableItemCategory.NONE;
 }

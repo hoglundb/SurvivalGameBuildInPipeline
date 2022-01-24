@@ -13,6 +13,8 @@ namespace Inventory
 
         [SerializeField] private GameObject _labelItemName;
 
+        private GameObject _itemGameObj;
+
 
         private void Awake()
         {
@@ -22,9 +24,16 @@ namespace Inventory
         }
 
 
+        //Called when this slot is created. This slot references the phyisical game object that it now contains. 
         public void InitSlot(GameObject itemInSlot)
-        { 
-           
+        {
+            _itemGameObj = itemInSlot;
+        }
+
+
+        public GameObject GetAttachedGameObj()
+        {
+            return _itemGameObj;
         }
 
 

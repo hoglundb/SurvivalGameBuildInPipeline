@@ -18,9 +18,11 @@ public class ItemInteraction : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    public ItemInteractionScriptableObject GetItemInfo()
+
+    //Returns the category of item as defined in it's scriptable object. The inventory calls this when filtering items by category. 
+    public PickupableItemCategory GetItemCategory() 
     {
-        return _itemInfo;
+        return _itemInfo.itemCategory;
     }
 
 
@@ -38,13 +40,12 @@ public class ItemInteraction : MonoBehaviour
 
 
 
-
-
-
-enum PickupItemCategory
+public enum PickupableItemCategory
 { 
     NONE,
     WEAPON, 
+    TOOLS,
     CONSUMABLE,
     MATERIAL,
+    ALL,
 }
