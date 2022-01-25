@@ -53,6 +53,7 @@ namespace Player
 
         }
 
+
         private void Start()
         {
 
@@ -131,6 +132,21 @@ namespace Player
         public static PlayerControllerParent GetInstance()
         {
             return _instance;
+        }
+
+        #endregion
+
+
+        #region Interact With Other Components
+
+        public void SetMovementEnablement(bool isEnabled)
+        {
+            if (isEnabled)
+            {
+                Debug.LogError("Enabling movement");
+            }
+        
+            playerMovementComponent.enabled = isEnabled;
         }
 
         #endregion

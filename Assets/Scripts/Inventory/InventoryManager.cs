@@ -50,6 +50,12 @@ namespace Inventory
             _btnFilterTools.GetComponent<Button>().onClick.AddListener(_OnBtnClickFiterByTools);
             _btnFilterMaterials.GetComponent<Button>().onClick.AddListener(_OnBtnClickFilterByMaterials);
             _btnFilterConsumables.GetComponent<Button>().onClick.AddListener(_OnBtnClickFilterByConsumables);
+
+            //Start out with the inventory UI hidden
+            if (_isShowing)
+            {
+                ToggleVisibility();
+            }         
         }
 
 
@@ -88,20 +94,23 @@ namespace Inventory
 
 
         //Toggles the visiblity of the Inventory UI. 
-        public void ToggleVisibility()
+        public bool ToggleVisibility()
         {
             _isShowing = !_isShowing;
 
             if (_isShowing)
             {
+                //Scale the UI back to 1 so it is visible
                 _rectTransform.localScale = Vector3.one;
                 _ResetChildTransforms();
+                return true;
             }
             else 
             {
                 Vector3 hiddenScale = _rectTransform.localScale;
                 hiddenScale.x = 0f;
                 _rectTransform.localScale = hiddenScale;
+                return false;
             }
         }
 

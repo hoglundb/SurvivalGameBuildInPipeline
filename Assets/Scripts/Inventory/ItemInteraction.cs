@@ -26,6 +26,18 @@ public class ItemInteraction : MonoBehaviour
     }
 
 
+    public string GetItemName()
+    {
+        return _itemInfo.itemName;
+    }
+
+
+    public string GetItemDisplayName()
+    {
+        return _itemInfo.itemDisplayName;
+    }
+
+
     public void DeactivateItem()
     {
         _childObj.SetActive(false);

@@ -28,6 +28,28 @@ namespace Inventory
         public void InitSlot(GameObject itemInSlot)
         {
             _itemGameObj = itemInSlot;
+
+            //Reference the ItemInteraction component on the item game object we are about to put in this inventory slot. 
+            ItemInteraction ItemInteractionComponent = itemInSlot.GetComponent<ItemInteraction>();
+
+
+            //Populate the slot with the name of the item type
+             _labelItemName.GetComponent<Text>().text = ItemInteractionComponent.GetItemDisplayName();
+
+            //Show hide slot buttons depending on the item type
+            var itemCategory = ItemInteractionComponent.GetItemCategory();
+            if (itemCategory == PickupableItemCategory.CONSUMABLE)
+            {
+                _btnConsumeItem.GetComponent<Button>().gameObject.SetActive(true);
+                _btnEquipItem.GetComponent<Button>().gameObject.SetActive(false);
+            }
+            else if(itemCategory == PickupableItemCategory.TOOLS || itemCategory == PickupableItemCategory.WEAPON)
+            {
+                _btnConsumeItem.GetComponent<Button>().gameObject.SetActive(false);
+                _btnEquipItem.GetComponent<Button>().gameObject.SetActive(true);
+            }
+
+            _itemGameObj.SetActive(false);
         }
 
 

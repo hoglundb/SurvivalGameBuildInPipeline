@@ -8,6 +8,7 @@ using UnityEngine;
 public class ItemInteractionScriptableObject : ScriptableObject
 {
     [SerializeField] public string itemName;
+    [SerializeField] public string itemDisplayName;
 
     [SerializeField] public PickupableItemCategory itemCategory = PickupableItemCategory.NONE;
 }
