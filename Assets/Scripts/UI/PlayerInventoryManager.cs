@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerInventoryManager : MonoBehaviour
 {
     private Inventory.InventoryManager _inventoryManager;
+    private Inventory.CraftingManager _craftingManager;
 
     [SerializeField] private GameObject _baseBuildingUIPanel;
 
@@ -24,6 +25,7 @@ public class PlayerInventoryManager : MonoBehaviour
     private void Awake()
     {
         _inventoryManager = GameObject.Find("PlayerInventoryPanel").GetComponent<Inventory.InventoryManager>();
+        _craftingManager = GameObject.Find("PlayerCraftingPanel").GetComponent<Inventory.CraftingManager>();
         _baseBuildingUIPanel.SetActive(false);
         _playerControllerParentComponent = GetComponent<PlayerControllerParent>();
     }
@@ -48,6 +50,12 @@ public class PlayerInventoryManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.B))
         {
             _baseBuildingUIPanel.GetComponent<RectTransform>().localScale = Vector3.one;
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _baseBuildingUIPanel.SetActive(false);
+            bool isShowing = _craftingManager.ToggleVisibility();
+            _playerControllerParentComponent.SetMovementEnablement(!isShowing);
         }
     }
 }

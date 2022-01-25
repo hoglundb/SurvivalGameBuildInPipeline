@@ -45,7 +45,7 @@ namespace Player
 
             playerBaseBuildingComponent = GetComponent<PlayerBaseBuildingController>();
             playerMovementComponent = GetComponent<PlayerMovement>();
-          
+
             Cursor.lockState = CursorLockMode.Confined;
             _animator = GetComponentInChildren<Animator>();
 
@@ -87,7 +87,7 @@ namespace Player
                     playerMovementComponent.enabled = false;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Tab))
+            else if (Input.GetKeyDown(KeyCode.Tab))
             {
                 if (playerMode == PlayerModes.BUILDING)
                 {
@@ -96,6 +96,10 @@ namespace Player
                     playerMovementComponent.enabled = true;
                 }
             }
+            //else if (Input.GetKeyDown(KeyCode.Q))
+            //{ 
+               
+            //}
         }
 
         #endregion

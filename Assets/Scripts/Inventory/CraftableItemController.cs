@@ -24,6 +24,7 @@ public class CraftableItemController : MonoBehaviour
     [SerializeField] public List<CraftingIngredient> ingredients;
 
     private GameObject _playerCraftingDescriptionPanel;
+    private Inventory.InventoryManager _inventoryManagerComponent;
 
     private void Awake()
     {
@@ -33,13 +34,17 @@ public class CraftableItemController : MonoBehaviour
 
         _playerCraftingDescriptionPanel = GameObject.Find("CraftingDescriptionPanel");
         _playerCraftingDescriptionPanel.GetComponent<RectTransform>().localScale = new Vector3(0, 1, 1);
+
+        _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<Inventory.InventoryManager>();
     }
 
 
     private void _OnCraftingBtnClick()
     {
+        GameObject craftedItem = Instantiate(_craftablePrefab);
+        _inventoryManagerComponent.AddItemToInventory(craftedItem);
+             //_inventoryManagerComponent.AddItemToInventory(hit.transform.gameObject);
 
-      
     }
 
 

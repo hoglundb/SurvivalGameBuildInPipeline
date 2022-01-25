@@ -37,7 +37,6 @@ public class CanvasController : MonoBehaviour
     }
 
 
-
     //Calls the inventory component to add an item to the inventory. Update the Crafting component so that it coorectly shows which items are currently craftable. 
     public void AddItemToInventory(GameObject gameObj)
     {

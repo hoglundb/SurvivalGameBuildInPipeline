@@ -37,9 +37,13 @@ namespace Inventory
         //Holds a list of UI elements for each inventory item. Each UI item in turn, contains the coorisponding item game object. 
         private List<GameObject> _inventoryItemSlots;
 
+        //Reference to the crafting panel. Need to toggle this off when toggling the inventory panel 
+        private CraftingManager _craftingManagerComponent;
 
         private void Awake()
         {
+            _craftingManagerComponent = GameObject.Find("PlayerCraftingPanel").GetComponent<CraftingManager>();
+
             _inventoryItemSlots = new List<GameObject>();
 
             _rectTransform = GetComponent<RectTransform>();
@@ -97,15 +101,32 @@ namespace Inventory
         public bool ToggleVisibility()
         {
             _isShowing = !_isShowing;
+            return _UpdateVisibility();           
+        }
+
+
+        public bool SetVisibility(bool makeVisible)
+        {
+            _isShowing = makeVisible;
+            return _UpdateVisibility();
+        }
+
+
+        //Called when the _isShowing value is changed. Updates the UI accordingly.
+        private bool _UpdateVisibility()
+        {
 
             if (_isShowing)
             {
+                //Turn off the crafting panel UI if it is showing
+                _craftingManagerComponent.SetVisibility(false);
+
                 //Scale the UI back to 1 so it is visible
                 _rectTransform.localScale = Vector3.one;
                 _ResetChildTransforms();
                 return true;
             }
-            else 
+            else
             {
                 Vector3 hiddenScale = _rectTransform.localScale;
                 hiddenScale.x = 0f;
