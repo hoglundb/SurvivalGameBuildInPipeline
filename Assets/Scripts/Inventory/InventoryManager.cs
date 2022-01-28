@@ -28,14 +28,14 @@ namespace Inventory
         [SerializeField] private GameObject _btnFilterMaterials;
         [SerializeField] private GameObject _btnFilterConsumables;
 
-        //The hieght to increase the UI panel by each time an item is added. 
+        //The height to increase the UI panel by each time an item is added. 
         [Header("UI Panel Slot Height")]
         [SerializeField] private float _itemSlotHeight;
 
         //Tracks the currently selected filter for the inventory. Allows us to avoid redundant sorting and save on CPU resources. 
         private PickupableItemCategory _currentItemCategoryFilter; 
 
-        //Tracks if the inventory is showing. Show/hide functionallity is managed by scaling down the UI game object to zero
+        //Tracks if the inventory is showing. Show/hide functionallity is managed by scaling down the UI game object betweem 1 and 0
         private bool _isShowing = true;
 
         //The rect transform component on this game object
@@ -43,13 +43,10 @@ namespace Inventory
 
         //Holds a list of UI elements for each inventory item. Each UI item in turn, contains the coorisponding item game object. 
         private List<GameObject> _inventoryItemSlots;
-
-        //Counts the total number of active slots. Note, may be different from the size of _inventoryItemSlots since slots can be deactivate and reused. 
-        private int _itemCount;
    
-
         //Reference to the crafting panel. Need to toggle this off when toggling the inventory panel 
         private CraftingManager _craftingManagerComponent;
+
 
         private void Awake()
         {
@@ -77,7 +74,6 @@ namespace Inventory
         //Called by the player when they wish to add an item to the inventory. If an inactive slot is available, us that. Otherwise instaciate a new slot. 
         public void AddItemToInventory(GameObject inventoryGameObj)
         {
-            _itemCount++;
 
             //Init the new UI item to hold this inventory game object. Dynamically adjust the UI height to accomidate the new item.
             GameObject slotItem = _GetFirstUnusedSlot();
@@ -145,7 +141,7 @@ namespace Inventory
         }
 
 
-        //Toggles the visiblity of the Inventory UI. 
+        //Toggles the visiblity of the Inventory UI. If visible, scale to 0 to make invisible. If 1, the scale to 0. Return true if updated to be visible and return false o.w.
         public bool ToggleVisibility()
         {
             _isShowing = !_isShowing;
@@ -153,6 +149,7 @@ namespace Inventory
         }
 
 
+        //Sets the visibility of the PlayerInventoryPanel by scaling it from 0 to 1. Returns true if the panel is updated to be visible, returns false otherwise.  
         public bool SetVisibility(bool makeVisible)
         {
             _isShowing = makeVisible;
@@ -163,7 +160,6 @@ namespace Inventory
         //Called when the _isShowing value is changed. Updates the UI accordingly.
         private bool _UpdateVisibility()
         {
-
             if (_isShowing)
             {
                 //Turn off the crafting panel UI if it is showing
