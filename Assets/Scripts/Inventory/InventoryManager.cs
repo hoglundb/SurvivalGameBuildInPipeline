@@ -37,6 +37,10 @@ namespace Inventory
         //Holds a list of UI elements for each inventory item. Each UI item in turn, contains the coorisponding item game object. 
         private List<GameObject> _inventoryItemSlots;
 
+        //Counts the total number of active slots. Note, may be different from the size of _inventoryItemSlots since slots can be deactivate and reused. 
+        private int _itemCount;
+   
+
         //Reference to the crafting panel. Need to toggle this off when toggling the inventory panel 
         private CraftingManager _craftingManagerComponent;
 
@@ -63,25 +67,55 @@ namespace Inventory
         }
 
 
-        //Called by the player when they wish to add an item to the inventory. 
+        //Called by the player when they wish to add an item to the inventory. If an inactive slot is available, us that. Otherwise instaciate a new slot. 
         public void AddItemToInventory(GameObject inventoryGameObj)
         {
-            //Init the new UI item to hold this inventory game object. Dynamically adjust the UI height to accomidate the new item. 
-            GameObject newItem = Instantiate(_inventoryUISlotPrefab);
-            newItem.transform.parent = _inventorySlotUIGrid.transform;    
-            newItem.GetComponent<RectTransform>().localScale = Vector3.one;
-            _SetRectHeightBasedOnItemCount();
+            _itemCount++;
 
-            //The UI slot with own the actual inventory game object until dropped or equiped by the player. 
-            newItem.GetComponent<InventorySlotManager>().InitSlot(inventoryGameObj);
+            //Init the new UI item to hold this inventory game object. Dynamically adjust the UI height to accomidate the new item.
+            GameObject slotItem = _GetFirstUnusedSlot();
 
-            //Update the list that references all the inventory item slots. 
-            _inventoryItemSlots.Add(newItem);
+            //if no unused slot, create a new one, otherwise the unused one is re-initialized for use. 
+            bool isReusingSlot = true;
+            if (slotItem == null)
+            {
+                isReusingSlot = false;
+                slotItem = Instantiate(_inventoryUISlotPrefab);
+                slotItem.transform.parent = _inventorySlotUIGrid.transform;
+            }
+            else 
+            {
+                slotItem.gameObject.SetActive(true);
+            }
+
+            //Initalize the slot UI and expand the UI scroll area to accomidate the new item.
+            slotItem.GetComponent<RectTransform>().localScale = Vector3.one;
+            _IncrementUIScrollAreaHeight();
+
+            //Tell the slot to reference the game object that is being placed in this slot
+            slotItem.GetComponent<InventorySlotManager>().InitSlot(inventoryGameObj, _inventoryItemSlots.Count);
+
+            //It we had to add a new slot, update the list that references all the inventory item slots. 
+            if (!isReusingSlot)
+            {
+                _inventoryItemSlots.Add(slotItem);
+            }       
+        }
+
+
+        //Returns the first unused slot in the list of inventory slots. This allows us to reuse slots and only create more when needed. 
+        private GameObject _GetFirstUnusedSlot()
+        {
+            foreach (var s in _inventoryItemSlots)
+            {
+                if (s.gameObject.activeSelf == false) return s;
+            }
+            return null;
         }
 
 
         //Sets the scroll hight based on the number of items in the inventry list. 
-        private void _SetRectHeightBasedOnItemCount()
+        private void _IncrementUIScrollAreaHeight()
         {
             RectTransform rt = _inventorySlotUIGrid.GetComponent<RectTransform>();
             Vector2 curSizeDelta = rt.sizeDelta;
@@ -90,10 +124,17 @@ namespace Inventory
         }
 
 
-        //TODO
-        public void TryRemoveItemFromInventory()
+        //Find the inventory slot with the matching ID and deactivate it. Note, it will still be in the _inventoryItemSlots list, but the game object will be inactive.
+        public void RemoveItemFromInventory(int slotID)
         {
-
+            for (int i = 0; i < _inventoryItemSlots.Count; i++)
+            {
+                if (_inventoryItemSlots[i].GetComponent<InventorySlotManager>()._slotID == slotID)
+                {
+                    _inventoryItemSlots[i].gameObject.SetActive(false);
+                    return;
+                }
+            }
         }
 
 

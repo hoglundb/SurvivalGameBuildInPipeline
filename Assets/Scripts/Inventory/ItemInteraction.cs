@@ -44,9 +44,15 @@ public class ItemInteraction : MonoBehaviour
     }
 
 
-    public void ActivateItem()
+    //Sets the game object to active and enables the rigid body. 
+    public void ActivateItem(Vector3 pos, Vector3 dir)
     {
+        gameObject.SetActive(true);
         _childObj.SetActive(true);
+        _rb.isKinematic = false;
+        transform.position = pos;
+        _rb.velocity = dir.normalized * 1f;
+
     }
 }
 

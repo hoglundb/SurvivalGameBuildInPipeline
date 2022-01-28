@@ -145,11 +145,6 @@ namespace Player
 
         public void SetMovementEnablement(bool isEnabled)
         {
-            if (isEnabled)
-            {
-                Debug.LogError("Enabling movement");
-            }
-        
             playerMovementComponent.enabled = isEnabled;
         }
 
