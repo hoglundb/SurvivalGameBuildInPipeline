@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65181a8a88f961441962c9c90819b629, type: 3}
   m_Name: SmallStoneInfo
   m_EditorClassIdentifier: 
-  itemName: SMALL_STONE
-  itemDisplayName: Small Stone
+  itemName: STONE
+  itemDisplayName: stone
   itemCategory: 4

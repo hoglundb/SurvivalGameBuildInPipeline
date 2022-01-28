@@ -690,7 +690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchorMin.x
@@ -698,15 +698,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -738,11 +738,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 87
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -64.5
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -794,7 +794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4029271220732740764, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: ingredients.Array.data[1].ingredient
-      value: SMALL_STONE
+      value: STONE
       objectReference: {fileID: 0}
     - target: {fileID: 4029271220732740764, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: ingredients.Array.data[2].ingredient
@@ -4809,7 +4809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchorMin.x
@@ -4817,15 +4817,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4857,11 +4857,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 87
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -39.5
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4909,7 +4909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4029271220732740764, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: ingredients.Array.data[1].ingredient
-      value: SMALL_STONE
+      value: STONE
       objectReference: {fileID: 0}
     - target: {fileID: 7259343521563429732, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_Text
@@ -8598,7 +8598,7 @@ RectTransform:
   m_GameObject: {fileID: 1554159672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1552428883}
   - {fileID: 301643413}
@@ -14569,7 +14569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchorMin.x
@@ -14577,15 +14577,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14617,11 +14617,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 87
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -14.5
       objectReference: {fileID: 0}
     - target: {fileID: 3380813286197444308, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14639,6 +14639,10 @@ PrefabInstance:
       propertyPath: _playerCraftingPanel
       value: 
       objectReference: {fileID: 1554159672}
+    - target: {fileID: 4029271220732740764, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
+      propertyPath: ingredients.Array.data[1].ingredient
+      value: STONE
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9c9034e7e47634da54d490b49a1d6f, type: 3}
 --- !u!1001 &9200273934142504288

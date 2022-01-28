@@ -127,8 +127,24 @@ namespace Inventory
         }
 
 
+        //Returns the number of items in the inventory of the specified type
+        public int GetItemCountOfType(string itemName)
+        {
+            int count = 0;
+            foreach (var item in _inventoryItemSlots)
+            {
+                string materialName = item.GetComponent<InventorySlotManager>().GetAttachedGameObj().GetComponent<ItemInteraction>().GetItemName();
+                if (materialName.Trim().ToLower() == itemName.Trim().ToLower())
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+
         //Find the inventory slot with the matching ID and deactivate it. Note, it will still be in the _inventoryItemSlots list, but the game object will be inactive.
-        public void RemoveItemFromInventory(int slotID)
+        public void RemoveItemFromInventoryByID(int slotID)
         {
             for (int i = 0; i < _inventoryItemSlots.Count; i++)
             {
@@ -138,6 +154,29 @@ namespace Inventory
                     return;
                 }
             }
+        }
+
+
+        //Removes the specified quantity of materials of the given type from the player inventory. Must check that items are present for this to work. Called when player crafts an item or places a building block.
+        public void RemoveItemQuantityByType(string itemName, int quantityToRemove)
+        {
+            int removedCount = 0;
+            foreach (var item in _inventoryItemSlots)
+            {
+                InventorySlotManager _slotManagerComponent = item.GetComponent<InventorySlotManager>();
+                ItemInteraction _itemInteractionComponent = _slotManagerComponent.GetAttachedGameObj().GetComponent<ItemInteraction>();
+                if (_itemInteractionComponent.GetItemName().ToLower().Trim() == itemName.ToLower().Trim())
+                {
+                    RemoveItemFromInventoryByID(_slotManagerComponent._slotID);
+                    removedCount++;
+                }
+
+                if (removedCount == quantityToRemove)
+                {
+                    return;
+                }
+            }
+            Debug.LogError("Error trying to remove " + quantityToRemove.ToString() + " items of type '" + itemName + "' from inventory");
         }
 
 

@@ -91,7 +91,7 @@ namespace Inventory
             _itemInteractionComponent.ActivateItem(playerRef.transform.position + Vector3.up * 1f + playerRef.transform.forward, playerRef.transform.forward);
 
             //Call the parent inventory manager to remove the item from this UI slot
-            _inventoryManagerComponent.RemoveItemFromInventory(_slotID);
+            _inventoryManagerComponent.RemoveItemFromInventoryByID(_slotID);
         }
     }
 }
