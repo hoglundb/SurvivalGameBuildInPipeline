@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 namespace Inventory
 {
+    /****************************************************************************************
+      This component is attached to a UI inventory slot prefab. It references the 
+      game object item current in this slot. The button events are handled for when the 
+      player equips, consumes, or drops this item. 
+     ****************************************************************************************/
     public class InventorySlotManager : MonoBehaviour
     {
         [SerializeField] private GameObject _btnEquipItem;

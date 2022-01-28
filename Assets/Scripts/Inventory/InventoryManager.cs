@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 namespace Inventory
 {
+
+    /**************************************************************************************
+     This component exists on the PlayerInventoryPanel UI game object. It is responsible for 
+     managing all the inventory items in the child UI slots. This class is called by the Player
+     to add, remove, or iteract with inventory items. The PlayerInventoryPanel never gets disabled, 
+     but we scale it betweeb 0 and 1 so the player can "toggle" it on and off. 
+     *************************************************************************************/
     public class InventoryManager : MonoBehaviour
     {
         //References to other UI components related to the inventory. 

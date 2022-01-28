@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Player
 {
+    /****************************************************************************************
+     This component attaches to the Player game object. It mannages all the other components on 
+     the player and allows them to communicate with each other. 
+   ****************************************************************************************/
     public class PlayerControllerParent : MonoBehaviour
     {
 
@@ -96,10 +100,6 @@ namespace Player
                     playerMovementComponent.enabled = true;
                 }
             }
-            //else if (Input.GetKeyDown(KeyCode.Q))
-            //{ 
-               
-            //}
         }
 
         #endregion

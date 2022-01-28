@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
-//This component is present on any item that the player can pick up
+/****************************************************************************************
+  This component is present on any game object that the player can pick up. It includes a 
+  reference to the scriptable object that contains information for that item. Various Get() 
+  methods are provided so that other components can obtain information about this type of
+  game object.
+ ****************************************************************************************/
 public class ItemInteraction : MonoBehaviour
 {
     [SerializeField] private ItemInteractionScriptableObject _itemInfo;
