@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.02
   m_LinearFogStart: 50
   m_LinearFogEnd: 200
-  m_AmbientSkyColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+  m_AmbientSkyColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.391
-  m_AmbientMode: 1
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.33441615, g: 0.35867712, b: 0.4245283, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -14352,10 +14352,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6929891419163037482, guid: fac40111db558a044b92a88b0c723a2d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7411325967699040515, guid: fac40111db558a044b92a88b0c723a2d, type: 3}
       propertyPath: _baseBuildingUIPanel
       value: 
       objectReference: {fileID: 1755609096}
+    - target: {fileID: 8982458436417056229, guid: fac40111db558a044b92a88b0c723a2d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e02938a0e0fcead4d9ec35a45f73307e, type: 2}
+    - target: {fileID: 9003776495635067042, guid: fac40111db558a044b92a88b0c723a2d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003776495635067042, guid: fac40111db558a044b92a88b0c723a2d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 9003776496240079373, guid: fac40111db558a044b92a88b0c723a2d, type: 3}
       propertyPath: _healthStatsUI
       value: 
