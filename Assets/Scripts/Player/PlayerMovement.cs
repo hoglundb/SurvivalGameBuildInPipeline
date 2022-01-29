@@ -19,8 +19,6 @@ namespace Player
 
         private Transform _lowerSpineBone;
 
-        [SerializeField] private Transform _cameraTransform;
-        [SerializeField] private Transform _fpsArms;
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private float _groundDistance;
         [SerializeField] private Transform _groundCheck;
@@ -43,7 +41,7 @@ namespace Player
             _characterController = GetComponent<CharacterController>();
             _lowerSpineBone = GameObject.Find("spine.003").transform;
 
-            Camera.main.transform.parent = GameObject.Find("face_end").transform;
+            Camera.main.transform.parent = GameObject.Find("spine.006").transform;
         }
 
         // Start is called before the first frame update
@@ -64,7 +62,7 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
-      
+            Debug.LogError(_isMovementEnabled);
             if (!_isMovementEnabled) return;
 
             _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
@@ -96,7 +94,6 @@ namespace Player
             _characterController.Move(movement);
             _pitchRotation -= Input.GetAxis("Mouse Y") * _verticalSensitivity * Time.deltaTime;
             _pitchRotation = Mathf.Clamp(_pitchRotation, -90f, 90f);
-            // _fpsArms.localRotation = Quaternion.Euler(_pitchRotation, 0f, 0f);
             lookUpAmount = _pitchRotation;
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * _horizontalSensitivity * Time.deltaTime);
         }
