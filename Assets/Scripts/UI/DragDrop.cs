@@ -42,7 +42,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         transform.localScale = Vector3.one * _initialScale;
 
         //Tell the player an item was moved so equiped item can be updated if needed.
-        InventoryController.GetInstance().OnPlayerUpdateEquipedItem();
+   //     InventoryController.GetInstance().OnPlayerUpdateEquipedItem();
     }
 
 

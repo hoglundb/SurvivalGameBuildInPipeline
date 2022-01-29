@@ -166,8 +166,8 @@ public class InventoryController : MonoBehaviour
 
 
     //Callback for when player updates an item in their equipable enventory. Tells the player to perform the needed updates to refresh weapon animation
-    public void OnPlayerUpdateEquipedItem()
-    {
-        _playerReference.GetComponent<Player.PlayerWeaponController>().OnPlayerUpdateEquipedItem();
-    }
+    //public void OnPlayerUpdateEquipedItem()
+    //{
+    //    _playerReference.GetComponent<Player.PlayerWeaponController>().OnPlayerUpdateEquipedItem();
+    //}
 }

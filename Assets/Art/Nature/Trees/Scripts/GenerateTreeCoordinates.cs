@@ -93,14 +93,14 @@ public class GenerateTreeCoordinates : MonoBehaviour
                             float randd = Random.Range(0f, 1f);
                             if (randd > percent) continue;
                         }
-                        float sample = Mathf.PerlinNoise(point.x  /100f, point.z /100f);
+                        float sample = Mathf.PerlinNoise(point.x  /1000f, point.z /1000f);
                         float rand = Random.Range(0f, 1f);
                         if(rand > sample)
                         {                            
                             int treeTypeIndex = Random.Range(0, _treePrefabs.Count - 1);
                             Vector3 randRot = new Vector3(0f, rand, 0f);
                             var t = GameObject.Instantiate(_treePrefabs[treeTypeIndex], hit.point, Quaternion.Euler(randRot));
-                            float randScale = Random.Range(0.6f, 1.6f);
+                            float randScale = Random.Range(0.7f, 3.5f);
                             t.localScale = new Vector3(randScale, randScale, randScale);
                             t.tag = "Tree";
                             t.transform.parent = gameObject.transform;

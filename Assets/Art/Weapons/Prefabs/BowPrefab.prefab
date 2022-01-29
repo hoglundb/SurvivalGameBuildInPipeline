@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7001202578633720895}
   - component: {fileID: 7740763689478786047}
   - component: {fileID: 8354187563469259684}
+  - component: {fileID: 3067904302788878334}
   m_Layer: 0
   m_Name: BowPrefab
   m_TagString: PickupableItem
@@ -58,7 +59,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 1.97, z: 0.32}
+  m_Size: {x: 0.05, y: 1.2, z: 0.32}
   m_Center: {x: 0, y: 0, z: -0.105}
 --- !u!54 &8354187563469259684
 Rigidbody:
@@ -76,6 +77,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3067904302788878334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4264718604112650194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed6c00a4a25a514394cc5d5d1d06940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _equipableItemInfo: {fileID: 11400000, guid: d66d5f21356ae96438d269e7755ce1f9, type: 2}
 --- !u!1001 &3062952919190858372
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -72,9 +72,10 @@ namespace Inventory
         }
 
 
+        //Called when the player clicks the equip button. Get the EquipableItemComponent and tell it to equip this item. 
         private void _OnEquipItemBtnClick()
-        { 
-        
+        {
+            _itemGameObj.GetComponent<Items.AbstractEquipableItem>().Equip();
         }
 
 

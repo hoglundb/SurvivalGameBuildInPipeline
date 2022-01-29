@@ -21,8 +21,6 @@ namespace Player
 
         //Reference to the child component for player movement. Enable this component if allowing player to look around and move. 
         public PlayerMovement playerMovementComponent;
-
-        internal Transform rightHandBoneTransform;
        
         #endregion
 
@@ -36,7 +34,23 @@ namespace Player
         //Singleton Reference so other components can easily 
         public static PlayerControllerParent _instance;
 
+        //Reference the hand bones to have player hold equipable objects
+        private Transform _leftHandBoneTransform;
+        private Transform _rightHandBoneTransform;
+
         #endregion
+
+
+        public Transform GetLeftHandBone()
+        {
+            return _leftHandBoneTransform;
+        }
+
+
+        public Transform GetRightHandBone()
+        {
+            return _rightHandBoneTransform;
+        }
 
 
 
@@ -53,8 +67,11 @@ namespace Player
             Cursor.lockState = CursorLockMode.Confined;
             _animator = GetComponentInChildren<Animator>();
 
-            rightHandBoneTransform = GameObject.Find("hand.R").transform;
+            _rightHandBoneTransform = GameObject.Find("hand.R").transform;
+            _leftHandBoneTransform = GameObject.Find("hand.L").transform;
 
+            //Start off the player in idle animation
+            SetAnimationTrigger("Idle");
         }
 
 
@@ -111,6 +128,7 @@ namespace Player
         //Child components call this to update the player animation
         public void SetAnimationTrigger(string animTrigger)
         {
+            Debug.LogError(animTrigger);
             _animator.SetTrigger(animTrigger);
         }
 

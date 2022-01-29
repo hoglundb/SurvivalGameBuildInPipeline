@@ -1,26 +1,14 @@
 fileFormatVersion: 2
-guid: 914cb891422c765478bac94c80814507
+guid: cbac29f13576ff1428574db3546da4ed
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -4628873895248223734
-    second: armature|IdlePose
+      74: 7849520359053240804
+    second: PlayerArmature|PlayerHoldBow
   - first:
-      74: -9153520958703900537
-    second: armature|PlayerIdle
-  - first:
-      74: 8769834270673371652
-    second: armature|PlayerIdle.001
-  - first:
-      74: -5435954853433936321
-    second: playerArmature|IdlePose
-  - first:
-      74: 6544747437083699589
-    second: playerArmature|PlayerIdle
-  - first:
-      74: -5982855743978242517
-    second: playerArmature|PlayerIdle.001
+      74: -1075878519706795224
+    second: PlayerArmature|IdlePose (1)
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -50,37 +38,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: playerArmature|IdlePose
-      takeName: playerArmature|IdlePose
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 1
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: playerArmature|PlayerIdle
-      takeName: playerArmature|PlayerIdle
+      name: PlayerArmature|PlayerHoldBow
+      takeName: PlayerArmature|PlayerHoldBow
       internalID: 0
       firstFrame: 0
       lastFrame: 29
@@ -108,18 +67,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: playerArmature|PlayerIdle.001
-      takeName: playerArmature|PlayerIdle.001
+      name: PlayerArmature|IdlePose (1)
+      takeName: PlayerArmature|IdlePose
       internalID: 0
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -193,13 +152,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
