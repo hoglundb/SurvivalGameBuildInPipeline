@@ -128,10 +128,14 @@ namespace Player
         //Child components call this to update the player animation
         public void SetAnimationTrigger(string animTrigger)
         {
-            Debug.LogError(animTrigger);
             _animator.SetTrigger(animTrigger);
         }
 
+
+        public void SetAnimationFloat(string paramName, float amount)
+        {
+            _animator.SetFloat(paramName, amount);
+        }
 
         //Returns the name of the current animation on the player avatar
         public string GetCurrentPlayerAnimationName()

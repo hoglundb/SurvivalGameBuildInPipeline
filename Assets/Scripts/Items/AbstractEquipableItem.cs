@@ -22,7 +22,7 @@ namespace Items
         private bool _isEquiped = false;
         private GameObject _equipedArrow;
 
-        
+        private float _drawAmount = 0f;
 
         private void Start()
         {
@@ -44,9 +44,14 @@ namespace Items
             {
                 transform.parent = _playerParentControllerComponent.GetLeftHandBone();
             }
-
             _playerParentControllerComponent.SetAnimationTrigger("EquipBow");
+            Reload();
+            Player.PlayerControllerParent.GetInstance().SetAnimationFloat("BowDrawAmount", 0f);
+        }
 
+
+        public void Reload()
+        {
             //put the arrow on the bow, if there is one in the player's inventory. 
             _equipedArrow = Inventory.InventoryManager.GetInstance().GetItemFromInventory("BASIC_ARROW");
             if (_equipedArrow == null)
@@ -54,7 +59,6 @@ namespace Items
                 Debug.LogError("No arrows in inventory");
                 return;
             }
-
             _equipedArrow.transform.parent = transform;
             transform.localPosition = Vector3.zero;
             _equipedArrow.GetComponent<Rigidbody>().isKinematic = true;
@@ -73,12 +77,12 @@ namespace Items
 
         private void Update()
         {
-            if (!_isEquiped) return;
+            _ManageDrawAmount();
+
+            if (!_isEquiped || _equipedArrow == null) return;
 
             transform.localPosition = Vector3.zero;
-          //  transform.position = Player.PlayerControllerParent.GetInstance().GetLeftHandBone().transform.position;
             transform.localPosition = _equipableItemInfo._dominantHandPosOffset * .00025f;
-          //  transform.rotation = Player.PlayerControllerParent.GetInstance().GetLeftHandBone().transform.rotation;
             transform.localRotation = Quaternion.Euler(_equipableItemInfo._dominantHandRotOffset * .5f);
 
             if (_equipedArrow != null)
@@ -86,17 +90,52 @@ namespace Items
                 _equipedArrow.transform.localPosition = _equipableItemInfo._projectilePosOffset * .005f;
                 _equipedArrow.transform.localRotation = Quaternion.Euler(_equipableItemInfo._projectileRotOffset);
             }
+
+           
         }
 
-        private void LateUpdate()
+
+
+        private void _ManageDrawAmount()
         {
-            if (!_isEquiped) return;
-           // transform.position = Player.PlayerControllerParent.GetInstance().GetLeftHandBone().transform.position;
-            //  transform.localPosition = _equipableItemInfo._dominantHandPosOffset * .0005f;
-           // transform.rotation = Player.PlayerControllerParent.GetInstance().GetLeftHandBone().transform.rotation;
+            //increment the draw amount
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                _drawAmount += 3f * Time.deltaTime;
+            }
+            else
+            {
+                _drawAmount -= 5f * Time.deltaTime;
+            }
+            if (_drawAmount > 1f) _drawAmount = 1f;
+            else if (_drawAmount < 0f) _drawAmount = 0f;
+
+            Player.PlayerControllerParent.GetInstance().SetAnimationFloat("BowDrawAmount", _drawAmount);
+
+            //If player has arrow drawn and is loosing it
+            if (_drawAmount > .1f && Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                _LooseArrow();
+                StartCoroutine("_ReloadCoroutine");
+            }
         }
 
-        
+
+        private IEnumerator _ReloadCoroutine()
+        {
+            yield return new WaitForSeconds(1f);
+            Reload();
+        }
+
+
+        private void _LooseArrow()
+        {
+            _equipedArrow.transform.parent = null;
+            Rigidbody arrowRB = _equipedArrow.GetComponent<Rigidbody>();
+            arrowRB.isKinematic = false;
+            arrowRB.velocity = Camera.main.transform.forward * 10f * _drawAmount;
+            _equipedArrow = null;        
+        }
     }
 }
 

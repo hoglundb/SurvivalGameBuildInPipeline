@@ -193,12 +193,15 @@ namespace Inventory
 
         //Removes an item of the specified type from the inventory and returns the game object associated with it. Returns null if item not present in inventory.
         public GameObject GetItemFromInventory(string itemName)
-        {
+        {          
             for (int i = 0; i < _inventoryItemSlots.Count; i++)
             {
                 ItemInteraction inventoryItemGameObj = _inventoryItemSlots[i].GetComponent<InventorySlotManager>().GetAttachedGameObj().GetComponent<ItemInteraction>();
                 if (inventoryItemGameObj.GetItemName() == itemName)
                 {
+                    //Skip empty slots that don't technically hold anything. 
+                    if (_inventoryItemSlots[i].gameObject.activeSelf == false) continue;
+
                     _inventoryItemSlots[i].gameObject.SetActive(false);
                     return inventoryItemGameObj.gameObject;
                 }

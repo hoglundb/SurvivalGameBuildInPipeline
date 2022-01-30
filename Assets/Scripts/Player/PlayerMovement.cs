@@ -62,7 +62,6 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
-            Debug.LogError(_isMovementEnabled);
             if (!_isMovementEnabled) return;
 
             _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);

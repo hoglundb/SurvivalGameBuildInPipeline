@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BowEquipableItemInfo
   m_EditorClassIdentifier: 
   _rightHandControlled: 0
-  _dominantHandPosOffset: {x: -0.8, y: 3.03, z: 1.47}
+  _dominantHandPosOffset: {x: -0.8, y: 3.03, z: 0.75}
   _dominantHandRotOffset: {x: -150.65, y: 350.3, z: 27.56}
-  _projectilePosOffset: {x: -0.22, y: 7.42, z: 24.18}
-  _projectileRotOffset: {x: 90, y: 0, z: 0}
+  _projectilePosOffset: {x: -0.22, y: 7.42, z: 23.39}
+  _projectileRotOffset: {x: 90.41, y: 0, z: 0}
