@@ -18,7 +18,7 @@ public class PlayerInventoryManager : MonoBehaviour
 
     public bool _isInventoryInUse;
 
-    private CanvasController _canvasController;
+    private UI.CanvasController _canvasController;
 
     private PlayerControllerParent _playerControllerParentComponent;
 
@@ -33,30 +33,14 @@ public class PlayerInventoryManager : MonoBehaviour
 
     private void Start()
     {
-        _canvasController = CanvasController.GetInstance();        
+        _canvasController = UI.CanvasController.GetInstance();        
     }
 
 
     //// Update is called once per frame
     void Update()
     {
-        //ToggleInventory visability and interactivity
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            _baseBuildingUIPanel.SetActive(false);
-            bool isNowShowing = _inventoryManager.ToggleVisibility();
-            _playerControllerParentComponent.SetMovementEnablement(!isNowShowing);
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
-            _baseBuildingUIPanel.GetComponent<RectTransform>().localScale = Vector3.one;
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            _baseBuildingUIPanel.SetActive(false);
-            bool isShowing = _craftingManager.ToggleVisibility();
-            _playerControllerParentComponent.SetMovementEnablement(!isShowing);
-        }
+       
     }
 }
 

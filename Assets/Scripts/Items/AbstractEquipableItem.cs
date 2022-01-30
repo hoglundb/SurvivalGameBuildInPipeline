@@ -76,11 +76,9 @@ namespace Items
 
 
         private void Update()
-        {
+        {          
+            if (!_isEquiped) return;
             _ManageDrawAmount();
-
-            if (!_isEquiped || _equipedArrow == null) return;
-
             transform.localPosition = Vector3.zero;
             transform.localPosition = _equipableItemInfo._dominantHandPosOffset * .00025f;
             transform.localRotation = Quaternion.Euler(_equipableItemInfo._dominantHandRotOffset * .5f);

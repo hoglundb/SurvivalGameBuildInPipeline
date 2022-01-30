@@ -136,7 +136,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
                 else 
                 {
-                    transform.parent = CanvasController.GetInstance().transform;
+                    transform.parent = UI.CanvasController.GetInstance().transform;
                 }
                 transform.position = hoveredItemSlot.transform.position;
                 _currentItemSlot = hoveredItemSlot;

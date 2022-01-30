@@ -7,7 +7,7 @@ using UnityEngine.UI;
 //Component that is attached to each craftable menu item in the crafting menu. 
 public class CraftableMenuItem : MonoBehaviour
 {
-    private CanvasController _canvasController;
+    private UI.CanvasController _canvasController;
 
     private Button _btnCraftButton; //The craft button on this game object. Will be disabled if not enough ingredients for player to craft this item. 
 
@@ -31,7 +31,7 @@ public class CraftableMenuItem : MonoBehaviour
 
     private void Start()
     {
-        _canvasController = CanvasController.GetInstance();
+        _canvasController = UI.CanvasController.GetInstance();
     }
 
 
@@ -47,7 +47,7 @@ public class CraftableMenuItem : MonoBehaviour
     {
         foreach (var i in _ingredientsList)
         { 
-            int amountInInventory = _canvasController.inventoryController.GetItemCount(i.ingredient);
+            int amountInInventory = _canvasController.GetInventoryControllerComponent().GetItemCount(i.ingredient);
             if (amountInInventory < i.quantity)
             {
                 return false;
@@ -75,7 +75,7 @@ public class CraftableMenuItem : MonoBehaviour
         //Use up the required inventory items. 
         foreach (var item in _ingredientsList)
         {
-            bool wasSuccess = _canvasController.inventoryController.UseAndDestroyItems(item.ingredient, item.quantity);
+            bool wasSuccess = _canvasController.GetInventoryControllerComponent().UseAndDestroyItems(item.ingredient, item.quantity);
             if (!wasSuccess)
             {
                 Debug.LogError("unable to destroy " + item.quantity + " of item" + item.ingredient);
@@ -85,7 +85,7 @@ public class CraftableMenuItem : MonoBehaviour
 
         //Spawn the newly crafted game object. TODO: use object pooling to manage this in the future. 
         GameObject craftedItem = Instantiate(_craftedItemPrefab);
-        _canvasController.inventoryController.AddItemToInventory(craftedItem);
+        _canvasController.GetInventoryControllerComponent().AddItemToInventory(craftedItem);
     }
 
 }
