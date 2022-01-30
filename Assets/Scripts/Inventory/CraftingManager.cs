@@ -10,7 +10,7 @@ namespace Inventory
      items are contained in a scroll view. Note that the PlayerCraftingPanel game object is never disabled. 
      Toggling this panel is done by scaling the panel between 0 and 1. 
      **********************************************************************************************/
-    public class CraftingManager : MonoBehaviour
+    public class CraftingManager : UI.UIController
     {
         //UI references
         [SerializeField] private GameObject _craftingItemUIPrefab;
@@ -23,31 +23,30 @@ namespace Inventory
         //Reference the inventory panel so we can disable it if the crafting panel is activated
         private InventoryManager _inventoryManagerComponent;
 
-        //Tracks if the current state of this panel is visible or invisible.
-        private bool _isShowing;
-
         //List of all child items in the crafting UI. We gather these on Awake. 
         private List<CraftableItemController> _craftableItemsList;
 
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             //Reference the PlayerInventoryPanel UI since these game objects need to comminicate back and forth. 
             _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<InventoryManager>();
 
             //Start out with this panel hidden.
-            SetVisibility(false);
+        //    SetVisibility(false);
 
             //Populate the _craftableItemsList based on the UI elements defined in the scroll view UI.
             _craftableItemsList = new List<CraftableItemController>();
-            foreach (Transform child in _itemContentUIPanel.transform)
-            {
-                CraftableItemController craftableComponent = child.GetComponent<CraftableItemController>();
-                if (craftableComponent != null)
-                {
-                    _craftableItemsList.Add(child.GetComponent<CraftableItemController>());
-                }          
-            }
+            //foreach (Transform child in _itemContentUIPanel.transform)
+            //{
+            //    CraftableItemController craftableComponent = child.GetComponent<CraftableItemController>();
+            //    if (craftableComponent != null)
+            //    {
+            //        _craftableItemsList.Add(child.GetComponent<CraftableItemController>());
+            //    }          
+            //}
         }
 
 
@@ -56,31 +55,7 @@ namespace Inventory
         {
             _itemIngredientsTextbox.GetComponent<Text>().text = ingredientsList;
         }
-
-
-        //Toggles the visibility of the crafting UI by scaling the panel between 0 and 1. 
-        public bool ToggleVisibility()
-        {
-            _isShowing = !_isShowing;
-            _UpdateVisibility();
-
-            if (_isShowing) UpdateCraftabilityForItems();
-
-            return _isShowing;
-        }
-
-
-        //Sets this panels visibility based on the input parameter. Returns true if setting it to visible and returns false o.w.
-        public bool SetVisibility(bool makeVisible)
-        {
-            _isShowing = makeVisible;
-            _UpdateVisibility();
-
-            if (_isShowing) UpdateCraftabilityForItems();
-
-            return _isShowing;
-        }
-
+     
 
         //Updates each craftable item in the list based on if the player has the ingredients to craft that item. Items that are uncraftable have their "craft" btn disabled. 
         public void UpdateCraftabilityForItems()
@@ -109,23 +84,23 @@ namespace Inventory
 
 
         //Updates the visibility of this panel based on the value of _isShowing.
-        private bool _UpdateVisibility()
-        {
-            if (_isShowing)
-            {
-                //toggle off the inventory panel
-                _inventoryManagerComponent.SetVisibility(false);
+        //private bool _UpdateVisibility()
+        //{
+        //    if (_isShowing)
+        //    {
+        //        //toggle off the inventory panel
+        //        _inventoryManagerComponent.SetVisibility(false);
 
-                //make this panel visible by setting it's scale back to 1
-                GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            }
-            else
-            {
-                //make this panel invisible by setting it's scale to 0
-                GetComponent<RectTransform>().localScale = new Vector3(0, 1, 1);
-            }
-            return _isShowing;
-        }
+        //        //make this panel visible by setting it's scale back to 1
+        //        GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        //    }
+        //    else
+        //    {
+        //        //make this panel invisible by setting it's scale to 0
+        //        GetComponent<RectTransform>().localScale = new Vector3(0, 1, 1);
+        //    }
+        //    return _isShowing;
+        //}
     }
 
 }

@@ -12,7 +12,7 @@ namespace Inventory
      to add, remove, or iteract with inventory items. The PlayerInventoryPanel never gets disabled, 
      but we scale it betweeb 0 and 1 so the player can "toggle" it on and off. 
      *************************************************************************************/
-    public class InventoryManager : MonoBehaviour
+    public class InventoryManager : UI.UIController
     {
         //References to other UI components related to the inventory. 
         [Header("UI Panel References")]
@@ -35,18 +35,9 @@ namespace Inventory
         //Tracks the currently selected filter for the inventory. Allows us to avoid redundant sorting and save on CPU resources. 
         private PickupableItemCategory _currentItemCategoryFilter; 
 
-        //Tracks if the inventory is showing. Show/hide functionallity is managed by scaling down the UI game object betweem 1 and 0
-        private bool _isShowing = true;
-
-        //The rect transform component on this game object
-        private RectTransform _rectTransform;
-
         //Holds a list of UI elements for each inventory item. Each UI item in turn, contains the coorisponding item game object. 
         private List<GameObject> _inventoryItemSlots;
-   
-        //Reference to the crafting panel. Need to toggle this off when toggling the inventory panel 
-        private CraftingManager _craftingManagerComponent;
-
+  
 
         private static InventoryManager _instance;
 
@@ -57,11 +48,11 @@ namespace Inventory
         }
 
 
-        private void Awake()
+        protected override void Awake()
         {
-            _instance = this;
+            base.Awake();
 
-            _craftingManagerComponent = GameObject.Find("PlayerCraftingPanel").GetComponent<CraftingManager>();
+            _instance = this;
 
             _inventoryItemSlots = new List<GameObject>();
 
@@ -72,13 +63,7 @@ namespace Inventory
             _btnFilterWeapons.GetComponent<Button>().onClick.AddListener(_OnBtnClickFiterByWeapons);
             _btnFilterTools.GetComponent<Button>().onClick.AddListener(_OnBtnClickFiterByTools);
             _btnFilterMaterials.GetComponent<Button>().onClick.AddListener(_OnBtnClickFilterByMaterials);
-            _btnFilterConsumables.GetComponent<Button>().onClick.AddListener(_OnBtnClickFilterByConsumables);
-
-            //Start out with the inventory UI hidden
-            if (_isShowing)
-            {
-                ToggleVisibility();
-            }         
+            _btnFilterConsumables.GetComponent<Button>().onClick.AddListener(_OnBtnClickFilterByConsumables);       
         }
 
 
@@ -208,46 +193,7 @@ namespace Inventory
             }    
             return null;
         }
-
-
-        //Toggles the visiblity of the Inventory UI. If visible, scale to 0 to make invisible. If 1, the scale to 0. Return true if updated to be visible and return false o.w.
-        public bool ToggleVisibility()
-        {
-            _isShowing = !_isShowing;
-            return _UpdateVisibility();           
-        }
-
-
-        //Sets the visibility of the PlayerInventoryPanel by scaling it from 0 to 1. Returns true if the panel is updated to be visible, returns false otherwise.  
-        public bool SetVisibility(bool makeVisible)
-        {
-            _isShowing = makeVisible;
-            return _UpdateVisibility();
-        }
-
-
-        //Called when the _isShowing value is changed. Updates the UI accordingly.
-        private bool _UpdateVisibility()
-        {
-            if (_isShowing)
-            {
-                //Turn off the crafting panel UI if it is showing
-                _craftingManagerComponent.SetVisibility(false);
-
-                //Scale the UI back to 1 so it is visible
-                _rectTransform.localScale = Vector3.one;
-                _ResetChildTransforms();
-                return true;
-            }
-            else
-            {
-                Vector3 hiddenScale = _rectTransform.localScale;
-                hiddenScale.x = 0f;
-                _rectTransform.localScale = hiddenScale;
-                return false;
-            }
-        }
-
+    
 
         //Resets the scale of the UI items in the enventory. Call this when re-enabling the inventory UI and scaling it back to 1. 
         private void _ResetChildTransforms()

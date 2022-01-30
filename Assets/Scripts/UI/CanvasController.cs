@@ -1,3 +1,4 @@
+using Inventory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,14 @@ namespace UI
     public class CanvasController : MonoBehaviour
     {
         //reference the UI panels for crafting, building, inventory, etc. These get toggled on/off based on player actions. 
-        private CraftingController _craftingControllerComponent;
-        private InventoryController _inventoryControllerComponent;
+        //private CraftingController _craftingControllerComponent;
+      //  private InventoryController _inventoryControllerComponent;
+        private InventoryManager _inventoryManagerComponent;
+        private CraftingManager _craftingManagerComponent;
         private BuildingController _buildingControllerComponent;
+
+        //Reference to the player parent component. Need to communcicate with the player when player performs certain actions with the UI
+        private Player.PlayerControllerParent _playerControllerParentComponent;
 
         //Singleton pattern since only once instance of this component in the game
         private static CanvasController _instance; 
@@ -21,15 +27,21 @@ namespace UI
         private void Awake()
         {
             _instance = this;
-            _craftingControllerComponent = GetComponentInChildren<CraftingController>();
-            _inventoryControllerComponent = GetComponentInChildren<InventoryController>();
+            _craftingManagerComponent = GetComponentInChildren<CraftingManager>();
+            _inventoryManagerComponent = GetComponentInChildren<InventoryManager>();
             _buildingControllerComponent = GetComponentInChildren<BuildingController>();
         }
 
 
+        private void Start()
+        {
+            _SetAllUIPanelsInvisible();
+            _playerControllerParentComponent = Player.PlayerControllerParent.GetInstance();
+        }
+
         //Get methods for the various UI controller components. 
-        public CraftingController GetCraftingControllerComponent()  {  return _craftingControllerComponent; }
-        public InventoryController GetInventoryControllerComponent() { return _inventoryControllerComponent; }
+        public CraftingManager GetCraftingControllerComponent()  {  return _craftingManagerComponent; }
+        public InventoryManager GetInventoryControllerComponent() { return _inventoryManagerComponent; }
         public BuildingController GetBuidlingControllerComponent() { return _buildingControllerComponent; }
 
 
@@ -42,47 +54,67 @@ namespace UI
         //Activates/deactivates the UI components based on keyboard input from the player. Comumicate with the player to enable/disable player functionallity accordinly.
         private void _SetUIVisibilityFromKeyboardInput()
         {
+            //Toggle the inventory panel
             if (Input.GetKeyDown(KeyCode.Tab))
-            { 
-               //if(_inventoryControllerComponent)
+            {
+                if (_inventoryManagerComponent.IsVisible())
+                {
+                    _inventoryManagerComponent.SetVisibility(false);
+                }
+                else
+                {
+                    _SetAllUIPanelsInvisible();
+                    _inventoryManagerComponent.SetVisibility(true);
+                }
             }
-            ////ToggleInventory visability and interactivity
-            //if (Input.GetKeyDown(KeyCode.Tab))
-            //{
-            //    _baseBuildingUIPanel.SetActive(false);
-            //    bool isNowShowing = _inventoryManager.ToggleVisibility();
-            //    _playerControllerParentComponent.SetMovementEnablement(!isNowShowing);
-            //}
-            //else if (Input.GetKeyDown(KeyCode.B))
-            //{
-            //    _baseBuildingUIPanel.GetComponent<RectTransform>().localScale = Vector3.one;
-            //}
-            //else if (Input.GetKeyDown(KeyCode.Q))
-            //{
-            //    _baseBuildingUIPanel.SetActive(false);
-            //    bool isShowing = _craftingManager.ToggleVisibility();
-            //    _playerControllerParentComponent.SetMovementEnablement(!isShowing);
-            //}
+
+            //toggle the crafting panel
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (_craftingManagerComponent.IsVisible())
+                {
+                    _craftingManagerComponent.SetVisibility(false);
+                }
+                else
+                {
+                    _SetAllUIPanelsInvisible();
+                    _craftingManagerComponent.SetVisibility(true);
+                }
+            }
+
+            //toggle the base buidling panel
+            else if (Input.GetKeyDown(KeyCode.B))
+            {
+                if (_buildingControllerComponent.IsVisible())
+                {
+                    _buildingControllerComponent.SetVisibility(false);
+                }
+                else 
+                {
+                    _SetAllUIPanelsInvisible();
+                    _buildingControllerComponent.SetVisibility(true);
+                }
+            }
+
+            //request the player to enable/disable movement as needed
+            if (_buildingControllerComponent.IsVisible() || _craftingManagerComponent.IsVisible() || _inventoryManagerComponent.IsVisible())
+            {
+                _playerControllerParentComponent.SetMovementEnablement(false);
+            }
+            else 
+            {
+                _playerControllerParentComponent.SetMovementEnablement(true);
+            }
         }
 
 
-        //Toggles visibility of the inventory and crafting UI. Reinitialize the crafting menu based on material availability in the inventory. 
-        //public void ToggleInventoryCraftingUI(bool shouldShow)
-        //{
-        //    _inventoryControllerComponent.SetVisibility(shouldShow);
-        //    if (shouldShow)
-        //    {
-        //        _craftingControllerComponent.ReInitailizeCraftingMenu();
-        //    }
-        //}
-
-
-        ////Calls the inventory component to add an item to the inventory. Update the Crafting component so that it coorectly shows which items are currently craftable. 
-        //public void AddItemToInventory(GameObject gameObj)
-        //{
-        //    _inventoryControllerComponent.AddItemToInventory(gameObj);
-        //    _craftingControllerComponent.ReInitailizeCraftingMenu();
-        //}
+        //Tells all the UI panels to make themselves invisible. 
+        private void _SetAllUIPanelsInvisible()
+        {
+            _inventoryManagerComponent.SetVisibility(false);
+            _craftingManagerComponent.SetVisibility(false);
+            _buildingControllerComponent.SetVisibility(false);
+        }
 
     }
 }

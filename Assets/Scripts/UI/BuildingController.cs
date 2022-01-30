@@ -8,10 +8,8 @@ using UnityEngine;
  ********************************************************************************************/
 namespace UI
 {
-    public class BuildingController : MonoBehaviour, IUIController
+    public class BuildingController : UIController
     {
-        //The rect transform that we scale between 0 and 1 to show/hide the UI panel. 
-        private RectTransform _rectTransform;
 
         //Singleton pattern for this class since there will only ever be one game object with a BuidlingManager component. 
         private static BuildingController _instance;
@@ -21,30 +19,11 @@ namespace UI
         }
 
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             _instance = this;
-            _rectTransform = GetComponent<RectTransform>();
-        }
-
-
-        //TODO
-        public void ToggleVisibility()
-        {
-
-        }
-
-
-        //TODO
-        public void SetVisibility()
-        {
-
-        }
-
-
-        public void IsVisible()
-        { 
-        
         }
 
     }
