@@ -14,10 +14,15 @@ namespace Items
         [Header("scripable object info for this equipable item")]
         [SerializeField] private EquipableItemInfoScriptableObject _equipableItemInfo;
 
+        [SerializeField] private Vector3 _arrowLocalRotation;
+
         //Reference the player so we can tell it what animations to play and parent this item to the player hand. 
         private Player.PlayerControllerParent _playerParentControllerComponent;
 
         private bool _isEquiped = false;
+        private GameObject _equipedArrow;
+
+        
 
         private void Start()
         {
@@ -41,6 +46,20 @@ namespace Items
             }
 
             _playerParentControllerComponent.SetAnimationTrigger("EquipBow");
+
+            //put the arrow on the bow, if there is one in the player's inventory. 
+            _equipedArrow = Inventory.InventoryManager.GetInstance().GetItemFromInventory("BASIC_ARROW");
+            if (_equipedArrow == null)
+            {
+                Debug.LogError("No arrows in inventory");
+                return;
+            }
+
+            _equipedArrow.transform.parent = transform;
+            transform.localPosition = Vector3.zero;
+            _equipedArrow.GetComponent<Rigidbody>().isKinematic = true;
+            _equipedArrow.SetActive(true);
+            transform.localPosition = Vector3.zero;
         }
 
 
@@ -56,9 +75,28 @@ namespace Items
         {
             if (!_isEquiped) return;
 
-            transform.localPosition = _equipableItemInfo._dominantHandPosOffset * .001f;
+            transform.localPosition = Vector3.zero;
+          //  transform.position = Player.PlayerControllerParent.GetInstance().GetLeftHandBone().transform.position;
+            transform.localPosition = _equipableItemInfo._dominantHandPosOffset * .00025f;
+          //  transform.rotation = Player.PlayerControllerParent.GetInstance().GetLeftHandBone().transform.rotation;
             transform.localRotation = Quaternion.Euler(_equipableItemInfo._dominantHandRotOffset * .5f);
+
+            if (_equipedArrow != null)
+            {
+                _equipedArrow.transform.localPosition = _equipableItemInfo._projectilePosOffset * .005f;
+                _equipedArrow.transform.localRotation = Quaternion.Euler(_equipableItemInfo._projectileRotOffset);
+            }
         }
+
+        private void LateUpdate()
+        {
+            if (!_isEquiped) return;
+           // transform.position = Player.PlayerControllerParent.GetInstance().GetLeftHandBone().transform.position;
+            //  transform.localPosition = _equipableItemInfo._dominantHandPosOffset * .0005f;
+           // transform.rotation = Player.PlayerControllerParent.GetInstance().GetLeftHandBone().transform.rotation;
+        }
+
+        
     }
 }
 

@@ -48,8 +48,19 @@ namespace Inventory
         private CraftingManager _craftingManagerComponent;
 
 
+        private static InventoryManager _instance;
+
+
+        public static InventoryManager GetInstance()
+        {
+            return _instance;    
+        }
+
+
         private void Awake()
         {
+            _instance = this;
+
             _craftingManagerComponent = GameObject.Find("PlayerCraftingPanel").GetComponent<CraftingManager>();
 
             _inventoryItemSlots = new List<GameObject>();
@@ -177,6 +188,22 @@ namespace Inventory
                 }
             }
             Debug.LogError("Error trying to remove " + quantityToRemove.ToString() + " items of type '" + itemName + "' from inventory");
+        }
+
+
+        //Removes an item of the specified type from the inventory and returns the game object associated with it. Returns null if item not present in inventory.
+        public GameObject GetItemFromInventory(string itemName)
+        {
+            for (int i = 0; i < _inventoryItemSlots.Count; i++)
+            {
+                ItemInteraction inventoryItemGameObj = _inventoryItemSlots[i].GetComponent<InventorySlotManager>().GetAttachedGameObj().GetComponent<ItemInteraction>();
+                if (inventoryItemGameObj.GetItemName() == itemName)
+                {
+                    _inventoryItemSlots[i].gameObject.SetActive(false);
+                    return inventoryItemGameObj.gameObject;
+                }
+            }    
+            return null;
         }
 
 

@@ -16,6 +16,11 @@ public class EquipableItemInfoScriptableObject : ScriptableObject
     [Header("Position Offsets For When In Player Hand")]
     [SerializeField] public Vector3 _dominantHandPosOffset;
     [SerializeField] public Vector3 _dominantHandRotOffset;
+
+
+    [Header("Pos/Rot if a projectile involved")]
+    [SerializeField] public Vector3 _projectilePosOffset;
+    [SerializeField] public Vector3 _projectileRotOffset;
 }
 
 
