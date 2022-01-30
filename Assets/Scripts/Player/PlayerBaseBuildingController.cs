@@ -19,7 +19,7 @@ namespace Player
         [SerializeField] private GameObject _baseBuildingEffectPrefab;
         private GameObject _baseBuildingEffect;
         private GameObject _itemCurrentlyPlacing = null;
-        private Magic.EffectBaseBuilding _effectBaseBuildingComponent;
+
         private Vector3 _lookPoint; 
 
         //Components that reference the current selected block. Will be null if no block being placed or block type doesn't have that particular component. 
@@ -53,7 +53,6 @@ namespace Player
 
             //Create the base building effect and disable until it is needed by the player. 
             _baseBuildingEffect = Instantiate(_baseBuildingEffectPrefab);
-            _effectBaseBuildingComponent = _baseBuildingEffect.GetComponent<Magic.EffectBaseBuilding>();
         }
 
 

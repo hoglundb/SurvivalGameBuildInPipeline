@@ -6,9 +6,9 @@ using UnityEngine;
  This component lives on the PlayerBuildingPanel UI. It manages the actions the player takes
  to build items from matarials in the inventory
  ********************************************************************************************/
-namespace UI
+namespace InventoryUI
 {
-    public class BuildingController : UIController
+    public class BuildingController : UIControllerBase
     {
 
         //Singleton pattern for this class since there will only ever be one game object with a BuidlingManager component. 

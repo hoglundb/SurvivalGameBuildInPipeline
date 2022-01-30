@@ -53,7 +53,7 @@ namespace Items
         public void Reload()
         {
             //put the arrow on the bow, if there is one in the player's inventory. 
-            _equipedArrow = Inventory.InventoryManager.GetInstance().GetItemFromInventory("BASIC_ARROW");
+            _equipedArrow = InventoryUI.InventoryManager.GetInstance().GetItemFromInventory("BASIC_ARROW");
             if (_equipedArrow == null)
             {
                 Debug.LogError("No arrows in inventory");

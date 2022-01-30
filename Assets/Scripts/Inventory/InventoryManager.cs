@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Inventory
+namespace InventoryUI
 {
 
     /**************************************************************************************
@@ -12,7 +12,7 @@ namespace Inventory
      to add, remove, or iteract with inventory items. The PlayerInventoryPanel never gets disabled, 
      but we scale it betweeb 0 and 1 so the player can "toggle" it on and off. 
      *************************************************************************************/
-    public class InventoryManager : UI.UIController
+    public class InventoryManager : UIControllerBase
     {
         //References to other UI components related to the inventory. 
         [Header("UI Panel References")]

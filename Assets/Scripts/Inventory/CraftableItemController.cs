@@ -28,7 +28,7 @@ public class CraftableItemController : MonoBehaviour
     [SerializeField] public List<CraftingIngredient> ingredients;
 
     private GameObject _playerCraftingDescriptionPanel;
-    private Inventory.InventoryManager _inventoryManagerComponent;
+    private InventoryUI.InventoryManager _inventoryManagerComponent;
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class CraftableItemController : MonoBehaviour
         _playerCraftingDescriptionPanel = GameObject.Find("CraftingDescriptionPanel");
         _playerCraftingDescriptionPanel.GetComponent<RectTransform>().localScale = new Vector3(0, 1, 1);
 
-        _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<Inventory.InventoryManager>();
+        _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<InventoryUI.InventoryManager>();
     }
 
 
@@ -57,7 +57,7 @@ public class CraftableItemController : MonoBehaviour
         _inventoryManagerComponent.AddItemToInventory(craftedItem);
 
         //Update the craftability of each item since items were removed from the inventory to craft this. 
-        _playerCraftingPanel.GetComponent<Inventory.CraftingManager>().UpdateCraftabilityForItems();
+        _playerCraftingPanel.GetComponent<InventoryUI.CraftingManager>().UpdateCraftabilityForItems();
     }
 
 
@@ -75,7 +75,7 @@ public class CraftableItemController : MonoBehaviour
         }
 
         //Tell the UI text box for item ingredients to populate with the text we built out in the previous step. 
-        _playerCraftingPanel.GetComponent<Inventory.CraftingManager>().UpdateItemIngredientsTextbox(ingredientsList);
+        _playerCraftingPanel.GetComponent<InventoryUI.CraftingManager>().UpdateItemIngredientsTextbox(ingredientsList);
     }
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Inventory
+namespace InventoryUI
 {
     /****************************************************************************************
       This component is attached to a UI inventory slot prefab. It references the 

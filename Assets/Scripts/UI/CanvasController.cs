@@ -5,13 +5,11 @@ using UnityEngine;
 
 
 //The parent (entry point) for controlling all things canvas related (Inventory, Crafting, Health, etc.). Uses the singleton pattern so player can get a static reference to it. 
-namespace UI
+namespace InventoryUI
 {
     public class CanvasController : MonoBehaviour
     {
         //reference the UI panels for crafting, building, inventory, etc. These get toggled on/off based on player actions. 
-        //private CraftingController _craftingControllerComponent;
-      //  private InventoryController _inventoryControllerComponent;
         private InventoryManager _inventoryManagerComponent;
         private CraftingManager _craftingManagerComponent;
         private BuildingController _buildingControllerComponent;

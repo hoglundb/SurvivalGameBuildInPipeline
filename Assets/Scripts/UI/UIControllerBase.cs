@@ -4,9 +4,9 @@ using UnityEngine;
 
 
 //All the functions a UI controller component must perform (e.g. the inventory UI, building UI, crafting UI, etc.)
-namespace UI
+namespace InventoryUI
 {
-    public abstract class UIController : MonoBehaviour
+    public abstract class UIControllerBase : MonoBehaviour
     {
         protected RectTransform _rectTransform;
         protected Vector3 _uiVisibleScale;
@@ -15,7 +15,6 @@ namespace UI
         protected virtual void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
-            Debug.LogError("base awake method being called");
             _uiInvisibleScale = new Vector3(0, 1, 1);
             _uiVisibleScale = Vector3.one;
         }

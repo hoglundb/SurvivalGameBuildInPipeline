@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Inventory
+namespace InventoryUI
 {
     /**********************************************************************************************
      This component lives on the PlayerCraftingPanel game object. Within this panel, the craftable
      items are contained in a scroll view. Note that the PlayerCraftingPanel game object is never disabled. 
      Toggling this panel is done by scaling the panel between 0 and 1. 
      **********************************************************************************************/
-    public class CraftingManager : UI.UIController
+    public class CraftingManager : UIControllerBase
     {
         //UI references
         [SerializeField] private GameObject _craftingItemUIPrefab;
