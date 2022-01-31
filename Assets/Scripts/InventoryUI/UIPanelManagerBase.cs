@@ -4,9 +4,9 @@ using UnityEngine;
 
 
 //All the functions a UI controller component must perform (e.g. the inventory UI, building UI, crafting UI, etc.)
-namespace InventoryUI
+namespace Inventory
 {
-    public abstract class UIControllerBase : MonoBehaviour
+    public abstract class UIPanelManagerBase : MonoBehaviour
     {
         protected RectTransform _rectTransform;
         protected Vector3 _uiVisibleScale;

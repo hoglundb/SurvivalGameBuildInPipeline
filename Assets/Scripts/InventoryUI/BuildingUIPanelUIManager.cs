@@ -6,14 +6,14 @@ using UnityEngine;
  This component lives on the PlayerBuildingPanel UI. It manages the actions the player takes
  to build items from matarials in the inventory
  ********************************************************************************************/
-namespace InventoryUI
+namespace Inventory
 {
-    public class BuildingController : UIControllerBase
+    public class BuildingUIPanelUIManager : UIPanelManagerBase
     {
 
         //Singleton pattern for this class since there will only ever be one game object with a BuidlingManager component. 
-        private static BuildingController _instance;
-        public static BuildingController GetInstance()
+        private static BuildingUIPanelUIManager _instance;
+        public static BuildingUIPanelUIManager GetInstance()
         {
             return _instance;
         }

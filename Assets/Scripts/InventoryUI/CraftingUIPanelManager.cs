@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace InventoryUI
+namespace Inventory
 {
     /**********************************************************************************************
      This component lives on the PlayerCraftingPanel game object. Within this panel, the craftable
      items are contained in a scroll view. Note that the PlayerCraftingPanel game object is never disabled. 
      Toggling this panel is done by scaling the panel between 0 and 1. 
      **********************************************************************************************/
-    public class CraftingManager : UIControllerBase
+    public class CraftingUIPanelManager : UIPanelManagerBase
     {
         //UI references
         [SerializeField] private GameObject _craftingItemUIPrefab;
@@ -21,7 +21,7 @@ namespace InventoryUI
         [SerializeField] private float _heightPerItem = 2f;
 
         //Reference the inventory panel so we can disable it if the crafting panel is activated
-        private InventoryManager _inventoryManagerComponent;
+        private InventoryUIPanelManager _inventoryManagerComponent;
 
         //List of all child items in the crafting UI. We gather these on Awake. 
         private List<CraftableItemController> _craftableItemsList;
@@ -32,21 +32,10 @@ namespace InventoryUI
             base.Awake();
 
             //Reference the PlayerInventoryPanel UI since these game objects need to comminicate back and forth. 
-            _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<InventoryManager>();
-
-            //Start out with this panel hidden.
-        //    SetVisibility(false);
+            _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<InventoryUIPanelManager>();
 
             //Populate the _craftableItemsList based on the UI elements defined in the scroll view UI.
             _craftableItemsList = new List<CraftableItemController>();
-            //foreach (Transform child in _itemContentUIPanel.transform)
-            //{
-            //    CraftableItemController craftableComponent = child.GetComponent<CraftableItemController>();
-            //    if (craftableComponent != null)
-            //    {
-            //        _craftableItemsList.Add(child.GetComponent<CraftableItemController>());
-            //    }          
-            //}
         }
 
 

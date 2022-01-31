@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace InventoryUI
+namespace Inventory
 {
     /****************************************************************************************
       This component is attached to a UI inventory slot prefab. It references the 
@@ -25,7 +25,7 @@ namespace InventoryUI
         private ItemInteraction _itemInteractionComponent;
 
         //Reference the component that manages the collective group of inventory item slots. 
-        private InventoryManager _inventoryManagerComponent;
+        private Inventory.InventoryUIPanelManager _inventoryManagerComponent;
 
         private void Awake()
         {
@@ -33,7 +33,7 @@ namespace InventoryUI
             _btnConsumeItem.GetComponent<Button>().onClick.AddListener(_OnConsumeItemBtnClick);
             _btnDropItem.GetComponent<Button>().onClick.AddListener(_OnDropItemBtnClick);
 
-            _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<InventoryManager>();
+            _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<Inventory.InventoryUIPanelManager>();
         }
 
 

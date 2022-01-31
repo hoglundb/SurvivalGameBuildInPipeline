@@ -5,14 +5,14 @@ using UnityEngine;
 
 
 //The parent (entry point) for controlling all things canvas related (Inventory, Crafting, Health, etc.). Uses the singleton pattern so player can get a static reference to it. 
-namespace InventoryUI
+namespace Inventory
 {
     public class CanvasController : MonoBehaviour
     {
         //reference the UI panels for crafting, building, inventory, etc. These get toggled on/off based on player actions. 
-        private InventoryManager _inventoryManagerComponent;
-        private CraftingManager _craftingManagerComponent;
-        private BuildingController _buildingControllerComponent;
+        private InventoryUIPanelManager _inventoryManagerComponent;
+        private CraftingUIPanelManager _craftingManagerComponent;
+        private BuildingUIPanelUIManager _buildingControllerComponent;
 
         //Reference to the player parent component. Need to communcicate with the player when player performs certain actions with the UI
         private Player.PlayerControllerParent _playerControllerParentComponent;
@@ -25,9 +25,9 @@ namespace InventoryUI
         private void Awake()
         {
             _instance = this;
-            _craftingManagerComponent = GetComponentInChildren<CraftingManager>();
-            _inventoryManagerComponent = GetComponentInChildren<InventoryManager>();
-            _buildingControllerComponent = GetComponentInChildren<BuildingController>();
+            _craftingManagerComponent = GetComponentInChildren<CraftingUIPanelManager>();
+            _inventoryManagerComponent = GetComponentInChildren<InventoryUIPanelManager>();
+            _buildingControllerComponent = GetComponentInChildren<BuildingUIPanelUIManager>();
         }
 
 
@@ -38,9 +38,9 @@ namespace InventoryUI
         }
 
         //Get methods for the various UI controller components. 
-        public CraftingManager GetCraftingControllerComponent()  {  return _craftingManagerComponent; }
-        public InventoryManager GetInventoryControllerComponent() { return _inventoryManagerComponent; }
-        public BuildingController GetBuidlingControllerComponent() { return _buildingControllerComponent; }
+        public CraftingUIPanelManager GetCraftingControllerComponent()  {  return _craftingManagerComponent; }
+        public InventoryUIPanelManager GetInventoryControllerComponent() { return _inventoryManagerComponent; }
+        public BuildingUIPanelUIManager GetBuidlingControllerComponent() { return _buildingControllerComponent; }
 
 
         private void Update()

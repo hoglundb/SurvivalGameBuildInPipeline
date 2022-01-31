@@ -9,14 +9,14 @@ namespace Player
     public class EnvironmentDetector : MonoBehaviour
     {
         private GameObject _uiPromptToPickItemUp;
-        private InventoryUI.InventoryManager _inventoryManagerComponent;
+        private Inventory.InventoryUIPanelManager _inventoryManagerComponent;
 
         private void Awake()
         {
             _uiPromptToPickItemUp = GameObject.Find("PickupItemPrompt");
             _uiPromptToPickItemUp.SetActive(false);
             var foo = GameObject.Find("PlayerInventoryPanel");
-            _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<InventoryUI.InventoryManager>();
+            _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<Inventory.InventoryUIPanelManager>();
         }
 
 
