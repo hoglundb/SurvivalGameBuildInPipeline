@@ -128,7 +128,6 @@ namespace Items
 
         private void _LooseArrow()
         {
-            _equipedArrow.transform.parent = null;
             Rigidbody arrowRB = _equipedArrow.GetComponent<Rigidbody>();
             arrowRB.isKinematic = false;
             arrowRB.velocity = Camera.main.transform.forward * 10f * _drawAmount;

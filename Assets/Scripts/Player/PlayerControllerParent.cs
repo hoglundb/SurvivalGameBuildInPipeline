@@ -99,25 +99,40 @@ namespace Player
         private void _PlayerInputResponseUpdate()
         {
             //If player toggles base building mode, activate/deactivate the child components accordinly. 
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                if (playerMode != PlayerModes.BUILDING)
-                {
-                    playerMode = PlayerModes.BUILDING;
-                    playerBaseBuildingComponent.enabled = true;
-                    playerMovementComponent.enabled = false;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                if (playerMode == PlayerModes.BUILDING)
-                {
-                    playerMode = PlayerModes.DEFAULT;
-                    playerBaseBuildingComponent.enabled = false;
-                    playerMovementComponent.enabled = true;
-                }
-            }
+            //if (Input.GetKeyDown(KeyCode.B))
+            //{
+            //    if (playerMode != PlayerModes.BUILDING)
+            //    {
+            //        playerMode = PlayerModes.BUILDING;
+            //        playerBaseBuildingComponent.enabled = true;
+            //        playerMovementComponent.enabled = false;
+            //    }
+            //}
+            //else if (Input.GetKeyDown(KeyCode.Tab))
+            //{
+            //    if (playerMode == PlayerModes.BUILDING)
+            //    {
+            //        playerMode = PlayerModes.DEFAULT;
+            //        playerBaseBuildingComponent.enabled = false;
+            //        playerMovementComponent.enabled = true;
+            //    }
+            //}
         }
+
+
+
+        //public void EnableBaseBuilding()
+        //{
+        //    playerBaseBuildingComponent.enabled = true;
+        //}
+
+
+        //public void DisableBaseBuidling()
+        //{
+        //    playerBaseBuildingComponent.enabled = false;
+        //}
+
+
 
         #endregion
 

@@ -13,11 +13,13 @@ namespace Player
 
         //private GameObject _buildingBlockSelectUI;
         private PlayerControllerParent _playerControllerParentComponent;
+
+        [Header("References for block placement")]
         [SerializeField] private LayerMask _baseBlockMask;
         [SerializeField] private Material _validPlacementMaterial;
         [SerializeField] private Material _invalidPlacementMaterial;
-        [SerializeField] private GameObject _baseBuildingEffectPrefab;
-        private GameObject _baseBuildingEffect;
+
+        [SerializeField] private GameObject _blockFaceHighlightPrefab;
         private GameObject _itemCurrentlyPlacing = null;
 
         private Vector3 _lookPoint; 
@@ -30,12 +32,9 @@ namespace Player
         private bool _canPlaceBlock = false;
         private PlacementMode _placementMode;
 
-        [SerializeField] private GameObject _blockFaceHighlightPrefab;
         private GameObject _blockFaceHighlight;
         private float _heightOffset = 0f;
         private GameObject _currentSnappedObject;
-
-        [SerializeField] private Vector3 _handSpellOffset;
         #endregion
 
 
@@ -46,39 +45,19 @@ namespace Player
             //_buildingBlockSelectUI = GameObject.Find("BuildingUIPanel");
             _playerControllerParentComponent = GetComponent<PlayerControllerParent>();
             _saveGameComponent = GetComponent<SaveGame>();
-            enabled = false;
 
             //Create the block face highlight game object and disable until it is needed by the player. 
             _blockFaceHighlight = Instantiate(_blockFaceHighlightPrefab, Vector3.up * -1000, Quaternion.identity);
 
-            //Create the base building effect and disable until it is needed by the player. 
-            _baseBuildingEffect = Instantiate(_baseBuildingEffectPrefab);
         }
 
-
-        private void OnEnable()
-        {
-            ////Enable the building UI
-            //_buildingBlockSelectUI.SetActive(true);
-
-            ////Start the player animation for using magic to place building blocks
-            //_playerControllerParentComponent.SetAnimationTrigger("LiftBuildingBlock");
-
-            _baseBuildingEffect.SetActive(true);
-           
-        }
 
 
         private void OnDisable()
-        {
-            //if (_buildingBlockSelectUI != null)
-            //{
-            //    _buildingBlockSelectUI.SetActive(false);
-            //}
-          
+        {          
             if (_itemCurrentlyPlacing != null)
             {
-                GameObject.Destroy(_itemCurrentlyPlacing);
+                 Destroy(_itemCurrentlyPlacing);
                 _itemCurrentlyPlacing = null;
             }
         }
@@ -87,6 +66,14 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
+            //reset everything if player exits block placement. 
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.B))
+            {
+                Destroy(_itemCurrentlyPlacing);
+                _itemCurrentlyPlacing = null;
+                _blockFaceHighlight.transform.position = Vector3.down * 10000f;
+            }
+
             if (!_itemCurrentlyPlacing) return;
 
             //When the player is placing a foundation piece. 
@@ -106,9 +93,8 @@ namespace Player
                 _GetFoundationPlacementPoint();
                 if (Input.GetKeyDown(KeyCode.Mouse0) && !_foundationBlockComponent.IsCollidingThisFrame())
                 {
-                    _PlayBaseBuildingEffect(_foundationBlockComponent.transform.position);
                     _foundationBlockComponent.OnBlockPlace();
-                    _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("FoundationBuildingBlock");
+                    _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("FoundationBuildingBlock");                 
                     _itemCurrentlyPlacing.GetComponent<BoxCollider>().isTrigger = false;
 
                     //Add the item the player is placing to the dictionary of placed items so it can be saved by the player. 
@@ -142,7 +128,6 @@ namespace Player
                 {
                     _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("RegularBuildingBlock");
                     SaveGame.GetInstance().AddBlock(_itemCurrentlyPlacing);
-                    _PlayBaseBuildingEffect(_faceDefinitionsComponent.transform.position);
                     _blockMaterialComponent.ResetMaterial();
                     if (_currentSnappedObject.name.Contains("Foundation"))
                     {
@@ -152,7 +137,7 @@ namespace Player
                     {
                         _faceDefinitionsComponent.foundationReference = _currentSnappedObject.GetComponent<Geometery.FaceDefinitions>().foundationReference;
                     }
-
+                    _itemCurrentlyPlacing.GetComponent<BoxCollider>().isTrigger = false;
                     GameObject newBlockToPlace = Instantiate(_itemCurrentlyPlacing);
                     newBlockToPlace.name = _itemCurrentlyPlacing.name;
                     newBlockToPlace.GetComponent<Geometery.FaceDefinitions>().SetRotationIndex(_faceDefinitionsComponent.GetBlockRotationIndex());
@@ -326,7 +311,6 @@ namespace Player
                 _placementMode = PlacementMode.BRICK;
             }
         
-           // _buildingBlockSelectUI.SetActive(false);
             _playerControllerParentComponent.playerMovementComponent.enabled = true;
 
             _InstaciateFoundationPiece(placableItemPrefab);
@@ -334,9 +318,25 @@ namespace Player
         }
 
 
+        public void CreateBlockForPlacement(GameObject placeableItemPrefab)
+        {
+            if (placeableItemPrefab.name.Contains("Foundation"))
+            {
+                _placementMode = PlacementMode.FOUNDATION;
+            }
+            else
+            {
+                _placementMode = PlacementMode.BRICK;
+            }
+            _playerControllerParentComponent.playerMovementComponent.enabled = true;
+            _InstaciateFoundationPiece(placeableItemPrefab);
+        }
+
+
         private void _InstaciateFoundationPiece(GameObject placableItemPrefab)
         {
-            _itemCurrentlyPlacing = GameObject.Instantiate(placableItemPrefab);
+            _itemCurrentlyPlacing = Instantiate(placableItemPrefab);
+            _itemCurrentlyPlacing.GetComponent<Collider>().isTrigger = true;
             _itemCurrentlyPlacing.name = placableItemPrefab.name;
             _foundationBlockComponent = _itemCurrentlyPlacing.GetComponent<FoundationBlock>();
             _blockMaterialComponent = _itemCurrentlyPlacing.GetComponent<BlockMaterialManager>();
@@ -345,14 +345,6 @@ namespace Player
             _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);
         }
 
-        private void _PlayBaseBuildingEffect(Vector3 targetPos)
-        {
-            //_playerControllerParentComponent.SetAnimationTrigger("PlaceBuildingBlock");
-            //Vector3 handPos = _playerControllerParentComponent.rightHandBoneTransform.position;
-            //_baseBuildingEffect.SetActive(true);
-            //_baseBuildingEffect.GetComponent<Magic.EffectBaseBuilding>().ShootSpellEffect(handPos - transform.forward * .3f, targetPos);
-
-        }
 
         #endregion
     }

@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 772877383649026890}
   - component: {fileID: 1746579164400369470}
   - component: {fileID: 3468944525469725680}
+  - component: {fileID: 923684985077585608}
   m_Layer: 5
   m_Name: BuildingUISlotPrefab
   m_TagString: Untagged
@@ -320,6 +321,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &923684985077585608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475804749353156462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344e5746c9702bf46812fa32c4937b42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildingBlockPrefab: {fileID: 5565925167926727308, guid: 77b0b6297e541a74497279a0f17eea41, type: 3}
+  _ingredientsList:
+  - ingredient: STONE
+    quantity: 25
+  _btnCreateBlock: {fileID: 7805047357731585661}
+  _insufMatAlert: {fileID: 213989716185101718}
 --- !u!1 &2494700840287094930
 GameObject:
   m_ObjectHideFlags: 0

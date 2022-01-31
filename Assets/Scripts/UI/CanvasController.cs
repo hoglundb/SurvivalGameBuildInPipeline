@@ -46,6 +46,11 @@ namespace Inventory
         private void Update()
         {
             _SetUIVisibilityFromKeyboardInput();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _SetAllUIPanelsInvisible();
+            }
         }
 
 
