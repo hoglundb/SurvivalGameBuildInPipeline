@@ -16,6 +16,11 @@ namespace Geometery
         [Header("Set this manually")]
         [SerializeField] private List<Vector3> _possibleRotations;
 
+        //Track the orgonal layer on this object. We need to be able to set it to ignore raycasts and back. Object with collider may be child object of this. 
+        private LayerMask _objLayerName;
+
+        [SerializeField] private Collider _collider;
+
         private int _currentPlacementIndex = 0;
 
         internal Transform foundationReference;
@@ -23,7 +28,10 @@ namespace Geometery
         private int _currentRotationIndex = 0;
 
         private void Awake()
-        {    
+        {
+            //Cache the layer that this object orionally had
+            _objLayerName = gameObject.layer;
+
             if (_onStartCreateFaceTransforms)
             {
                 _faceTransforms = new List<Transform>();
@@ -39,7 +47,41 @@ namespace Geometery
                     _faceTransforms.Add(child);
                 }
             }
+
+            if (_collider == null)
+            { 
+             _collider = GetComponent<Collider>();
+            }
+           
+            if (_collider == null)
+            {
+                _collider = GetComponentInChildren<Collider>();
+            }
+            if (_collider == null)
+            {
+                Debug.LogError("Error: No collider on " + name);
+            }
         }
+
+
+
+        public void SetColliderTrigger(bool isTrigger)
+        {
+            _collider.isTrigger = isTrigger;
+        }
+  
+
+        public void IngnoreRaycasts()
+        { 
+           _collider.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        }
+
+
+        public void RestoreLayerMaskToOrigonal()
+        {
+            _collider.gameObject.layer = _objLayerName;
+        }
+
 
 
         //Cycles through the possible rotations for the block

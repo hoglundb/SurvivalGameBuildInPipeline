@@ -94,9 +94,9 @@ namespace Player
                 if (Input.GetKeyDown(KeyCode.Mouse0) && !_foundationBlockComponent.IsCollidingThisFrame())
                 {
                     _foundationBlockComponent.OnBlockPlace();
-                    _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("FoundationBuildingBlock");                 
-                    _itemCurrentlyPlacing.GetComponent<BoxCollider>().isTrigger = false;
-
+                    _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("FoundationBuildingBlock");
+                    _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>().SetColliderTrigger(false);  
+                    
                     //Add the item the player is placing to the dictionary of placed items so it can be saved by the player. 
                     SaveGame.GetInstance().AddBlock(_itemCurrentlyPlacing);
 
@@ -126,7 +126,8 @@ namespace Player
 
                 if (Input.GetKeyDown(KeyCode.Mouse0) && _canPlaceBlock)
                 {
-                    _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("RegularBuildingBlock");
+                    //Restore the game object to use it's origonally defined layer mask 
+                    _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>().RestoreLayerMaskToOrigonal();
                     SaveGame.GetInstance().AddBlock(_itemCurrentlyPlacing);
                     _blockMaterialComponent.ResetMaterial();
                     if (_currentSnappedObject.name.Contains("Foundation"))
@@ -137,7 +138,7 @@ namespace Player
                     {
                         _faceDefinitionsComponent.foundationReference = _currentSnappedObject.GetComponent<Geometery.FaceDefinitions>().foundationReference;
                     }
-                    _itemCurrentlyPlacing.GetComponent<BoxCollider>().isTrigger = false;
+                    _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>().SetColliderTrigger(false);
                     GameObject newBlockToPlace = Instantiate(_itemCurrentlyPlacing);
                     newBlockToPlace.name = _itemCurrentlyPlacing.name;
                     newBlockToPlace.GetComponent<Geometery.FaceDefinitions>().SetRotationIndex(_faceDefinitionsComponent.GetBlockRotationIndex());
@@ -145,7 +146,7 @@ namespace Player
                     _itemCurrentlyPlacing = newBlockToPlace;
                     _blockMaterialComponent = _itemCurrentlyPlacing.GetComponent<BlockMaterialManager>();
                     _faceDefinitionsComponent = _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>();
-                    _itemCurrentlyPlacing.layer = LayerMask.NameToLayer("Ignore Raycast");
+                    _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>().IngnoreRaycasts();
                 }
  
             }
@@ -263,7 +264,11 @@ namespace Player
                 {
                     if (hit.transform.gameObject.layer == LayerMask.NameToLayer("RegularBuildingBlock"))
                     {
-                        var hitGameObjectRef = hit.transform.GetComponent<Geometery.FaceDefinitions>();
+                        //Get the face definitions component that is on every placeable piece. For odly shaped pieces this component is on a child game object. 
+                        var hitGameObjectRef = hit.transform.GetComponent<Geometery.FaceDefinitions>();                      
+                        if (hitGameObjectRef == null) hitGameObjectRef = hit.transform.parent.GetComponent<Geometery.FaceDefinitions>();
+                        if (hitGameObjectRef == null) Debug.LogError("No FaceDefinintions component on " + hit.transform.gameObject.name);
+
 
                         //No foundation reference cansometimes happen for blocks that were spawned from the previous save
                         if (hitGameObjectRef.foundationReference == null || hitGameObjectRef.foundationReference.rotation == null)
@@ -280,6 +285,7 @@ namespace Player
                     
                     _itemCurrentlyPlacing.transform.Rotate(_faceDefinitionsComponent.GetBlockRotationOffset());
                     Geometery.FaceDefinitions faceDef = hit.transform.gameObject.GetComponent<Geometery.FaceDefinitions>();
+                    if(faceDef == null) faceDef = hit.transform.parent.GetComponent<Geometery.FaceDefinitions>();
                     Transform faceToSnapTo = faceDef.GetNearestBlockFaceToPoint(hit.point);
                     if (faceToSnapTo != null)
                     {
@@ -336,7 +342,7 @@ namespace Player
         private void _InstaciateFoundationPiece(GameObject placableItemPrefab)
         {
             _itemCurrentlyPlacing = Instantiate(placableItemPrefab);
-            _itemCurrentlyPlacing.GetComponent<Collider>().isTrigger = true;
+            _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>().SetColliderTrigger(true);
             _itemCurrentlyPlacing.name = placableItemPrefab.name;
             _foundationBlockComponent = _itemCurrentlyPlacing.GetComponent<FoundationBlock>();
             _blockMaterialComponent = _itemCurrentlyPlacing.GetComponent<BlockMaterialManager>();
