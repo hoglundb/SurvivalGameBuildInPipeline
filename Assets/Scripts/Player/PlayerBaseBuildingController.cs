@@ -22,6 +22,10 @@ namespace Player
         [SerializeField] private GameObject _blockFaceHighlightPrefab;
         private GameObject _itemCurrentlyPlacing = null;
 
+        //The suggested placement point. If > 10000000 we no that no valid placement point is found based on where player is looking
+        private Vector3 _snapPoint;
+
+        //The actual place the player is aiming as it intersects with objects in the scene. 
         private Vector3 _lookPoint; 
 
         //Components that reference the current selected block. Will be null if no block being placed or block type doesn't have that particular component. 
@@ -121,8 +125,18 @@ namespace Player
                 //Set the snap point based on the nearby geometery, where the player is aiming ,and the rotation/position offset the player has selected. 
                 _ComputeSnapPoint();
 
-                //Snap the block to it's sugguested position. 
-                _itemCurrentlyPlacing.transform.position = _lookPoint;
+                //Snap the block to it's sugguested position, but only if one is available
+                if (_canPlaceBlock && _snapPoint.magnitude < 1000000f)
+                {
+                    Debug.LogError(_snapPoint.magnitude);
+                    _itemCurrentlyPlacing.transform.position = _snapPoint;
+                }
+
+                //No valid snap suggestions, let the player just keep dragging the piece
+                else 
+                {
+                    _itemCurrentlyPlacing.transform.position = _lookPoint;
+                }
 
                 if (Input.GetKeyDown(KeyCode.Mouse0) && _canPlaceBlock)
                 {
@@ -163,7 +177,7 @@ namespace Player
             GameObject nearestFoundation = _GetNearestBaseBlock(_itemCurrentlyPlacing);
             if (nearestFoundation == null)
             {
-                _itemCurrentlyPlacing.transform.position = _lookPoint + Vector3.up * _heightOffset;
+                _itemCurrentlyPlacing.transform.position = _snapPoint + Vector3.up * _heightOffset;
             }
             else
             {
@@ -189,7 +203,7 @@ namespace Player
         private Vector3 _GetFoundationSuggestedPositionFromLookPoint(GameObject nearestFoundation)
         {
             float size = 3.2f;
-            Vector3 fromExistingFoundationToPlacingFoundation = _lookPoint - nearestFoundation.transform.position;
+            Vector3 fromExistingFoundationToPlacingFoundation = _snapPoint - nearestFoundation.transform.position;
             float option1 = Mathf.Abs(Vector3.Angle(_itemCurrentlyPlacing.transform.forward, fromExistingFoundationToPlacingFoundation));
             float option2 = Mathf.Abs(Vector3.Angle(-_itemCurrentlyPlacing.transform.forward, fromExistingFoundationToPlacingFoundation));
             float option3 = Mathf.Abs(Vector3.Angle(_itemCurrentlyPlacing.transform.right, fromExistingFoundationToPlacingFoundation));
@@ -220,7 +234,7 @@ namespace Player
          Otherwise returns the nearest one. */
         private GameObject _GetNearestBaseBlock(GameObject thisBaseBlock)
         {
-            Collider[] colliders = Physics.OverlapSphere(_lookPoint, 2.0f, _baseBlockMask);
+            Collider[] colliders = Physics.OverlapSphere(_snapPoint, 2.0f, _baseBlockMask);
             foreach (var c in colliders)
             {
                 return c.gameObject;
@@ -238,7 +252,7 @@ namespace Player
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") || hit.transform.gameObject.layer == LayerMask.NameToLayer("FoundationBuildingBlock"))
                 {
-                    _lookPoint = hit.point;                 
+                    _snapPoint = hit.point;                 
                     return;
                 }
             }
@@ -255,7 +269,8 @@ namespace Player
                 //If we hit the ground, just let the player keep dragging the block
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
-                    _lookPoint = hit.point + Vector3.up * .1f;
+                    _snapPoint = hit.point + Vector3.up * .4f;
+                    _lookPoint = hit.point + Vector3.up * .4f;
                     return;
                 }
 
@@ -264,6 +279,8 @@ namespace Player
                 {
                     if (hit.transform.gameObject.layer == LayerMask.NameToLayer("RegularBuildingBlock"))
                     {
+                        _lookPoint = hit.point + Vector3.up * .1f;
+
                         //Get the face definitions component that is on every placeable piece. For odly shaped pieces this component is on a child game object. 
                         var hitGameObjectRef = hit.transform.GetComponent<Geometery.FaceDefinitions>();                      
                         if (hitGameObjectRef == null) hitGameObjectRef = hit.transform.parent.GetComponent<Geometery.FaceDefinitions>();
@@ -295,9 +312,20 @@ namespace Player
                    
                     _currentSnappedObject = faceToSnapTo.transform.parent.gameObject;
                       Vector3 offset = _faceDefinitionsComponent.GetSnapPositionOffset(faceToSnapTo);
-                    _lookPoint = faceToSnapTo.position + offset;
-                    _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);
-                    _canPlaceBlock = true;
+
+                    //If no valid snap suggestions, don't snap the piece into place and make sure it is highlighed red
+                    if (offset.magnitude > 1000000f)
+                    {
+                        _canPlaceBlock = false;
+                        _blockMaterialComponent.UpdatePlacementMaterial(_invalidPlacementMaterial);
+                    }
+                    else 
+                    {
+                        _snapPoint = faceToSnapTo.position + offset;
+                        _blockMaterialComponent.UpdatePlacementMaterial(_validPlacementMaterial);
+                        _canPlaceBlock = true;
+                    }
+          
                     return;           
                 }
             }

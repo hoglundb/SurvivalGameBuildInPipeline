@@ -132,13 +132,14 @@ namespace Geometery
         }
 
 
-        //private void Update()
+        // private void Update()
         //{
         //    if (_drawDebugLines)
         //    {
         //        foreach (var f in _faceTransforms)
         //        {
-        //            Debug.DrawRay(f.position, f.up, Color.red);
+        //            Debug.LogError(f.up);
+        //            Debug.DrawRay(f.position, f.up * 10f, Color.red);
         //        }
         //    }
         //}
@@ -172,7 +173,7 @@ namespace Geometery
                 return -(parallelFaces[index].position - parallelFaces[index].parent.position);
             }
 
-            return Vector3.zero;
+            return Vector3.one * 100000000f;
         }
 
 
@@ -182,12 +183,12 @@ namespace Geometery
 
             foreach (var f in _faceTransforms)
             { 
-               if(f.up == -faceTransformToMatch.up)                 
+                //rotation must match on at least two axies
+               if(f.up == -faceTransformToMatch.up)// && (f.right == faceTransformToMatch.right || f.right == -faceTransformToMatch.right))                 
                {
                     matchingFaces.Add(f);
                }
             }
-
             return matchingFaces;
         }
 
