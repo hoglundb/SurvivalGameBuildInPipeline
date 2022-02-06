@@ -21,6 +21,9 @@ namespace Player
 
         //Reference to the child component for player movement. Enable this component if allowing player to look around and move. 
         public PlayerMovement playerMovementComponent;
+
+        //Reference to the child component that is responsible for detecting the envoronment where the player is looking 
+        public EnvironmentDetector playerEnvironmentDetectorComponent;
        
         #endregion
 
@@ -63,6 +66,7 @@ namespace Player
 
             playerBaseBuildingComponent = GetComponent<PlayerBaseBuildingController>();
             playerMovementComponent = GetComponent<PlayerMovement>();
+            playerEnvironmentDetectorComponent = GetComponent<EnvironmentDetector>();
 
             Cursor.lockState = CursorLockMode.Confined;
             _animator = GetComponentInChildren<Animator>();

@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7376270196705460575}
   - component: {fileID: 7900667672629436986}
   - component: {fileID: 2441050923481899096}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SimpleAxePrefab
-  m_TagString: Untagged
+  m_TagString: PickupableItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.65, z: 0.1}
+  m_Size: {x: 0.07, y: 0.65, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &7900667672629436986
 BoxCollider:

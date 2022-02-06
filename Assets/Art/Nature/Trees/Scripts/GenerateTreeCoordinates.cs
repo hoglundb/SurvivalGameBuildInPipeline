@@ -100,7 +100,7 @@ public class GenerateTreeCoordinates : MonoBehaviour
                             int treeTypeIndex = Random.Range(0, _treePrefabs.Count - 1);
                             Vector3 randRot = new Vector3(0f, rand, 0f);
                             var t = GameObject.Instantiate(_treePrefabs[treeTypeIndex], hit.point, Quaternion.Euler(randRot));
-                            float randScale = Random.Range(0.7f, 3.5f);
+                            float randScale = Random.Range(0.65f, 3.1f);
                             t.localScale = new Vector3(randScale, randScale, randScale);
                             t.tag = "Tree";
                             t.transform.parent = gameObject.transform;

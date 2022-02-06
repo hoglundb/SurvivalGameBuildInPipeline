@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75412606de5e8e46890d01c812c96af, type: 3}
+  m_Name: AxeEquipableItemInfo
+  m_EditorClassIdentifier: 
+  _rightHandControlled: 1
+  _dominantHandPosOffset: {x: -0, y: 8.92, z: 8.88}
+  _dominantHandRotOffset: {x: -155.1, y: 166.9, z: 155.3}
+  _projectilePosOffset: {x: 0, y: 0, z: 0}
+  _projectileRotOffset: {x: 0, y: 0, z: 0}
+  _actionDelay: 0.9

@@ -21,6 +21,9 @@ public class EquipableItemInfoScriptableObject : ScriptableObject
     [Header("Pos/Rot if a projectile involved")]
     [SerializeField] public Vector3 _projectilePosOffset;
     [SerializeField] public Vector3 _projectileRotOffset;
+
+    [Header("Delay after animation started to action")]
+    [SerializeField] public float _actionDelay;
 }
 
 

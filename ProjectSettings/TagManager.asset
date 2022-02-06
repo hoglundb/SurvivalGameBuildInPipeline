@@ -12,6 +12,7 @@ TagManager:
   - QuickSelectUISlot
   - CraftableMenuItem
   - Cauldron
+  - LogChunk
   layers:
   - Default
   - TransparentFX

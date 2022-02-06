@@ -59,8 +59,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 1.2, z: 0.32}
-  m_Center: {x: 0, y: 0, z: -0.105}
+  m_Size: {x: 0.05, y: 1.2, z: 0.25}
+  m_Center: {x: 0, y: 0, z: -0.08}
 --- !u!54 &8354187563469259684
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipableItemInfo: {fileID: 11400000, guid: d66d5f21356ae96438d269e7755ce1f9, type: 2}
+  _arrowLocalRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &3062952919190858372
 PrefabInstance:
   m_ObjectHideFlags: 0

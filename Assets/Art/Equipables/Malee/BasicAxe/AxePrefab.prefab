@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 7018013542020719454}
   - component: {fileID: 8894499517211205815}
   - component: {fileID: 4470284538578372551}
+  - component: {fileID: 4157959128849112017}
   m_Layer: 0
   m_Name: AxePrefab
   m_TagString: PickupableItem
@@ -273,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644dbf49cbcfb934d9621e456149f149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItemObj: {fileID: 11400000, guid: 857753b8c65d3e249806a40e1b5aa6e0, type: 2}
+  inventoryItemObj: {fileID: 0}
 --- !u!114 &3911071974261871642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed6c00a4a25a514394cc5d5d1d06940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 0
+  _equipableItemInfo: {fileID: 11400000, guid: e4023b4c761895143b317044a476efd1, type: 2}
 --- !u!65 &7018013542020719454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -329,3 +330,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &4157959128849112017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8902811323579102181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b2d999fe499a742a6eeaf1baea2f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _equipableItemInfo: {fileID: 0}

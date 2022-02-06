@@ -11,6 +11,8 @@ namespace Player
         private GameObject _uiPromptToPickItemUp;
         private Inventory.InventoryUIPanelManager _inventoryManagerComponent;
 
+        private Transform _lookAtObject; //Each frame we update this to the game object the player is looking at. Null if no object in range. 
+
         private void Awake()
         {
             _uiPromptToPickItemUp = GameObject.Find("PickupItemPrompt");
@@ -22,26 +24,48 @@ namespace Player
 
         private void Update()
         {
-            _ScanInvironment();
+            _lookAtObject = _LookAtEnvironment();
+            if (_lookAtObject != null)
+            {
+                _RespondToLookAtObject();
+            }
         }
 
 
-        private void _ScanInvironment()
+        //This gets called each frame to update the _lookAtObject variable based on what the player is looking at. Returns the gameobject if one is detected. 
+        private Transform _LookAtEnvironment()
         {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out hit, 3f))
             {
-                if (hit.transform.gameObject.tag == "PickupableItem")
+                return hit.transform;
+            }
+            return null;
+        }
+
+
+
+        //Perform any action/prompt needed when the player is looking at an object. Requires that _lookAtObject be set previously in the frame and not be null. 
+        private void _RespondToLookAtObject()
+        {
+            //show hide the "Pickup" UI prompt if looking at a game object tagged as a PickupableItem.
+            if (_lookAtObject.gameObject.tag == "PickupableItem")
+            {
+                _uiPromptToPickItemUp.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    _uiPromptToPickItemUp.SetActive(true);
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        _inventoryManagerComponent.AddItemToInventory(hit.transform.gameObject);
-                    }
-                    return;
-                }                      
+                    _inventoryManagerComponent.AddItemToInventory(_lookAtObject.gameObject);
+                }
+                return;
             }
             _uiPromptToPickItemUp.SetActive(false);
+        }
+
+
+        //Returns the _lookAtObject that the player is currently looking at. Called externally my weapon classes to determine what objects to apply damage to
+        public Transform GetLookAtGameObject()
+        {
+            return _lookAtObject;
         }
     }
 }
