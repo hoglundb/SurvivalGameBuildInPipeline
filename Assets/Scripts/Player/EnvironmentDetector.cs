@@ -10,6 +10,7 @@ namespace Player
     {
         private GameObject _uiPromptToPickItemUp;
         private Inventory.InventoryUIPanelManager _inventoryManagerComponent;
+        private PlayerControllerParent _playerControllerParentComponent;
 
         private Transform _lookAtObject; //Each frame we update this to the game object the player is looking at. Null if no object in range. 
 
@@ -19,6 +20,7 @@ namespace Player
             _uiPromptToPickItemUp.SetActive(false);
             var foo = GameObject.Find("PlayerInventoryPanel");
             _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<Inventory.InventoryUIPanelManager>();
+            _playerControllerParentComponent = GetComponent<PlayerControllerParent>();
         }
 
 
@@ -35,6 +37,9 @@ namespace Player
         //This gets called each frame to update the _lookAtObject variable based on what the player is looking at. Returns the gameobject if one is detected. 
         private Transform _LookAtEnvironment()
         {
+            //If player movement is disabled, than so is this
+            if (!_playerControllerParentComponent.playerMovementComponent.IsMovementInabled()) return null;
+
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out hit, 3f))
             {

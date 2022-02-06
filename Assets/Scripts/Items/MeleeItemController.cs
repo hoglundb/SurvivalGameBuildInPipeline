@@ -13,6 +13,10 @@ namespace Items
 
         public override void Update()
         {
+         //   Debug.LogError(_playerParentControllerComponent.playerMovementComponent.IsMovementInabled());
+            //don't do anything if player movement is not enabled. 
+            if (!_playerParentControllerComponent.playerMovementComponent.IsMovementInabled()) return;
+
             //invoke the base class that moves the weapon in accordance to the player's hand bone parent
             base.Update();
   

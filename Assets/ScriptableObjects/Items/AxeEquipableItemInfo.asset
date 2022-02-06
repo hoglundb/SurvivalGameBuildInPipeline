@@ -17,4 +17,4 @@ MonoBehaviour:
   _dominantHandRotOffset: {x: -155.1, y: 166.9, z: 155.3}
   _projectilePosOffset: {x: 0, y: 0, z: 0}
   _projectileRotOffset: {x: 0, y: 0, z: 0}
-  _actionDelay: 0.9
+  _actionDelay: 1.1

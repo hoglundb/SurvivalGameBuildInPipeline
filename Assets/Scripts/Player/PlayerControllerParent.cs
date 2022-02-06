@@ -186,7 +186,7 @@ namespace Player
 
         public void SetMovementEnablement(bool isEnabled)
         {
-            playerMovementComponent.enabled = isEnabled;
+            playerMovementComponent.SetMovementEnablement(isEnabled);
         }
 
         #endregion

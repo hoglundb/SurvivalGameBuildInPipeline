@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LogChunkController : MonoBehaviour
+public class LogChunkController : MonoBehaviour, IMeleeAbleItem
 {
 
     [SerializeField] [Range(0, 1)] private float _health;
@@ -18,6 +18,13 @@ public class LogChunkController : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         _health -= damageAmount;
+
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
+
+    
   
 }
