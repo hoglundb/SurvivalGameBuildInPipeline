@@ -37,4 +37,5 @@ public class GlobalResourceManager : MonoBehaviour
         }
         return _spell2;
     }
+
 }

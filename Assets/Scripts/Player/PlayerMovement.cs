@@ -39,9 +39,9 @@ namespace Player
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
-            _lowerSpineBone = GameObject.Find("spine.003").transform;
+            _lowerSpineBone = GlobalStaticFunctions.CustomFindChild("spine.003", transform);
 
-            Camera.main.transform.parent = GameObject.Find("spine.006").transform;
+            Camera.main.transform.parent = GlobalStaticFunctions.CustomFindChild( "spine.006",transform);
         }
 
         // Start is called before the first frame update
