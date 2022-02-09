@@ -27,7 +27,12 @@ ModelImporter:
   - first:
       74: -2871496338365946659
     second: cheetah_rig|Default
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cheetah_Mat
+    second: {fileID: 2100000, guid: 81ffb6ea91ad1654095731f38fd51df7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
