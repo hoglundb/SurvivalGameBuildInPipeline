@@ -63,6 +63,7 @@ namespace Tree
             {
                 rb.AddForce(new Vector3(Random.Range(-100, 100), Random.Range(0, 100), Random.Range(-100, 100)).normalized * 5f, ForceMode.Impulse);
                 rb.gameObject.AddComponent<LogChunkController>();
+                rb.transform.parent = null;
             }
 
             _hasBrokenApart = true;

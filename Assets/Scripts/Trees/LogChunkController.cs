@@ -21,6 +21,7 @@ public class LogChunkController : MonoBehaviour, IMeleeAbleItem
 
         if (_health <= 0)
         {
+            LogBundleSpawner.GetInstance().SpawnLogs(5, transform);
             Destroy(gameObject);
         }
     }
