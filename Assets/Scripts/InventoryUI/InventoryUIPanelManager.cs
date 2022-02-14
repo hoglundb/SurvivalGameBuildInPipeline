@@ -1,6 +1,7 @@
 using Inventory;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,25 +14,28 @@ namespace Inventory
      to add, remove, or iteract with inventory items. The PlayerInventoryPanel never gets disabled, 
      but we scale it betweeb 0 and 1 so the player can "toggle" it on and off. 
      *************************************************************************************/
-    public class InventoryUIPanelManager : UIPanelManagerBase
+    public class InventoryUIPanelManager : MonoBehaviour
     {
-        //References to other UI components related to the inventory. 
-        [Header("UI Panel References")]
-        [SerializeField] private GameObject _inventoryUISlotPrefab;
-        [SerializeField] private GameObject _inventorySlotUIGrid;
-        [SerializeField] private GameObject _scrollbarGameObj;
+
+        //Reference the scriptable object where all the inventory data/prefabs is defined
+        [Header("The SO defining the inventory data")]
+        [SerializeField] private SOGroupableInventoryItemsData _groupableInventoryData;
+
 
         //References to the filter buttons on the inventory 
         [Header("Btn References")]
-        [SerializeField] private GameObject _btnFilterAll;
-        [SerializeField] private GameObject _btnFilterWeapons;
-        [SerializeField] private GameObject _btnFilterTools;
-        [SerializeField] private GameObject _btnFilterMaterials;
-        [SerializeField] private GameObject _btnFilterConsumables;
+        [SerializeField] private GameObject _btnClothing;
+        [SerializeField] private GameObject _btnFood;
+        [SerializeField] private GameObject _btnToolsAndWeapons;
+        [SerializeField] private GameObject _btnMaterials;
+        [SerializeField] private GameObject _btnAmmo;
 
-        //The height to increase the UI panel by each time an item is added. 
-        [Header("UI Panel Slot Height")]
-        [SerializeField] private float _itemSlotHeight;
+        //Reference all the UI slots for Groupable InventoryItems
+        private List<GroupableInventoryItemSlot> _groupableInventoryItemUISlots;
+
+        private bool _isVisible = false;
+        private Vector2 _hiddenPosition = new Vector2(100, 0);
+        private RectTransform _rectTransform;
 
         //Tracks the currently selected filter for the inventory. Allows us to avoid redundant sorting and save on CPU resources. 
         private PickupableItemCategory _currentItemCategoryFilter; 
@@ -49,78 +53,93 @@ namespace Inventory
         }
 
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
-
             _instance = this;
-
+            _rectTransform = GetComponent<RectTransform>();
             _inventoryItemSlots = new List<GameObject>();
 
-            _rectTransform = GetComponent<RectTransform>();
+            _groupableInventoryItemUISlots = GetComponentsInChildren<GroupableInventoryItemSlot>().ToList();
 
             //register event handlers for the inventory filter buttons. 
-            _btnFilterAll.GetComponent<Button>().onClick.AddListener(_OnBtnClickFilterByAll);
-            _btnFilterWeapons.GetComponent<Button>().onClick.AddListener(_OnBtnClickFiterByWeapons);
-            _btnFilterTools.GetComponent<Button>().onClick.AddListener(_OnBtnClickFiterByTools);
-            _btnFilterMaterials.GetComponent<Button>().onClick.AddListener(_OnBtnClickFilterByMaterials);
-            _btnFilterConsumables.GetComponent<Button>().onClick.AddListener(_OnBtnClickFilterByConsumables);       
+            //_btnFilterAll.GetComponent<Button>().onClick.AddListener(_OnBtnClickFilterByAll);
+            //_btnFilterWeapons.GetComponent<Button>().onClick.AddListener(_OnBtnClickFiterByWeapons);
+            //_btnFilterTools.GetComponent<Button>().onClick.AddListener(_OnBtnClickFiterByTools);
+            //_btnFilterMaterials.GetComponent<Button>().onClick.AddListener(_OnBtnClickFilterByMaterials);
+            //_btnFilterConsumables.GetComponent<Button>().onClick.AddListener(_OnBtnClickFilterByConsumables);       
+        }
+
+
+        public void UpdateInventoryUI()
+        {
+            foreach (var item in _groupableInventoryItemUISlots)
+            {
+                var groupableInventoryItem = item.gameObject.GetComponent<GroupableInventoryItemSlot>();
+                if (groupableInventoryItem != null)
+                {
+                    groupableInventoryItem.UpdateQuantityUITextElement();
+                }
+            }
+        }
+
+
+        public void Show()
+        {
+            _isVisible = true;
+            _rectTransform.pivot =  Vector2.zero;
+        }
+
+
+        public void Hide()
+        {
+            _isVisible = false;
+            _rectTransform.pivot = _hiddenPosition;
+        }
+
+
+        public bool IsVisible()
+        {
+            return _isVisible;
+        }
+
+
+        //Verifies that the AbstractInventoryItem base component is on this game object. Returns true if it is, returns false otherwise. 
+        private AbstractInventoryItem _IsValidInventoryItem(GameObject inventoryGameObj)
+        {           
+            AbstractInventoryItem inventoryItemBaseCompoenent = inventoryGameObj.GetComponent<AbstractInventoryItem>();
+            if (inventoryItemBaseCompoenent == null)
+            {
+                return inventoryItemBaseCompoenent;
+            }
+            return null;
         }
 
 
         //Called by the player when they wish to add an item to the inventory. If an inactive slot is available, us that. Otherwise instaciate a new slot. 
         public void AddItemToInventory(GameObject inventoryGameObj)
         {
-
-            //Init the new UI item to hold this inventory game object. Dynamically adjust the UI height to accomidate the new item.
-            GameObject slotItem = _GetFirstUnusedSlot();
-
-            //if no unused slot, create a new one, otherwise the unused one is re-initialized for use. 
-            bool isReusingSlot = true;
-            if (slotItem == null)
+            AbstractInventoryItem inventoryItemBaseCompoenent = inventoryGameObj.GetComponent<AbstractInventoryItem>();
+            if (inventoryItemBaseCompoenent == null)
             {
-                isReusingSlot = false;
-                slotItem = Instantiate(_inventoryUISlotPrefab);
-                slotItem.transform.parent = _inventorySlotUIGrid.transform;
-            }
-            else 
-            {
-                slotItem.gameObject.SetActive(true);
+                Debug.LogError("Error adding item to inventory. No AbstractInventoryItem component on this game objecct");
+                return;
             }
 
-            //Initalize the slot UI and expand the UI scroll area to accomidate the new item.
-            slotItem.GetComponent<RectTransform>().localScale = Vector3.one;
-            _IncrementUIScrollAreaHeight();
-
-            //Tell the slot to reference the game object that is being placed in this slot
-            slotItem.GetComponent<InventorySlotManager>().InitSlot(inventoryGameObj, _inventoryItemSlots.Count);
-
-            //It we had to add a new slot, update the list that references all the inventory item slots. 
-            if (!isReusingSlot)
+            //If a groupable item
+            bool wasAddedSuccessfully = true;
+            GroupableInventoryItem groupableInventoryItemComponent = inventoryGameObj.GetComponent<GroupableInventoryItem>();
+            if (groupableInventoryItemComponent != null)
             {
-                _inventoryItemSlots.Add(slotItem);
-            }       
-        }
+                //Update the scriptable object that tracks
+                wasAddedSuccessfully = _groupableInventoryData.TryAddInventoryItem(groupableInventoryItemComponent);
 
-
-        //Returns the first unused slot in the list of inventory slots. This allows us to reuse slots and only create more when needed. 
-        private GameObject _GetFirstUnusedSlot()
-        {
-            foreach (var s in _inventoryItemSlots)
-            {
-                if (s.gameObject.activeSelf == false) return s;
             }
-            return null;
-        }
 
-
-        //Sets the scroll hight based on the number of items in the inventry list. 
-        private void _IncrementUIScrollAreaHeight()
-        {
-            RectTransform rt = _inventorySlotUIGrid.GetComponent<RectTransform>();
-            Vector2 curSizeDelta = rt.sizeDelta;
-            curSizeDelta.y += _itemSlotHeight;
-            rt.sizeDelta = curSizeDelta;
+            if (!wasAddedSuccessfully)
+            {
+                Debug.LogError("Error adding item to inventory");
+            }
+              
         }
 
 
@@ -195,15 +214,6 @@ namespace Inventory
             return null;
         }
     
-
-        //Resets the scale of the UI items in the enventory. Call this when re-enabling the inventory UI and scaling it back to 1. 
-        private void _ResetChildTransforms()
-        {
-            foreach (Transform child in _inventorySlotUIGrid.transform)
-            {
-                child.GetComponent<RectTransform>().localScale = Vector3.one;
-            }
-        }
 
 
         //Filters the player inventory by the specified item type. This gets called when one of the filter buttons is clicked. 

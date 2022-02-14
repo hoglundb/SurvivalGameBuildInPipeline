@@ -62,12 +62,12 @@ namespace Inventory
             {
                 if (_inventoryManagerComponent.IsVisible())
                 {
-                    _inventoryManagerComponent.SetVisibility(false);
+                    _inventoryManagerComponent.Hide();
                 }
                 else
                 {
                     _SetAllUIPanelsInvisible();
-                    _inventoryManagerComponent.SetVisibility(true);
+                    _inventoryManagerComponent.Show();
                 }
             }
 
@@ -114,7 +114,7 @@ namespace Inventory
         //Tells all the UI panels to make themselves invisible. 
         private void _SetAllUIPanelsInvisible()
         {
-            _inventoryManagerComponent.SetVisibility(false);
+            _inventoryManagerComponent.Hide();
             _craftingManagerComponent.SetVisibility(false);
             _buildingControllerComponent.SetVisibility(false);
         }
