@@ -83,6 +83,8 @@ namespace Player
 
             //Load saved data
             SaveGame.GetInstance().LoadGameFromPlayerPrefs();
+
+            DisableInventoryCraftingUI();
         }
 
 
@@ -101,6 +103,22 @@ namespace Player
         //Takes keyboard input and enables/disables child components on the player accordinly. 
         private void _PlayerInputResponseUpdate()
         {
+            if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.I))
+            {              
+                //is this enventory panel current open
+                bool isInventoryEnabled = Inventory.InventoryUIPanelManager.GetInstance().IsEnabled();
+
+                //Hide all inventory panels
+                DisableInventoryCraftingUI();
+
+                //If this panel was previously closed then open it
+                if (!isInventoryEnabled) 
+                {
+                    Inventory.InventoryUIPanelManager.GetInstance().SetEnablement(true);
+                    playerMovementComponent.enabled = false;
+                }
+            }
+
             //If player toggles base building mode, activate/deactivate the child components accordinly. 
             //if (Input.GetKeyDown(KeyCode.B))
             //{
@@ -122,6 +140,15 @@ namespace Player
             //}
         }
 
+
+
+
+        public void DisableInventoryCraftingUI()
+        {
+            playerMovementComponent.enabled = true;
+            Inventory.InventoryUIPanelManager.GetInstance().SetEnablement(false);
+            //TODO add other inventory/crafting panels here
+        }
 
 
         //public void EnableBaseBuilding()

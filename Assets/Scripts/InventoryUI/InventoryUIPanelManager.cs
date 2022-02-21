@@ -62,7 +62,24 @@ namespace Inventory
         }
 
 
+        private bool _isEnabled = false;
+        public bool IsEnabled()
+        {
+            return _isEnabled;
+        }
 
+
+
+        public void SetEnablement(bool shouldEnable)
+        {
+            _isEnabled = shouldEnable;
+
+            if(_isEnabled) GetComponent<RectTransform>().pivot = Vector2.zero;
+            else GetComponent<RectTransform>().pivot = Vector2.one * 100f;
+        }
+
+
+ 
         //Called by the player to add an item to their inventory. 
         public void AddItemToInventory(GameObject inventoryItemGameObject)
         {

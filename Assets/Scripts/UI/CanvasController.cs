@@ -1,8 +1,16 @@
-//using Inventory;
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
+using Inventory;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
+
+namespace Inventory
+{
+    public class CanvasController : MonoBehaviour
+    {
+        
+    }
+}
 
 ////The parent (entry point) for controlling all things canvas related (Inventory, Crafting, Health, etc.). Uses the singleton pattern so player can get a static reference to it. 
 //namespace Inventory

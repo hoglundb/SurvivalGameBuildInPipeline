@@ -38,5 +38,9 @@ public class UIWeaponOrToolSlot : MonoBehaviour
     {  
         //Alert the inventory manager that we are equiping this item so it can be tracked
         Inventory.InventoryUIPanelManager.GetInstance().EquipItem(this);
+
+        //Tell the player to hide all the inventory/crafting UI
+        Player.PlayerControllerParent.GetInstance().DisableInventoryCraftingUI();
+        
     }
 }
