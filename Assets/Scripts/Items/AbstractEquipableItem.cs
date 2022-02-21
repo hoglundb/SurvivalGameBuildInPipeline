@@ -30,8 +30,16 @@ namespace Items
         }
 
 
+        protected void OnEnable()
+        {
+            _playerParentControllerComponent = Player.PlayerControllerParent.GetInstance();
+        }
+
         public virtual void Equip()
         {
+            //Tell the inventory to uniquip any previous equipet item prior to equiping this one
+            Inventory.InventoryUIPanelManager.GetInstance().UniquipCurrentItem();
+
             _isEquiped = true;
             gameObject.SetActive(true);
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -40,12 +48,14 @@ namespace Items
             //parent the item to the players right or left hand, as defined in the EquipableItemInfo scriptable object. 
             if (_equipableItemInfo._rightHandControlled)
             {
-                transform.parent = _playerParentControllerComponent.GetRightHandBone();
+                transform.parent = Player.PlayerControllerParent.GetInstance().GetRightHandBone();
             }
             else 
             {
-                transform.parent = _playerParentControllerComponent.GetLeftHandBone();
+                transform.parent = Player.PlayerControllerParent.GetInstance().GetLeftHandBone();
             }
+
+
             //_playerParentControllerComponent.SetAnimationTrigger("EquipBow");
             //Reload();
             //Player.PlayerControllerParent.GetInstance().SetAnimationFloat("BowDrawAmount", 0f);

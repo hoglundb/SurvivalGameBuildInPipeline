@@ -9,7 +9,7 @@ namespace Player
     public class EnvironmentDetector : MonoBehaviour
     {
         private GameObject _uiPromptToPickItemUp;
-        private Inventory.InventoryUIPanelManager _inventoryManagerComponent;
+       // private Inventory.InventoryUIPanelManager _inventoryManagerComponent;
         private PlayerControllerParent _playerControllerParentComponent;
 
         private Transform _lookAtObject; //Each frame we update this to the game object the player is looking at. Null if no object in range. 
@@ -19,7 +19,7 @@ namespace Player
             _uiPromptToPickItemUp = GameObject.Find("PickupItemPrompt");
             _uiPromptToPickItemUp.SetActive(false);
             var foo = GameObject.Find("PlayerInventoryPanel");
-            _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<Inventory.InventoryUIPanelManager>();
+           // _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<Inventory.InventoryUIPanelManager>();
             _playerControllerParentComponent = GetComponent<PlayerControllerParent>();
         }
 
@@ -53,13 +53,14 @@ namespace Player
         //Perform any action/prompt needed when the player is looking at an object. Requires that _lookAtObject be set previously in the frame and not be null. 
         private void _RespondToLookAtObject()
         {
-            //show hide the "Pickup" UI prompt if looking at a game object tagged as a PickupableItem.
-            if (_lookAtObject.gameObject.tag == "PickupableItem")
+            //Determine if the object is one player can put into inventory
+            Inventory.IInventoryItem inventoryItemComponent = _lookAtObject.GetComponent<Inventory.IInventoryItem>();
+            if (inventoryItemComponent != null)
             {
                 _uiPromptToPickItemUp.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    _inventoryManagerComponent.AddItemToInventory(_lookAtObject.gameObject);
+                   Inventory.InventoryUIPanelManager.GetInstance().AddItemToInventory(_lookAtObject.gameObject);
                 }
                 return;
             }

@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4457655258311708963}
-  - component: {fileID: 7001202578633720895}
   - component: {fileID: 7740763689478786047}
   - component: {fileID: 8354187563469259684}
-  - component: {fileID: 3067904302788878334}
+  - component: {fileID: 90804167149379400}
   m_Layer: 0
   m_Name: BowPrefab
   m_TagString: PickupableItem
@@ -35,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7001202578633720895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4264718604112650194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 968928e3f4eeab24ca44043fdb27f998, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _itemInfo: {fileID: 11400000, guid: 3d1921218fac6d54da8f762449cc9421, type: 2}
 --- !u!65 &7740763689478786047
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77,7 +63,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3067904302788878334
+--- !u!114 &90804167149379400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,11 +72,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4264718604112650194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ed6c00a4a25a514394cc5d5d1d06940, type: 3}
+  m_Script: {fileID: 11500000, guid: ad901b5d9f5ae7d4c9d71bea41e2d872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _equipableItemInfo: {fileID: 11400000, guid: d66d5f21356ae96438d269e7755ce1f9, type: 2}
-  _arrowLocalRotation: {x: 0, y: 0, z: 0}
+  _weaponData: {fileID: 11400000, guid: ffd07dbe64e5de34fb924899014215a7, type: 2}
 --- !u!1001 &3062952919190858372
 PrefabInstance:
   m_ObjectHideFlags: 0

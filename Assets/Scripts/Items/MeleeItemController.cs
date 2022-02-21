@@ -25,7 +25,7 @@ namespace Items
             //Respond to player input to perform malee actions. 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                _playerParentControllerComponent.SetAnimationTrigger("MeleeAxe");
+                Player.PlayerControllerParent.GetInstance().SetAnimationTrigger("MeleeAxe");
                 StartCoroutine(_MeleeActionCoroutine());
             }
         }
@@ -35,8 +35,8 @@ namespace Items
         {
             //Call the base class that parents this to the player's hand
             base.Equip();
-
-            _playerParentControllerComponent.SetAnimationTrigger("EquipAxe");
+            GetComponent<MeleeItemController>().enabled = true;
+            Player.PlayerControllerParent.GetInstance().SetAnimationTrigger("EquipAxe");           
         }
 
 

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6a16aeecef60642bd2f0718dde2c9c, type: 3}
+  m_Name: IndividualInventoryItemsData
+  m_EditorClassIdentifier: 
+  weaponsAndTools:
+    items:
+    - {fileID: 11400000, guid: 0da2e11751beabe43905f9572cf733ee, type: 2}
+    inventoryUISlotPrefab: {fileID: 922034694875167523, guid: cfacabc92fbd15047b38d3eed6f273da, type: 3}
+  food:
+    items: []
+    inventoryUISlotPrefab: {fileID: 0}

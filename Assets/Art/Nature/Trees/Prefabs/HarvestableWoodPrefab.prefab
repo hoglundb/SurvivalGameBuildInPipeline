@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1320314088501938861}
   - component: {fileID: 119959206574342044}
   - component: {fileID: 3392329834616439653}
-  - component: {fileID: 4556293320274728342}
+  - component: {fileID: 3938363733861946060}
   m_Layer: 6
   m_Name: HarvestableWoodPrefab
   m_TagString: PickupableItem
@@ -114,7 +114,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &4556293320274728342
+--- !u!114 &3938363733861946060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 671685997938191224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 898916a8104c5c647aa8161092a854e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f0725e48ec4b1849aabdc4cd5b77116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soInventoryItem: {fileID: 11400000, guid: 4b6640d35943a5547a82d77ce4f2e81d, type: 2}
+  _materialData: {fileID: 11400000, guid: 65ba3b07276018049af016cf7ba9fe33, type: 2}

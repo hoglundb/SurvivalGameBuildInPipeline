@@ -73,7 +73,6 @@ namespace Player
 
             _rightHandBoneTransform = GameObject.Find("hand.R").transform;
             _leftHandBoneTransform = GameObject.Find("hand.L").transform;
-
             //Start off the player in idle animation
             SetAnimationTrigger("Idle");
         }
