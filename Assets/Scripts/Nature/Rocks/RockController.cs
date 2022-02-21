@@ -21,31 +21,21 @@ namespace Nature.Rocks
 
 
 
+        //Spawns the small rock pieces and destroys this rock
         private void _BreakApartIntoSmallRocks()
-        {
-         
-            //compute the positinos of the mall rock pieces that are going to be spawned. 
+        {       
             float spacing = .15f;
             float curHeight = .05f;
-            List<Vector3> spawnPositions = new List<Vector3>();
-            spawnPositions.Add(new Vector3(0, curHeight, 0));
-            spawnPositions.Add(new Vector3(spacing, curHeight, 0f));
-            spawnPositions.Add(new Vector3(spacing, curHeight, spacing));
-            spawnPositions.Add(new Vector3(0f, curHeight, spacing));
-            spawnPositions.Add(new Vector3(-spacing, curHeight, spacing));
-            spawnPositions.Add(new Vector3(-spacing, curHeight, -spacing));
-            spawnPositions.Add(new Vector3(spacing, curHeight, -spacing));
-
-            curHeight += .3f;
-            spawnPositions.Add(new Vector3(0, curHeight, 0));
-            spawnPositions.Add(new Vector3(spacing, curHeight, 0f));
-            spawnPositions.Add(new Vector3(spacing, curHeight, spacing));
-            spawnPositions.Add(new Vector3(0f, curHeight, spacing));
-            spawnPositions.Add(new Vector3(-spacing, curHeight, spacing));
-
-            foreach (var pos in spawnPositions)
+            for (int i = 0; i < 2; i++)
             {
-                Instantiate(_smallRockPiecePrefab, transform.position + pos, Quaternion.identity);
+                Instantiate(_smallRockPiecePrefab, transform.position + new Vector3(0, curHeight, 0), Quaternion.identity);
+                Instantiate(_smallRockPiecePrefab, transform.position + new Vector3(spacing, curHeight, 0f), Quaternion.identity);
+                Instantiate(_smallRockPiecePrefab, transform.position + new Vector3(spacing, curHeight, spacing), Quaternion.identity);
+                Instantiate(_smallRockPiecePrefab, transform.position + new Vector3(0f, curHeight, spacing), Quaternion.identity);
+                Instantiate(_smallRockPiecePrefab, transform.position + new Vector3(-spacing, curHeight, spacing), Quaternion.identity);
+                Instantiate(_smallRockPiecePrefab, transform.position + new Vector3(-spacing, curHeight, -spacing), Quaternion.identity);
+                Instantiate(_smallRockPiecePrefab, transform.position + new Vector3(spacing, curHeight, -spacing), Quaternion.identity);
+                curHeight += .3f;
             }
             Destroy(gameObject);
         }

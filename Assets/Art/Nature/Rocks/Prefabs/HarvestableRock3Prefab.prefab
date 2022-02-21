@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 867040884296404329}
   - component: {fileID: 3165096360108800419}
   - component: {fileID: 671109174983350076}
+  - component: {fileID: 7605194980621462502}
   m_Layer: 3
-  m_Name: HarvestableRock3
+  m_Name: HarvestableRock3Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,3 +97,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5374937057152016703, guid: d2beb6e90ff6728409bd39ac6b65fbd6, type: 3}
+--- !u!114 &7605194980621462502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525282969982146678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ac6b9d94175d041a3507ddf724d790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _smallRockPiecePrefab: {fileID: 3961987908963131338, guid: 3c9ca6b71f8773e40bb2641eace67b81, type: 3}

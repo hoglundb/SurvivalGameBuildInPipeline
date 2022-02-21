@@ -109,4 +109,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ac6b9d94175d041a3507ddf724d790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smallRockPiecePrefab: {fileID: 0}
+  _smallRockPiecePrefab: {fileID: 3961987908963131338, guid: 3c9ca6b71f8773e40bb2641eace67b81, type: 3}
