@@ -21,15 +21,21 @@ public class ItemDefinitions : MonoBehaviour
 
 
     private static ItemDefinitions _instance;
+
+
     public static ItemDefinitions GetInstance()
     {
         return _instance;
     }
 
+
+
     private void Awake()
     {
         _instance = this;
     }
+
+
 
     public void AddMaterial(SOMaterial materialToAdd)
     {
@@ -43,6 +49,7 @@ public class ItemDefinitions : MonoBehaviour
     }
 
 
+
     public void AddAmmo(SOAmmo ammoToAdd)
     {
         foreach (var a in ammo)
@@ -53,6 +60,7 @@ public class ItemDefinitions : MonoBehaviour
             }
         }
     }
+
 
 
     public void AddFood(GameObject foodItemGameObj)
@@ -96,10 +104,6 @@ public class ItemDefinitions : MonoBehaviour
         }
         return null;
     }
-
-
-
-
 }
 
 

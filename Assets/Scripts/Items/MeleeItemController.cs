@@ -13,7 +13,6 @@ namespace Items
 
         public override void Update()
         {
-         //   Debug.LogError(_playerParentControllerComponent.playerMovementComponent.IsMovementInabled());
             //don't do anything if player movement is not enabled. 
             if (!_playerParentControllerComponent.playerMovementComponent.IsMovementInabled()) return;
 

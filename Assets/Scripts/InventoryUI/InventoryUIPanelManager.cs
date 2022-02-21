@@ -52,6 +52,7 @@ namespace Inventory
         }
 
 
+
         //Sets up the event listeners for the inventory filter buttons
         private void _InitInventoryFilterButtons()
         {
@@ -59,6 +60,7 @@ namespace Inventory
             _ammoFilterBtn.GetComponent<Button>().onClick.AddListener(delegate { _FilterInventoryByCategory(typeof(UIAmmoSlot)); });
             //TODO: add the rest of the button event handlers here. 
         }
+
 
 
         //Called by the player to add an item to their inventory. 
@@ -121,6 +123,7 @@ namespace Inventory
         }
 
 
+
         private void _UpdateInventoryUI()
         {
             foreach (var i in _uiSlots)
@@ -132,12 +135,14 @@ namespace Inventory
         }
 
 
+
         public void UniquipCurrentItem()
         {
             if (_currentEquipedItemUISlot == null) return;
             _currentEquipedItemUISlot.GetComponent<UIWeaponOrToolSlot>().GetAttachedItemGameObj().GetComponent<Items.AbstractEquipableItem>().UnEquip();
             _currentEquipedItemUISlot = null;
         }
+
 
 
         public void EquipItem(UIWeaponOrToolSlot weaponUISlotReference)

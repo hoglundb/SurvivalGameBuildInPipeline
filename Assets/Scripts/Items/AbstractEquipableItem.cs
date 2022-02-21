@@ -35,6 +35,8 @@ namespace Items
             _playerParentControllerComponent = Player.PlayerControllerParent.GetInstance();
         }
 
+
+
         public virtual void Equip()
         {
             //Tell the inventory to uniquip any previous equipet item prior to equiping this one
@@ -54,11 +56,6 @@ namespace Items
             {
                 transform.parent = Player.PlayerControllerParent.GetInstance().GetLeftHandBone();
             }
-
-
-            //_playerParentControllerComponent.SetAnimationTrigger("EquipBow");
-            //Reload();
-            //Player.PlayerControllerParent.GetInstance().SetAnimationFloat("BowDrawAmount", 0f);
         }
 
 
