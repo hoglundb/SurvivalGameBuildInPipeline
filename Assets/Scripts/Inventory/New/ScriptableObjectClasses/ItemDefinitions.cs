@@ -39,8 +39,11 @@ public class ItemDefinitions : MonoBehaviour
 
     public void AddMaterial(SOMaterial materialToAdd)
     {
+        Debug.LogError(materialToAdd.ItemName);
+        Debug.LogError("adding");
         foreach (var m in materials)
         {
+            Debug.LogError(m.ItemName);
             if (m.ItemName == materialToAdd.ItemName)
             {
                 m.quantity++;

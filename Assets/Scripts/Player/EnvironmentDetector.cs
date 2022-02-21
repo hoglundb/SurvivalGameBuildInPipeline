@@ -18,8 +18,6 @@ namespace Player
         {
             _uiPromptToPickItemUp = GameObject.Find("PickupItemPrompt");
             _uiPromptToPickItemUp.SetActive(false);
-            var foo = GameObject.Find("PlayerInventoryPanel");
-           // _inventoryManagerComponent = GameObject.Find("PlayerInventoryPanel").GetComponent<Inventory.InventoryUIPanelManager>();
             _playerControllerParentComponent = GetComponent<PlayerControllerParent>();
         }
 
