@@ -104,17 +104,22 @@ namespace Player
         private void _PlayerInputResponseUpdate()
         {
             if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.I))
-            {              
-                //is this enventory panel current open
+            {
                 bool isInventoryEnabled = Inventory.InventoryUIPanelManager.GetInstance().IsEnabled();
-
-                //Hide all inventory panels
                 DisableInventoryCraftingUI();
-
-                //If this panel was previously closed then open it
-                if (!isInventoryEnabled) 
+                if (!isInventoryEnabled)
                 {
                     Inventory.InventoryUIPanelManager.GetInstance().SetEnablement(true);
+                    playerMovementComponent.enabled = false;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.B))
+            {
+                bool isBaseBuildingUIEnabled = BaseBuilding.BaseBuildingUIPanelManager.GetInstance().IsEnabled();
+                DisableInventoryCraftingUI();
+                if (!isBaseBuildingUIEnabled)
+                {
+                    BaseBuilding.BaseBuildingUIPanelManager.GetInstance().SetEnablement(true);
                     playerMovementComponent.enabled = false;
                 }
             }
@@ -147,6 +152,7 @@ namespace Player
         {
             playerMovementComponent.enabled = true;
             Inventory.InventoryUIPanelManager.GetInstance().SetEnablement(false);
+            BaseBuilding.BaseBuildingUIPanelManager.GetInstance().SetEnablement(false);
             //TODO add other inventory/crafting panels here
         }
 

@@ -333,10 +333,10 @@ namespace Player
         }
 
 
-        public void OnPlayerSelectItemToPlace(string placableItemPrefabName)
+        public void OnPlayerSelectItemToPlace(SOBaseBuildingPiece pieceToPlace)
         {
-            GameObject placableItemPrefab = BaseBuildingItems.GetInstance().GetBaseBuildingPrefabByName(placableItemPrefabName);
-            if (placableItemPrefab.name.Contains("Foundation"))
+            //GameObject placableItemPrefab = BaseBuildingItems.GetInstance().GetBaseBuildingPrefabByName(placableItemPrefabName);
+            if (pieceToPlace.itemCategory == BaseBuilding.BaseBuildingPieceCategoriesEnum.FOUNDATION_PIECE)
             {
                 _placementMode = PlacementMode.FOUNDATION;
             }
@@ -345,9 +345,10 @@ namespace Player
                 _placementMode = PlacementMode.BRICK;
             }
         
-            _playerControllerParentComponent.playerMovementComponent.enabled = true;
+            _playerControllerParentComponent.playerMovementComponent.enabled = true; //Ensure movement is enabled
+            _playerControllerParentComponent.DisableInventoryCraftingUI(); //Ensure all UI panels are closed
 
-            _InstaciateFoundationPiece(placableItemPrefab);
+            _InstaciateFoundationPiece(pieceToPlace.piecePrefab);
                
         }
 

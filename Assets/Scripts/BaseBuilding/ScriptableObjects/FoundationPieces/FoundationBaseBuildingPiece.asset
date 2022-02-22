@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8b59fbe06360e48accff22cea83fd8, type: 3}
+  m_Name: FoundationBaseBuildingPiece
+  m_EditorClassIdentifier: 
+  itemCategory: 0
+  piecePrefab: {fileID: 5565925167926727308, guid: 77b0b6297e541a74497279a0f17eea41, type: 3}
+  ingredientsList:
+  - _materialSO: {fileID: 11400000, guid: cc983f42577144246afe4d12d812dce4, type: 2}
+    quantity: 50
