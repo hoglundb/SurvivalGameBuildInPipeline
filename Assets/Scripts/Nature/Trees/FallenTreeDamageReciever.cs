@@ -11,7 +11,7 @@ namespace Tree
     public class FallenTreeDamageReciever : MonoBehaviour, IMeleeAbleItem
     {
         [Header("Sibling component with log chunks")]
-        [SerializeField] private GameObject _trunkChunksParentObj;        
+        [SerializeField] private GameObject _trunkChunksParentObj;
 
         private float _health;
         private bool _hasBrokenApart = false;

@@ -14,7 +14,7 @@ namespace Tree
         [Header("Reference the parts of the tree model")]
         [SerializeField] private GameObject _treeTrunkGameObj;
         [SerializeField] private GameObject _treeStumpGameObj;
-        [SerializeField] private GameObject _treeBranchesGameObj;
+        [SerializeField] private GameObject _branchesGameObj;
 
         [Header("Tree Stats")]
         [SerializeField] [Range(0, 1)] private float _health; //the amount of health on the tree. Tree falls when it reaches 0.
@@ -62,8 +62,8 @@ namespace Tree
         private void _FallOver()
         {
             //Branches will no longer be rendered 
-            _treeBranchesGameObj.gameObject.SetActive(false);
-
+       
+      //      _branchesGameObj.AddComponent(typeof(Trees.TreeBranches));
             //The primary collider is disabled, since player will only be able to now interact with the fallen portion of the tree. 
             _treeCollider.isTrigger = true;
             _treeCollider.enabled = false;

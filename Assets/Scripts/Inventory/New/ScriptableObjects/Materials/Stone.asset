@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Stone
   ItemWeight: 5
-  quantity: 0
+  quantity: 19
   prefabs:
-  - {fileID: 915979253340328135, guid: c5ff416d8fbcf6e4fb6d2c6a228cf1f0, type: 3}
+  - {fileID: 3961987908963131338, guid: 3c9ca6b71f8773e40bb2641eace67b81, type: 3}
