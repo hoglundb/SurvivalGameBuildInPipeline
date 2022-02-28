@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class BlockMaterialManager : MonoBehaviour
 {
+    [Header("Mesh ref for updating textures at runtime")]
     [SerializeField] private List<Renderer> _meshes;
+
+
     private List<Material> _origonalMaterials;
 
     private void Awake()
@@ -34,4 +37,5 @@ public class BlockMaterialManager : MonoBehaviour
             _meshes[i].material = _origonalMaterials[i];
         }       
     }
+
 }

@@ -63,6 +63,23 @@ namespace BaseBuilding
                 b.UpdateBasedOnMaterialAvailability();
             }
         }
+
+
+        
+        //Callback for when player actually places a block. Tell the inventory to remove the material items required to craft this item. 
+        public void OnPlayerCraftBaseBuildingBlock(SOBaseBuildingPiece baseBuidlingPieceSO)
+        {
+            //Tell the inventory to delete all the material items required to craft this base building piece.
+            Inventory.InventoryUIPanelManager inventory = Inventory.InventoryUIPanelManager.GetInstance();
+            foreach (SOMaterial mat in baseBuidlingPieceSO.ingredientsList)
+            {
+                 inventory.DeleteFromInventory(mat, baseBuidlingPieceSO.materialQuantity);
+            }
+          
+            //Update the UI for the BaseBuilding and Inventory panels since items were removed from the inventory
+            UpdateItemSlots();
+            inventory.UpdateInventoryUI();
+        }
     }
 }
 

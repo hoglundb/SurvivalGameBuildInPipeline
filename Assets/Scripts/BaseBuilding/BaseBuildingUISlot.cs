@@ -14,19 +14,24 @@ namespace BaseBuilding
         [SerializeField] private GameObject _createBtnGameObj;
         private Button _createBtn;
 
+
+        
         private void Awake()
         {
+            //Set up the button for this item that the player can click to create/craft the block piece. 
             _createBtn = _createBtnGameObj.GetComponent<Button>();
             _createBtn.onClick.AddListener(_OnCreateBtnClick);
-
         }
 
 
+
+        //Called when the player clicks the "Create" button on this UI slot to craft the base-buidling block
         private void _OnCreateBtnClick()
         {
             //Pass the scriptable obj contining the item data to the player and request that the player allow the player to place it. 
             Player.PlayerControllerParent.GetInstance().playerBaseBuildingComponent.OnPlayerSelectItemToPlace(_soBuildingPiece);
         }
+
 
 
         //Enables or disables this item slot UI based on if there is the required material in the player's inventory. 
@@ -35,25 +40,19 @@ namespace BaseBuilding
             if (_HasEnoughMaterialInInventoryToCreateItem())
             {
                 _createBtn.interactable = true;
-                Debug.LogError("enabling");
+                return;
             }
-            else 
-            {
-                _createBtn.interactable = false;
-                Debug.LogError("disabling");
-            }
+            _createBtn.interactable = false;
         }
 
 
+
+        //Returns true if player inventory has enough of the required material to craft this base-building block item.
         private bool _HasEnoughMaterialInInventoryToCreateItem()
         {
             ItemDefinitions inventory = ItemDefinitions.GetInstance();
             foreach (SOMaterial matIngredient in _soBuildingPiece.ingredientsList)
             {
-                //  Debug.LogError(inventory.GetItemQuantity(matIngredient));
-                Debug.LogError(inventory.GetItemQuantity(matIngredient));
-                Debug.LogError(_soBuildingPiece.materialQuantity);
-                Debug.LogError("\n\n");
                 if (inventory.GetItemQuantity(matIngredient) < _soBuildingPiece.materialQuantity)
                 {
                     return false;

@@ -17,5 +17,5 @@ MonoBehaviour:
   piecePrefab: {fileID: 5565925167926727308, guid: 77b0b6297e541a74497279a0f17eea41, type: 3}
   ingredientsList:
   - {fileID: 11400000, guid: cc983f42577144246afe4d12d812dce4, type: 2}
-  materialQuantity: 50
+  materialQuantity: 1
   dimensions: {x: 16, y: 16, z: 4}

@@ -117,6 +117,14 @@ namespace Inventory
         }
 
 
+        //Called when player crafts something. Removes the specified quantity of the specified material from the player's inventory.
+        public void DeleteFromInventory(SOMaterial inventoryMaterialSO, int quantity)
+        {
+            //Delete the actual items
+            ItemDefinitions.GetInstance().RemoveMaterial(inventoryMaterialSO, quantity);
+        }
+
+
 
         //Filter inventory slots by the specified component type
         private void _FilterInventoryByCategory(System.Type type)
@@ -152,6 +160,11 @@ namespace Inventory
             }
         }
 
+
+        public void UpdateInventoryUI()
+        {
+            _UpdateInventoryUI();
+        }
 
 
         public void UniquipCurrentItem()

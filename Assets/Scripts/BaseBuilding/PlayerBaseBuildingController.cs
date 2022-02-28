@@ -52,7 +52,6 @@ namespace Player
 
             //Create the block face highlight game object and disable until it is needed by the player. 
             _blockFaceHighlight = Instantiate(_blockFaceHighlightPrefab, Vector3.up * -1000, Quaternion.identity);
-
         }
 
 
@@ -103,7 +102,7 @@ namespace Player
                     
                     //Add the item the player is placing to the dictionary of placed items so it can be saved by the player. 
                     SaveGame.GetInstance().AddBlock(_itemCurrentlyPlacing);
-
+                    _OnPlayerConfirmBaseBuildingBlockPlacement(_itemCurrentlyPlacing);  //This is called to trigger an update of the inventory material used to create this item
                     _InstaciateFoundationPiece(_itemCurrentlyPlacing);
                 }
                 _ManageFoundationBlockPlacement();
@@ -141,8 +140,8 @@ namespace Player
                 if (Input.GetKeyDown(KeyCode.Mouse0) && _canPlaceBlock)
                 {
                     //Restore the game object to use it's origonally defined layer mask 
-                    _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>().RestoreLayerMaskToOrigonal();
-                    SaveGame.GetInstance().AddBlock(_itemCurrentlyPlacing);
+                    _itemCurrentlyPlacing.GetComponent<Geometery.FaceDefinitions>().RestoreLayerMaskToOrigonal();                   
+                    _OnPlayerConfirmBaseBuildingBlockPlacement(_itemCurrentlyPlacing);  //This is called to trigger an update of the inventory material used to create this item
                     _blockMaterialComponent.ResetMaterial();
                     if (_currentSnappedObject.name.Contains("Foundation"))
                     {
@@ -381,6 +380,21 @@ namespace Player
         }
 
 
+        //Called when player confirms the placement of a base building block they are positioning. Update the inventory based on the materials it takes to make this item.
+        private void _OnPlayerConfirmBaseBuildingBlockPlacement(GameObject baseBuildingBlockJustCreated)
+        {
+            //Save the placement to the player prefs
+            SaveGame.GetInstance().AddBlock(baseBuildingBlockJustCreated);
+
+            //Call back to the BaseBuildingManager class to tell it that a piece was just created and it needs to use up inventory material items. 
+            BaseBuildingBlock baseBuildingPieceSO = baseBuildingBlockJustCreated.GetComponent<BaseBuildingBlock>();
+            if (baseBuildingBlockJustCreated == null)
+            {
+                Debug.LogError("Error: no BaseBuildingBlock component on this base-building block game object");
+                return;
+            }
+            BaseBuilding.BaseBuildingUIPanelManager.GetInstance().OnPlayerCraftBaseBuildingBlock(baseBuildingPieceSO.GetBaseBuildingPieceScriptableObj());
+        }
         #endregion
     }
 }

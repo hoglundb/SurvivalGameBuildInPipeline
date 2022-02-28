@@ -53,6 +53,23 @@ public class ItemDefinitions : MonoBehaviour
 
 
 
+    //Called to remove the specified quantity of the specified type from the player's inventory. 
+    public void RemoveMaterial(SOMaterial materialToRemove, int quantityToRemove = 1)
+    {
+        foreach (var m in materials)
+        {
+            if (m.ItemName == materialToRemove.ItemName)
+            {
+                for (int i = 0; i < quantityToRemove; i++)
+                {
+                    m.quantity--;
+                }
+            }
+        }
+    }
+
+
+
     public void AddAmmo(SOAmmo ammoToAdd)
     {
         foreach (var a in ammo)
@@ -77,7 +94,6 @@ public class ItemDefinitions : MonoBehaviour
     {
         if (item is SOMaterial)
         {
-            Debug.LogError(item.name);
             return _FindMaterialItem((SOMaterial)item).quantity;
         }
 
