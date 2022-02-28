@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a8b59fbe06360e48accff22cea83fd8, type: 3}
-  m_Name: FoundationBaseBuildingPiece
+  m_Name: 1x2x4RectangularBrick
   m_EditorClassIdentifier: 
-  displayName: Stone Foundation
-  itemCategory: 0
-  piecePrefab: {fileID: 5565925167926727308, guid: 77b0b6297e541a74497279a0f17eea41, type: 3}
+  displayName: 1X2X4RectangularStoneBlockPrefab
+  itemCategory: 1
+  piecePrefab: {fileID: 2258196301928995463, guid: 7d250c80ac1cab9448421ec38406b6ef, type: 3}
   ingredientsList:
   - {fileID: 11400000, guid: cc983f42577144246afe4d12d812dce4, type: 2}
-  materialQuantity: 50
-  dimensions: {x: 16, y: 16, z: 4}
+  materialQuantity: 8
+  dimensions: {x: 1, y: 2, z: 4}

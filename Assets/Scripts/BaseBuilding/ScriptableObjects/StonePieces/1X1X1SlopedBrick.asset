@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a8b59fbe06360e48accff22cea83fd8, type: 3}
-  m_Name: 1x1x2StoneBaseBuildingPiece
+  m_Name: 1X1X1SlopedBrick
   m_EditorClassIdentifier: 
-  itemCategory: 0
-  piecePrefab: {fileID: 2572438020489992323, guid: 4e9a7d6ca27808449be3f03ae3092fca, type: 3}
+  displayName: 1X1X1 Sloped Brick
+  itemCategory: 1
+  piecePrefab: {fileID: 4951359671882885295, guid: 1e1b425b9001bb14eb399778d418a231, type: 3}
   ingredientsList:
-  - _materialSO: {fileID: 11400000, guid: cc983f42577144246afe4d12d812dce4, type: 2}
-    quantity: 8
+  - {fileID: 11400000, guid: cc983f42577144246afe4d12d812dce4, type: 2}
+  materialQuantity: 1
+  dimensions: {x: 0.5, y: 0.5, z: 0.5}

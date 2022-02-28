@@ -77,6 +77,7 @@ public class ItemDefinitions : MonoBehaviour
     {
         if (item is SOMaterial)
         {
+            Debug.LogError(item.name);
             return _FindMaterialItem((SOMaterial)item).quantity;
         }
 

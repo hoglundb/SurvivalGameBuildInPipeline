@@ -35,6 +35,7 @@ namespace Inventory
 
         private UIWeaponOrToolSlot _currentEquipedItemUISlot;
 
+        private bool _isEnabled = false;
 
 
         private void Awake()
@@ -62,7 +63,7 @@ namespace Inventory
         }
 
 
-        private bool _isEnabled = false;
+
         public bool IsEnabled()
         {
             return _isEnabled;
