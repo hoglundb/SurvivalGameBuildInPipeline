@@ -93,8 +93,7 @@ public class InventoryController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-     
-
+        // Respond to player input to open/close the inventory
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             _isInventoryActive = !_isInventoryActive;
@@ -102,19 +101,18 @@ public class InventoryController : MonoBehaviour
         }
 
         // if tooltip is open, allow player to close it by clicking, but don't respond to other clicks to inventory items. 
-        if (SplitInventoryItemsTooltip.instance.isInUse)
+        if (SplitInventoryItemsTooltip.instance.IsInUse() && !SplitInventoryItemsTooltip.instance.IsCursorOverTooltip())
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1))
             {
-                //SplitInventoryItemsTooltip.instance.isInUse = false;
-                //SplitInventoryItemsTooltip.instance.transform.position = Vector3.zero;
+                SplitInventoryItemsTooltip.instance.Hide();
             }
             return;
         }
 
 
         //Respond to mouse input for an open inventory
-        if (_isInventoryActive && !SplitInventoryItemsTooltip.instance.isInUse)
+        if (_isInventoryActive && !SplitInventoryItemsTooltip.instance.IsInUse())
         {
             _ManagePlayerInventoryInteraction();
 
@@ -385,11 +383,11 @@ public class InventoryController : MonoBehaviour
     {
         SplitInventoryItemsTooltip tooltipInstance = SplitInventoryItemsTooltip.instance;
 
-        tooltipInstance.transform.position = Input.mousePosition + _splitItemsTooltipOffset;
-        tooltipInstance.isInUse = true;
+        //Set the tooltip to be in use and position where the player clicked inside the inventory. 
+        tooltipInstance.Show(Input.mousePosition + _splitItemsTooltipOffset);
 
         //Register the event handlers for the tooltip buttons and bind them to the event handlers in the clicked inventory slot container.
-        SplitInventoryItemsTooltip.instance.currentContainer = clickedInventorySlotContainer;
+        tooltipInstance.currentContainer = clickedInventorySlotContainer;
     }
 
 }

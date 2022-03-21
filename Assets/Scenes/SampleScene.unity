@@ -4162,7 +4162,7 @@ GameObject:
   - component: {fileID: 407814861}
   m_Layer: 5
   m_Name: BtnSplit1
-  m_TagString: Untagged
+  m_TagString: UITooltip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13084,7 +13084,7 @@ GameObject:
   - component: {fileID: 1374312849}
   m_Layer: 5
   m_Name: BtnSplitHalf
-  m_TagString: Untagged
+  m_TagString: UITooltip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14320,7 +14320,7 @@ GameObject:
   - component: {fileID: 1540859196}
   m_Layer: 5
   m_Name: TooltipSplitInventoryItems
-  m_TagString: Untagged
+  m_TagString: UITooltip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14396,10 +14396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d027a9943fbf65e45950c1b0704412d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentContainer: {fileID: 0}
   _btnGameObjSplit1: {fileID: 407814859}
   _btnGameObjSplitHalf: {fileID: 1374312847}
-  isInUse: 0
-  currentContainer: {fileID: 0}
 --- !u!1 &1542229856
 GameObject:
   m_ObjectHideFlags: 0
@@ -14539,7 +14538,7 @@ GameObject:
   - component: {fileID: 1552022856}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: UITooltip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16550,7 +16549,7 @@ GameObject:
   - component: {fileID: 1775990191}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: UITooltip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

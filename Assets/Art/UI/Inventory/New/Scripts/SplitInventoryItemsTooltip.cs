@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
 /// Component is attached to the tool tip for splitting an inventory item
 /// </summary>
-public class SplitInventoryItemsTooltip : MonoBehaviour
+public class SplitInventoryItemsTooltip : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
 {
     /// <summary>
     /// The current container being referenced that the player can split items in, using the UI tooltip. 
@@ -41,7 +42,9 @@ public class SplitInventoryItemsTooltip : MonoBehaviour
     /// <summary>
     /// True if the tooltip is in use. False otherwise. Allows component using the tooltip to halt other player actions if the tooltip is being current used. 
     /// </summary>
-    public bool isInUse = false;
+    private bool _isInUse = false;
+
+    private bool _isHoveringOverTooltip = false;
 
 
     /// <summary>
@@ -89,9 +92,77 @@ public class SplitInventoryItemsTooltip : MonoBehaviour
     private void _Split(SplitMode splitMode)
     {
         if (currentContainer == null) return;
-        isInUse = false;
+        _isInUse = false;
         transform.position = Vector3.zero;
         InventoryController.instance.SplitStackableItem(currentContainer, splitMode);
+    }
+
+
+    /// <summary>
+    /// Set the _isHoveringOverToolTip to false so that the OnPointerEnter function can set it again if cursor is over the UITooltip. 
+    /// We handle it this way to avoid having this functionallity interfering with the button click callbacks. 
+    /// </summary>
+    /// <param name="eventData">The system event data for the pointer</param>
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _isHoveringOverTooltip = false;
+    }
+
+
+    /// <summary>
+    /// Allows us to check when the pointer entered the tool tip, so that clicking off the tool tip closes it.
+    /// Sets _isHoveringOverToolTip true if pointer enters a game object with the 'UITooltip' tag.
+    /// We handle it this way to avoid having this functionallity interfering with the button click callbacks. 
+    /// </summary>
+    /// <param name="eventData">The system event data for the pointer</param>
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (eventData.pointerCurrentRaycast.gameObject.tag == "UITooltip")
+        {
+            _isHoveringOverTooltip = true;
+        };
+    }
+
+
+    /// <summary>
+    /// Allows the InventoryController component to check if cursor is over the tooltip so that clicking outside will close it. 
+    /// We handle it this way to avoid having this functionallity interfering with the button click callbacks. 
+    /// </summary>
+    /// <returns>Returns the value of the _isHoveringOverTookip member</returns>
+    public bool IsCursorOverTooltip()
+    {
+        return _isHoveringOverTooltip;
+    }
+
+
+    /// <summary>
+    /// Hides the tooltip by moving it's transform. Sets the _isInUse member to false so we know the tooltip cannot be interacted with. 
+    /// </summary>
+    public void Hide()
+    {
+        _isInUse = false;
+        transform.position = Vector3.zero;
+    }
+
+
+    /// <summary>
+    /// Sets the tool tip to be flagged as in use. Also repositions the UI element to be visible according to the 'targetPosition' specified. 
+    /// </summary>
+    /// <param name="targetPosition">A vector 3 containing the screen coordinates for positioning the UI tooltip</param>
+    public void Show(Vector3 targetPosition)
+    {
+        _isInUse = true;
+        transform.position = targetPosition;
+    }
+
+
+    /// <summary>
+    /// Checks if the tooltip is in use based on the '_isInUse' flag.
+    /// </summary>
+    /// <returns>Returns the current value of the '_isInUse' boolean flag.</returns>
+    public bool IsInUse()
+    {
+        return _isInUse;
     }
 }
 
