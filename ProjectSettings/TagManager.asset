@@ -13,6 +13,7 @@ TagManager:
   - CraftableMenuItem
   - Cauldron
   - LogChunk
+  - InventoryItem
   layers:
   - Default
   - TransparentFX

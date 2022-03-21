@@ -25,10 +25,10 @@ namespace Player
         private void Awake()
         {
             _instance = this;
-            _baseBuildingItemComponent = GetComponent<BaseBuildingItems>();
-            _gameSaveData = new GameSaveDataStructure();
-            _btnSaveGame = GameObject.Find("BtnSaveGame").GetComponent<Button>();
-            _btnSaveGame.onClick.AddListener(OnSaveBtnClick);
+            //_baseBuildingItemComponent = GetComponent<BaseBuildingItems>();
+            //_gameSaveData = new GameSaveDataStructure();
+            //_btnSaveGame = GameObject.Find("BtnSaveGame").GetComponent<Button>();
+            //_btnSaveGame.onClick.AddListener(OnSaveBtnClick);
         }
 
 
