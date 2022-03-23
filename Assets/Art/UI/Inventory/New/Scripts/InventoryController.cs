@@ -48,7 +48,7 @@ public class InventoryController : MonoBehaviour
     /// Holds the list of the quick select ui slots in the player's inventory.
     /// </summary>
     private List<InventorySlot> _quickSelectSlots;
-
+    private int _curSelectedItemIndex = -1;
 
     /// <summary>
     /// Set up references to other game objects in the scene.
@@ -93,12 +93,26 @@ public class InventoryController : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        //Respond to player input to select a weapon/tool in the quickselect slots
+        int newSelectItemIndex = _curSelectedItemIndex;
+        if (Input.GetKeyDown(KeyCode.Alpha1)) newSelectItemIndex = 0;
+        if (Input.GetKeyDown(KeyCode.Alpha2)) newSelectItemIndex = 1;
+        if (Input.GetKeyDown(KeyCode.Alpha3)) newSelectItemIndex = 2;
+        if (Input.GetKeyDown(KeyCode.Alpha4)) newSelectItemIndex = 3;
+        if (Input.GetKeyDown(KeyCode.Alpha5)) newSelectItemIndex = 4;
+        if (Input.GetKeyDown(KeyCode.Alpha6)) newSelectItemIndex = 5;
+        if (_curSelectedItemIndex != newSelectItemIndex)
+        {
+            _OnPlayerQuickSelectItem(newSelectItemIndex);
+        }
+        _curSelectedItemIndex = newSelectItemIndex;
+
         // Respond to player input to open/close the inventory
         if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            _isInventoryActive = !_isInventoryActive;
-            _UpdateInventoryVisibility();          
-        }
+            {
+                _isInventoryActive = !_isInventoryActive;
+                _UpdateInventoryVisibility();
+            }
 
         // if tooltip is open, allow player to close it by clicking, but don't respond to other clicks to inventory items. 
         if (SplitInventoryItemsTooltip.instance.IsInUse() && !SplitInventoryItemsTooltip.instance.IsCursorOverTooltip())
@@ -182,7 +196,6 @@ public class InventoryController : MonoBehaviour
         }
         return null;
     }
-
 
 
     /// <summary>
@@ -388,6 +401,20 @@ public class InventoryController : MonoBehaviour
 
         //Register the event handlers for the tooltip buttons and bind them to the event handlers in the clicked inventory slot container.
         tooltipInstance.currentContainer = clickedInventorySlotContainer;
+    }
+
+
+    /// <summary>
+    /// Called when the player selects a new quick select item. Equip that item for the player after unequiping the previous item.
+    /// </summary>
+    /// <param name="slotIndex"></param>
+    private void _OnPlayerQuickSelectItem(int slotIndex)
+    {
+        foreach (var slot in _quickSelectSlots)
+        {
+            slot.GetComponent<InventorySlot>().DeSelectSlot();
+        }
+        _quickSelectSlots[slotIndex].GetComponent<InventorySlot>().SelectSlot();
     }
 
 }

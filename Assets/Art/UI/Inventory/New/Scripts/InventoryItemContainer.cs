@@ -184,4 +184,23 @@ public class InventoryItemContainer : MonoBehaviour
         Destroy(container.gameObject);
     }
 
+
+    /// <summary>
+    /// Called on a Quick-Select slot type to tell the player to equip the item in this slot
+    /// Preconditions:
+    ///    1) Slot must not be empty
+    ///    2) Slot must contain a non-stackable and equipable item type. 
+    /// </summary>
+    public void EquipItem()
+    {
+        // Verify the expected type of item is in this slot
+        if (_items == null || _items.Count != 1)
+        {
+            Debug.LogError("Container expected to have one equipable item in it");
+            return;
+        }
+        InventoryItem itemToEquip = _items[0];
+        Debug.LogError(itemToEquip.name);
+    }
+
 }

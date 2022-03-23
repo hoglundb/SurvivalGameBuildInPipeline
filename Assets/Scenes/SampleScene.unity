@@ -10950,6 +10950,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 211479177}
     m_Modifications:
+    - target: {fileID: 6437780186104241037, guid: af335d2b496dd364b94c106fa1545eff, type: 3}
+      propertyPath: _inventorySlotType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7789154014231955762, guid: af335d2b496dd364b94c106fa1545eff, type: 3}
       propertyPath: m_Name
       value: InventorySlot
@@ -11548,10 +11552,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 464077093}
     m_Modifications:
-    - target: {fileID: 6437780186104241037, guid: af335d2b496dd364b94c106fa1545eff, type: 3}
-      propertyPath: _inventorySlotType
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7789154014231955762, guid: af335d2b496dd364b94c106fa1545eff, type: 3}
       propertyPath: m_Name
       value: InventorySlot

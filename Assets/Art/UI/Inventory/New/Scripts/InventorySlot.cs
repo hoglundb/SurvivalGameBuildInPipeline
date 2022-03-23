@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 /// <summary>
 /// This component is attached to each ui slot game object. A ui slot can belong to player backpack or equipables
@@ -19,10 +19,24 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] private InventorySlotTypesEnum _inventorySlotType;
 
     /// <summary>
+    /// Color the border of the UI will be when item is selected
+    /// </summary>
+    [SerializeField] private Color _selectedColor;
+
+    /// <summary>
+    /// Color the border of the UI will be when item is not selected
+    /// </summary>
+    [SerializeField] private Color _nuetralColor;
+
+    /// <summary>
     /// The current container attached to this inventory ui slot. It is null if this slot is empty.
     /// </summary>
     private GameObject _itemsContainer;
 
+    /// <summary>
+    /// Set to true if player has selected the item in this slot. False otherwise. 
+    /// </summary>
+    private bool _isSelected = false;
 
 
     /// <summary>
@@ -139,6 +153,52 @@ public class InventorySlot : MonoBehaviour
         RectTransform itemRectTransform = _itemsContainer.GetComponent<RectTransform>();
         itemRectTransform.localPosition = Vector3.zero;
         itemRectTransform.localScale = Vector3.one;
+    }
+
+
+    /// <summary>
+    /// Sets the UI border to the hightlight color to mark the item in this slot as selected. Also activates the item in the slot (if there is one) 
+    /// if the UI slot is a quickSelect slot type.
+    /// 
+    /// Preconditions: Must call "DeSelectSlot()" on all other slots
+    /// </summary>
+    public void SelectSlot()
+    {
+        // Ignore if slot is already selected
+        if (_isSelected) return;
+
+        // Update the slot color to make it highlighted 
+        GetComponent<Image>().color = _selectedColor;
+
+        _isSelected = true;
+
+        // Equip the item for the player if this slot is a quick-select slot type
+        if (_inventorySlotType == InventorySlotTypesEnum.QUICK_SELECT)
+        {
+            if (HasItems())
+            {
+                _itemsContainer.GetComponent<InventoryItemContainer>().EquipItem();
+            }
+            // TODO: If it was a blank slot, just tell the player to unequip current item.
+        }
+    }
+
+
+    /// <summary>
+    /// Sets the UI border to the nuetral color to mark the item in this slot as not being selected. 
+    /// </summary>
+    public void DeSelectSlot()
+    {
+        // Ignore if slot not selected
+        if (!_isSelected) return;
+
+        // Update the UI color
+        GetComponent<Image>().color = _nuetralColor;
+
+        _isSelected = false;
+
+        // TODO: unequip the item. 
+        
     }
 }
 

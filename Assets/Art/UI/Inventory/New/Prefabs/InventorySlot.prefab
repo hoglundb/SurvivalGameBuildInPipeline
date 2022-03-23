@@ -165,4 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventorySlotItemContainerPrefab: {fileID: 3635450335909731631, guid: 19acb698abb582d4a8010c16eced6cd0, type: 3}
-  _inventorySlotType: 0
+  _inventorySlotType: 1
+  _selectedColor: {r: 0.2793699, g: 0.7066821, b: 0.8113208, a: 1}
+  _nuetralColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
