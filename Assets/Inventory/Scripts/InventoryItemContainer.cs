@@ -180,7 +180,6 @@ public class InventoryItemContainer : MonoBehaviour
     public InventoryItemContainer DumpItemsFromOtherContainer(InventoryItemContainer container)
     {
         int numSlotsLeft = GetContainerRemainingCapacity();
-        Debug.LogError("Slots left: " + numSlotsLeft.ToString());
         int curCount = 0;
         var items = container.GetItems();
         foreach (var item in items)
@@ -277,5 +276,19 @@ public class InventoryItemContainer : MonoBehaviour
         if (_items == null || _items.Count == 0) return false;
 
         return _items[0].GetItemData().isStackable;
+    }
+
+
+
+    /// <summary>
+    /// Checks if this container contains an item with an "EquipableItem" component on it. 
+    /// </summary>
+    /// <returns></returns>
+    public bool ContainerEquipableItem()
+    {
+        if (_items == null || _items.Count == 0) return false;
+
+        if (_items[0].gameObject.GetComponent<EquipableItem>()) return true;
+        return false;
     }
 }

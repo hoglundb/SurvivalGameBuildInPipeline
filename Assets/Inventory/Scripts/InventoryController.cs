@@ -221,7 +221,6 @@ public class InventoryController : MonoBehaviour
                 {
                     if (backpackSlot.GetItemContainer(false).GetComponent<InventoryItemContainer>().GetContainerRemainingCapacity() > 0)
                     {
-                        Debug.LogError("Found a partially full slot");
                         return backpackSlot;
                     }                   
                 }
@@ -233,7 +232,6 @@ public class InventoryController : MonoBehaviour
         {
             if (!backpackSlot.HasItems())
             {
-                Debug.LogError("found an empty slot");
                 return backpackSlot;
             }
         }
@@ -342,7 +340,7 @@ public class InventoryController : MonoBehaviour
     /// </summary>
     private void _OnPlayerDropSelectedInventoryItems()
     {
-        // If player was dragging items over a empty slot, then drop the items
+        // If player was dragging items over a empty slot, then drop the items if the slot can accomidate it.
         if (_selectedItemContainer != null)
         {
             GameObject hoverSlot = _GetPointerHoverInventorySlot();
@@ -350,8 +348,21 @@ public class InventoryController : MonoBehaviour
             // If hovering over a valid slot, the dropped item(s) go into that slot
             if (hoverSlot != null)
             {
-                // If slot is empty, then drop the entire item container into the slot
                 InventorySlot slotComponent = hoverSlot.GetComponent<InventorySlot>();
+
+                //If attempting to drop a non-equipable item into a quickselect slot, don't allow it. Snap the item back to it's original slot. 
+                if (slotComponent.GetSlotType() == InventorySlotTypesEnum.QUICK_SELECT)
+                {
+                    if (!_selectedItemContainer.GetComponent<InventoryItemContainer>().ContainerEquipableItem())
+                    {
+                        _prevousInventorySlot.AssignItemContainer(_selectedItemContainer);
+                        _selectedItemContainer = null;
+                        return;
+                    }
+                }
+
+                // If slot is empty, then drop the entire item container into the slot
+            
                 if (!slotComponent.HasItems())
                 {
                     slotComponent.AssignItemContainer(_selectedItemContainer);
@@ -369,7 +380,6 @@ public class InventoryController : MonoBehaviour
                        var remaining = hoverSlotContainer.DumpItemsFromOtherContainer(currentContainer);
                         if (remaining != null)
                         {
-                            Debug.LogError("assigning remaining");
                             _prevousInventorySlot.AssignItemContainer(remaining.gameObject);
                         }
                     }
