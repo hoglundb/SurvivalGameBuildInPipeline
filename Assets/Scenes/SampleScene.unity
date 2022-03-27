@@ -20642,18 +20642,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleAxePrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 4746976621629451609, guid: d8f6e7b7f43ed5d41961eac1f72afffd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356004531858685947, guid: d8f6e7b7f43ed5d41961eac1f72afffd, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6970348972731147742, guid: d8f6e7b7f43ed5d41961eac1f72afffd, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8f6e7b7f43ed5d41961eac1f72afffd, type: 3}
 --- !u!1001 &7067284875567914035

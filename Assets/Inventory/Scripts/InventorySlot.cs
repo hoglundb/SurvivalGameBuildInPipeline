@@ -182,7 +182,6 @@ public class InventorySlot : MonoBehaviour
             {
                 _itemsContainer.GetComponent<InventoryItemContainer>().EquipItem();
             }
-            // TODO: If it was a blank slot, just tell the player to unequip current item.
         }
     }
 

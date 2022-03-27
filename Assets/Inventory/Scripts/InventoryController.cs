@@ -99,19 +99,22 @@ public class InventoryController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //Respond to player input to select a weapon/tool in the quickselect slots
-        int newSelectItemIndex = _curSelectedItemIndex;
-        if (Input.GetKeyDown(KeyCode.Alpha1)) newSelectItemIndex = 0;
-        if (Input.GetKeyDown(KeyCode.Alpha2)) newSelectItemIndex = 1;
-        if (Input.GetKeyDown(KeyCode.Alpha3)) newSelectItemIndex = 2;
-        if (Input.GetKeyDown(KeyCode.Alpha4)) newSelectItemIndex = 3;
-        if (Input.GetKeyDown(KeyCode.Alpha5)) newSelectItemIndex = 4;
-        if (Input.GetKeyDown(KeyCode.Alpha6)) newSelectItemIndex = 5;
-        if (_curSelectedItemIndex != newSelectItemIndex)
+        //Respond to player input to select a weapon/tool in the quickselect slots, but only if inventory is not open
+        if (!_isInventoryActive)
         {
-            _OnPlayerQuickSelectItem(newSelectItemIndex);
-        }
-        _curSelectedItemIndex = newSelectItemIndex;
+            int newSelectItemIndex = _curSelectedItemIndex;
+            if (Input.GetKeyDown(KeyCode.Alpha1)) newSelectItemIndex = 0;
+            if (Input.GetKeyDown(KeyCode.Alpha2)) newSelectItemIndex = 1;
+            if (Input.GetKeyDown(KeyCode.Alpha3)) newSelectItemIndex = 2;
+            if (Input.GetKeyDown(KeyCode.Alpha4)) newSelectItemIndex = 3;
+            if (Input.GetKeyDown(KeyCode.Alpha5)) newSelectItemIndex = 4;
+            if (Input.GetKeyDown(KeyCode.Alpha6)) newSelectItemIndex = 5;
+            if (_curSelectedItemIndex != newSelectItemIndex)
+            {
+                _OnPlayerQuickSelectItem(newSelectItemIndex);
+            }
+            _curSelectedItemIndex = newSelectItemIndex;
+        }        
 
         // Respond to player input to open/close the inventory
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -323,10 +326,15 @@ public class InventoryController : MonoBehaviour
     {
         Player.PlayerControllerParent.GetInstance().playerMovementComponent.enabled = !_isInventoryActive;
 
+        // Player just opened inventory so make it visible and uniquip current item
         if (_isInventoryActive)
         {
             _backpackUIRectTransform.pivot = new Vector2(_backpackUIRectTransform.pivot.x, .5f);
+            _DeSelectCurrentSlot();
+            Player.PlayerControllerParent.GetInstance().SetAnimationTrigger("Idle");
+            _curSelectedItemIndex = -1;
         }
+        // Player just closed inventory so make it invisible
         else
         {
             _backpackUIRectTransform.pivot = new Vector2(_backpackUIRectTransform.pivot.x, 10f);
@@ -398,7 +406,6 @@ public class InventoryController : MonoBehaviour
     }
 
 
-
     /// <summary>
     /// Called when player clicks on an inventory slot. If slot is not empty, then we assign it to the _selectedItemContainer so it will follow the player's 
     /// cursor until they mouseup.
@@ -440,11 +447,20 @@ public class InventoryController : MonoBehaviour
     /// <param name="slotIndex"></param>
     private void _OnPlayerQuickSelectItem(int slotIndex)
     {
+        _DeSelectCurrentSlot();
+        _quickSelectSlots[slotIndex].GetComponent<InventorySlot>().SelectSlot();
+    }
+
+
+    /// <summary>
+    /// Calls "DeSelectSlot()" on all quick select slots so that if one is selected it gets deselected
+    /// </summary>
+    private void _DeSelectCurrentSlot()
+    {
         foreach (var slot in _quickSelectSlots)
         {
             slot.GetComponent<InventorySlot>().DeSelectSlot();
         }
-        _quickSelectSlots[slotIndex].GetComponent<InventorySlot>().SelectSlot();
     }
 
 }

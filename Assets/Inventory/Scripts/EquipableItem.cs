@@ -34,8 +34,6 @@ public class EquipableItem : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        Debug.LogError("equipping " + gameObject.name);
-
         // Disable the rigidbody
         GetComponent<Rigidbody>().isKinematic = true;
 
