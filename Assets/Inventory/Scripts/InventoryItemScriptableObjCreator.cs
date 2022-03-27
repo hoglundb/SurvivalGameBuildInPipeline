@@ -31,5 +31,5 @@ public class InventoryItemScriptableObjCreator : ScriptableObject
     /// <summary>
     /// If isStackable=true, then this reprents the max number of items of this type that can be combined in a single inventory slot. 
     /// </summary>
-    [SerializeField] public int stackHeight;
+    [SerializeField] public int maxItemsPerInventorySlot;
 }

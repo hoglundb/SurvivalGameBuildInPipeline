@@ -15,5 +15,4 @@ MonoBehaviour:
   name: SimpleArrow
   uiSpriteImage: {fileID: 21300000, guid: 3011b382d41e0ec48b170bd2cc0c2ca5, type: 3}
   isStackable: 1
-  stackHeight: 25
-  equipAnimationTrigger: 
+  maxItemsPerInventorySlot: 10

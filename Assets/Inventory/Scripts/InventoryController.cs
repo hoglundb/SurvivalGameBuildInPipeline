@@ -51,6 +51,12 @@ public class InventoryController : MonoBehaviour
     private int _curSelectedItemIndex = -1;
 
     /// <summary>
+    /// Tracks the slot the player pulled a container out of to click and drag it to a new slot. We do this so that if the player tries to drag a container
+    /// to a new slot that is invalid, we can snap the container back to the origonal slot. 
+    /// </summary>
+    private InventorySlot _prevousInventorySlot;
+
+    /// <summary>
     /// Set up references to other game objects in the scene.
     /// </summary>
     private void Awake()
@@ -206,31 +212,33 @@ public class InventoryController : MonoBehaviour
     private InventorySlot _GetBackpackSlotToAddItemTo(InventoryItem itemToAdd)
     {
         // If stackable, first try to add to a non-full existing slot with items of the same type
-        if (itemToAdd.GetItemInfo().isStackable)
+        if (itemToAdd.GetItemData().isStackable)
         {
-            //TODO: Check if a partially full slot is present.
+            // Check if a partially full slot is present with an item of this type so that adding a stackable item stacks it by default.
             foreach (var backpackSlot in _backpackSlots)
             {
-                if (!backpackSlot.HasItems())
+                if (backpackSlot.HasItems() && backpackSlot.HasItemOfType(itemToAdd.GetItemData().name))
                 {
-                    return backpackSlot;
+                    if (backpackSlot.GetItemContainer(false).GetComponent<InventoryItemContainer>().GetContainerRemainingCapacity() > 0)
+                    {
+                        Debug.LogError("Found a partially full slot");
+                        return backpackSlot;
+                    }                   
                 }
             }
         }
 
-        //If non stackable, get the first empty slot in the backpack
-        else
+        //If non stackable or stackable but with no partially full slots, then find the first empty slot. 
+        foreach (var backpackSlot in _backpackSlots)
         {
-            foreach (var backpackSlot in _backpackSlots)
+            if (!backpackSlot.HasItems())
             {
-                if (!backpackSlot.HasItems())
-                {
-                    return backpackSlot;
-                }
+                Debug.LogError("found an empty slot");
+                return backpackSlot;
             }
         }
 
-        //No slot was found
+        // Returning null indecates that slot was found and the backpack does not have room the the item the player is trying to add. 
         return null;
     }
 
@@ -334,7 +342,7 @@ public class InventoryController : MonoBehaviour
     /// </summary>
     private void _OnPlayerDropSelectedInventoryItems()
     {
-        // If player was dragging items, then drop the items
+        // If player was dragging items over a empty slot, then drop the items
         if (_selectedItemContainer != null)
         {
             GameObject hoverSlot = _GetPointerHoverInventorySlot();
@@ -350,26 +358,35 @@ public class InventoryController : MonoBehaviour
                     _selectedItemContainer.transform.position = slotComponent.transform.position;
                 }
 
-                // If slot is not empty, dump the items out of the current container into the new slot. Then destroy the current container since it is empty
+                // If slot is not empty, verify that the selected container's items can be added to it. If so, can dump the items out of the current container into the new slot. Then destroy the current container since it is empty
                 else
                 {
-                    // If slot player is hovering over contains a stackable InventoryItem of the same type. 
+                    // Check the the selected container's items are the same type and will fit into the slot the player is trying to put them into.
                     InventoryItemContainer hoverSlotContainer = slotComponent.GetItemContainer(deReference: false).GetComponent<InventoryItemContainer>();
-                    InventoryItemContainer otherContainer = _selectedItemContainer.GetComponent<InventoryItemContainer>();
-                    if (hoverSlotContainer != null && otherContainer.GetItemTypeName() == hoverSlotContainer.GetItemTypeName())
+                    InventoryItemContainer currentContainer = _selectedItemContainer.GetComponent<InventoryItemContainer>();
+                    if (hoverSlotContainer.ContainsStackableItems() && currentContainer.GetItemTypeName() == hoverSlotContainer.GetItemTypeName())
+                    {                        
+                       var remaining = hoverSlotContainer.DumpItemsFromOtherContainer(currentContainer);
+                        if (remaining != null)
+                        {
+                            Debug.LogError("assigning remaining");
+                            _prevousInventorySlot.AssignItemContainer(remaining.gameObject);
+                        }
+                    }
+
+                    //Not a valid slot to dump items into. Snap the container back to the slot it was in before player moved and dragged it. 
+                    else 
                     {
-                        hoverSlotContainer.DumpItemsFromOtherContainer(otherContainer);
-                        Destroy(otherContainer.gameObject);
+                        _prevousInventorySlot.AssignItemContainer(currentContainer.gameObject);
                     }
                 }
             }
         }
-        else
-        {
-            Destroy(_selectedItemContainer);
-        }
+
+        // De-reference the container since player has dropped it.
         _selectedItemContainer = null;
     }
+
 
 
     /// <summary>
@@ -379,12 +396,15 @@ public class InventoryController : MonoBehaviour
     /// <param name="clickedInvnetorySlot">The ui inventory slot game object the player clicked on.</param>
     private void _OnPlayerClickInventorySlot(GameObject clickedInvnetorySlot)
     {
-        var itemContainerInSlot = clickedInvnetorySlot.GetComponent<InventorySlot>().GetItemContainer(true);
+
+        _prevousInventorySlot = clickedInvnetorySlot.GetComponent<InventorySlot>();
+        var itemContainerInSlot = _prevousInventorySlot.GetItemContainer(true);
         if (itemContainerInSlot != null)
         {
             _selectedItemContainer = itemContainerInSlot;
             _selectedItemContainer.transform.parent = _canvas.transform;
         }
+
     }
 
 

@@ -83,6 +83,9 @@ public class InventorySlot : MonoBehaviour
     {
         _itemsContainer = itemContainer;
 
+        // Update the UI to show the count of the container that was assigned here
+        itemContainer.GetComponent<InventoryItemContainer>().UpdateItemCountUI();
+
         // Reset the rect transform the spawned container so it sits in the slot as a child transform
         _ResetItemContainerRectTransform();
     }

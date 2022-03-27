@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,11 +73,11 @@ public class InventoryItemContainer : MonoBehaviour
 
             // Assign the sprite image from the InventoryItem to the container since the container will only be holding items of that type.
             var itemImage = _containerImageChildObj.GetComponent<Image>();
-           _containerImageChildObj.GetComponent<Image>().sprite = itemTooAdd.GetItemInfo().uiSpriteImage;
+           _containerImageChildObj.GetComponent<Image>().sprite = itemTooAdd.GetItemData().uiSpriteImage;
             itemImage.color = new Color(itemImage.color.r, itemImage.color.g, itemImage.color.b, 255);
 
             // If itemToAdd is stackable show the count but disable the health. Otherwise, do the opposite. 
-            if (itemTooAdd.GetItemInfo().isStackable)
+            if (itemTooAdd.GetItemData().isStackable)
             {
                 _healthbarChildObj.SetActive(false);
             }
@@ -89,9 +90,9 @@ public class InventoryItemContainer : MonoBehaviour
         }
         _items.Add(itemTooAdd);
 
-        if (itemTooAdd.GetItemInfo().isStackable)
+        if (itemTooAdd.GetItemData().isStackable)
         {
-            _UpdateItemCountUI();
+            UpdateItemCountUI();
         }
     }
 
@@ -99,10 +100,11 @@ public class InventoryItemContainer : MonoBehaviour
     /// <summary>
     /// Updates the UI text tracking item count for stackable items to be the number of elements in the _items list. 
     /// </summary>
-    private void _UpdateItemCountUI()
+    public void UpdateItemCountUI()
     {
         _itemCountChildObj.GetComponent<Text>().text = (_items.Count).ToString();
     }
+
 
 
     /// <summary>
@@ -138,7 +140,7 @@ public class InventoryItemContainer : MonoBehaviour
             _items.Remove(_items[i]);
         }
 
-        _UpdateItemCountUI();
+        UpdateItemCountUI();
         return itemsToRemove;
     }
 
@@ -165,23 +167,71 @@ public class InventoryItemContainer : MonoBehaviour
             return null;
         }
 
-        return _items[0].GetItemInfo().name;
+        return _items[0].GetItemData().name;
     }
 
 
     /// <summary>
-    /// Called when we are combining the item(s) from another conatiner into this one. 
+    /// Called when we are combining the item(s) from another conatiner into this one. If all the items could successfully be dumped into this container,
+    /// then destroy the empty container and return null. Otherwise, return the container with the remaining items in it.
     /// </summary>
     /// <param name="container">The container containing items we combine with the items in this container</param>
-    public void DumpItemsFromOtherContainer(InventoryItemContainer container)
+    /// <returns>Returns a conatainer with any remaining items that didn't have room to be dumped in this container</returns>
+    public InventoryItemContainer DumpItemsFromOtherContainer(InventoryItemContainer container)
     {
+        int numSlotsLeft = GetContainerRemainingCapacity();
+        Debug.LogError("Slots left: " + numSlotsLeft.ToString());
+        int curCount = 0;
         var items = container.GetItems();
         foreach (var item in items)
         {
-            AddItemToContainer(item);
+            if (curCount == numSlotsLeft) break;
+            AddItemToContainer(item);           
+            curCount++;
         }
 
+        container.GetItems().RemoveRange(0, curCount);
+        if (container.GetItemCount() > 0) return container;
+
+        // All items from other container had room to be added to this, so destroy the other empty container. 
         Destroy(container.gameObject);
+        return null;
+    }
+
+
+
+    /// <summary>
+    /// Checks how many more items (of the type currently in this slot) can be added to it. 
+    /// </summary>
+    /// <returns>Returns an int representing how many more items (of the type currently in this slot) can be added to this container.
+    public int GetContainerRemainingCapacity()
+    {
+        int maxCap = GetContainerMaxCapacity();
+        return maxCap - _items.Count;        
+    }
+
+
+    /// <summary>
+    /// Checks a item in this container and looks at it's data to determine how many items of that type are allowed in a single inventory slot container.
+    /// If no items in the container yet, return -1.
+    /// </summary>
+    /// <returns>An integer representing the number of items this container can hold at it's current state.</returns>
+    public int GetContainerMaxCapacity()
+    {
+        if (_items == null || _items.Count == 0) return -1;
+        return _items[0].GetItemData().maxItemsPerInventorySlot;
+    }
+
+
+    /// <summary>
+    /// Removes an item from the _items list. This is generally called as part of dumping items from this container into another container. 
+    /// </summary>
+    public void RemoveOneItem()
+    {
+        if (_items != null && _items.Count > 0)
+        {
+            _items.RemoveAt(0);
+        }    
     }
 
 
@@ -217,4 +267,15 @@ public class InventoryItemContainer : MonoBehaviour
         itemToEquip.gameObject.SetActive(false);
     }
 
+
+    /// <summary>
+    /// Determines if the item(s) in this container are stackable by looking at the scriptable object on this item's InventoryItem component.
+    /// </summary>
+    /// <returns>True if this container has one or more stackable items in it. Returns false otherwise.</returns>
+    public bool ContainsStackableItems()
+    {
+        if (_items == null || _items.Count == 0) return false;
+
+        return _items[0].GetItemData().isStackable;
+    }
 }

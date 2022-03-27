@@ -19,7 +19,7 @@ public class InventoryItem : MonoBehaviour
     /// Allows the inventory to get the meta data item info for this type of inventory item. 
     /// </summary>
     /// <returns>The _itemInfo scripable object. </returns>
-    public InventoryItemScriptableObjCreator GetItemInfo()
+    public InventoryItemScriptableObjCreator GetItemData()
     {
         return _itemInfo;
     }
