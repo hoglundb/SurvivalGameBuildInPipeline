@@ -18,6 +18,7 @@ namespace Player
         private bool _isMovementEnabled = true;
 
         private Transform _lowerSpineBone;
+        private Camera _mainCamera;
 
         [SerializeField] private LayerMask _groundMask;
         [SerializeField] private float _groundDistance;
@@ -40,8 +41,9 @@ namespace Player
         {
             _characterController = GetComponent<CharacterController>();
             _lowerSpineBone = GlobalStaticFunctions.CustomFindChild("spine.003", transform);
+            _mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
 
-            Camera.main.transform.parent = GlobalStaticFunctions.CustomFindChild( "spine.006",transform);
+            _mainCamera.transform.parent = GlobalStaticFunctions.CustomFindChild( "spine.006",transform);
         }
 
         // Start is called before the first frame update
@@ -55,7 +57,7 @@ namespace Player
         private void LateUpdate()
         {
             Vector3 rot = _lowerSpineBone.transform.localEulerAngles;
-            rot.x = Camera.main.transform.localRotation.eulerAngles.x + lookUpAmount;
+            rot.x = _mainCamera.transform.localRotation.eulerAngles.x + lookUpAmount;
             _lowerSpineBone.transform.localRotation = Quaternion.Euler(rot);
         }
 

@@ -85,6 +85,8 @@ namespace Player
             SaveGame.GetInstance().LoadGameFromPlayerPrefs();
 
             DisableInventoryCraftingUI();
+
+            SetAnimationTrigger("Idle");
         }
 
 
@@ -115,13 +117,13 @@ namespace Player
             }
             else if (Input.GetKeyDown(KeyCode.B))
             {
-                bool isBaseBuildingUIEnabled = BaseBuilding.BaseBuildingUIPanelManager.GetInstance().IsEnabled();
-                DisableInventoryCraftingUI();
-                if (!isBaseBuildingUIEnabled)
-                {
-                    BaseBuilding.BaseBuildingUIPanelManager.GetInstance().SetEnablement(true);
-                    playerMovementComponent.enabled = false;
-                }
+                //bool isBaseBuildingUIEnabled = BaseBuilding.BaseBuildingUIPanelManager.GetInstance().IsEnabled();
+                //DisableInventoryCraftingUI();
+                //if (!isBaseBuildingUIEnabled)
+                //{
+                //    BaseBuilding.BaseBuildingUIPanelManager.GetInstance().SetEnablement(true);
+                //    playerMovementComponent.enabled = false;
+                //}
             }
 
             //If player toggles base building mode, activate/deactivate the child components accordinly. 

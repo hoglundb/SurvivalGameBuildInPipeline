@@ -23,7 +23,12 @@ namespace Player
         /// <summary>
         /// Each frame we update this to the game object the player is looking at. Null if no object in range. 
         /// </summary>
-        private Transform _lookAtObject; 
+        private Transform _lookAtObject;
+
+        /// <summary>
+        /// References the main camera game object. 
+        /// </summary>
+        private Camera _mainCamera;
 
         
         /// <summary>
@@ -34,6 +39,7 @@ namespace Player
             _uiPromptToPickItemUp = GameObject.Find("PickupItemPrompt");
             _uiPromptToPickItemUp.SetActive(false);
             _playerControllerParentComponent = GetComponent<PlayerControllerParent>();
+            _mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         }
 
 
@@ -60,7 +66,7 @@ namespace Player
             if (!_playerControllerParentComponent.playerMovementComponent.IsMovementInabled()) return null;
 
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out hit, 3f))
+            if (Physics.Raycast(_mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out hit, 3f))
             {
                 return hit.transform;
             }

@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3313298518945070623}
   - component: {fileID: 972162595665789932}
   - component: {fileID: 5825281759034621872}
-  - component: {fileID: 7529002688928804872}
+  - component: {fileID: 8941476016945890398}
+  - component: {fileID: 6388912362994190156}
   m_Layer: 0
   m_Name: TinyRockPrefab
   m_TagString: Untagged
@@ -114,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7529002688928804872
+--- !u!114 &8941476016945890398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +124,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3961987908963131338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f0725e48ec4b1849aabdc4cd5b77116, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d3ac04484fad3e498420e3a2e8af318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _materialData: {fileID: 11400000, guid: cc983f42577144246afe4d12d812dce4, type: 2}
+  _itemInfo: {fileID: 0}
+--- !u!114 &6388912362994190156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3961987908963131338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf64df85f1fe1d449cee519efea76cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

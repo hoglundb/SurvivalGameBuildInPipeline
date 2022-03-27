@@ -393,7 +393,7 @@ namespace Player
                 Debug.LogError("Error: no BaseBuildingBlock component on this base-building block game object");
                 return;
             }
-            BaseBuilding.BaseBuildingUIPanelManager.GetInstance().OnPlayerCraftBaseBuildingBlock(baseBuildingPieceSO.GetBaseBuildingPieceScriptableObj());
+            //BaseBuilding.BaseBuildingUIPanelManager.GetInstance().OnPlayerCraftBaseBuildingBlock(baseBuildingPieceSO.GetBaseBuildingPieceScriptableObj());
         }
         #endregion
     }
