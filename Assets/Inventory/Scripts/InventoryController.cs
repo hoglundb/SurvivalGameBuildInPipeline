@@ -118,10 +118,10 @@ public class InventoryController : MonoBehaviour
 
         // Respond to player input to open/close the inventory
         if (Input.GetKeyDown(KeyCode.Tab))
-            {
+        {
                 _isInventoryActive = !_isInventoryActive;
                 _UpdateInventoryVisibility();
-            }
+        }
 
         // if tooltip is open, allow player to close it by clicking, but don't respond to other clicks to inventory items. 
         if (SplitInventoryItemsTooltip.instance.IsInUse() && !SplitInventoryItemsTooltip.instance.IsCursorOverTooltip())
@@ -163,8 +163,62 @@ public class InventoryController : MonoBehaviour
             Debug.LogError("No room in inventory!!!");
             return;
         }
-
         slotToAddItemTo.AddItemToSlot(itemToAdd);
+
+        // special case when item added is ammo, trigger an automatic reload
+        if (itemToAdd.gameObject.GetComponent<AmmoItem>())
+        {
+            InventoryItem equippedItem = _GetEquippedItem();
+            if (equippedItem != null)
+            {
+                if (itemToAdd.gameObject.GetComponent<BowItem>())
+                {
+                    itemToAdd.gameObject.GetComponent<BowItem>().OnPickupArrow();
+                }
+            }           
+        }   
+    }
+
+
+    /// <summary>
+    /// Returns the Inventory item object that is currently equipped in a quickselect slot. Returns null if none. 
+    /// </summary>
+    private InventoryItem _GetEquippedItem()
+    {
+        if (_curSelectedItemIndex <= 5 && _curSelectedItemIndex >= 0)
+        {
+            InventorySlot equippedSlot = _quickSelectSlots[_curSelectedItemIndex];
+            if (equippedSlot.HasItems())
+            {
+                return equippedSlot.GetItemContainer(false).GetComponent<InventoryItemContainer>().GetItems()[0];
+            }
+        }
+        return null;
+    }
+
+
+    /// <summary>
+    /// Searches the player invetory for an item with the specified name. If one or more of that item is present in the player's backpack.
+    /// then remove that item from the inventory and return it. 
+    /// </summary>
+    /// <param name="itemName">name identifier of the item type, as referenced in the itemData scriptable object on an inventory item.</param>
+    public GameObject GetItemFromInventory(string itemName)
+    {
+        foreach (var item in _backpackSlots)
+        {
+            if (item.HasItemOfType(itemName))
+            {
+                GameObject removedItem = item.GetItemContainer(false).GetComponent<InventoryItemContainer>().RemoveOneItem();
+
+                // If the last item was taken out, delete the tell the item slot to delete it's empty container.
+                if (!item.HasItems())
+                {
+                    item.DestroyContainer();
+                }
+                return removedItem;
+            }
+        }
+        return null;
     }
 
 

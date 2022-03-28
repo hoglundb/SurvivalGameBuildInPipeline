@@ -92,12 +92,12 @@ public class InventorySlot : MonoBehaviour
 
 
     /// <summary>
-    /// If this slot references a container (aka has item(s) in it) return true. Otherwise return false.
+    /// If this slot references a non-empty container (aka has item(s) in it) return true. Otherwise return false.
     /// </summary>
     /// <returns>True if _itemsContainer is set. Otherwise return false.</returns>
     public bool HasItems()
     {
-        if (_itemsContainer == null) return false;
+        if (_itemsContainer == null || _itemsContainer.GetComponent<InventoryItemContainer>().GetItemCount() == 0) return false;
         return true;
     }
 
@@ -144,6 +144,19 @@ public class InventorySlot : MonoBehaviour
 
 
     /// <summary>
+    /// Destroys this container. Generally this gets called with the last remaining item in the container is removed
+    /// </summary>
+    public void DestroyContainer()
+    {
+        if (_itemsContainer != null && _itemsContainer.GetComponent<InventoryItemContainer>().GetItemCount() == 0)
+        {
+            Destroy(_itemsContainer);
+            _itemsContainer = null;
+        }
+    }
+
+
+    /// <summary>
     /// Resets the rect transform component of the _itemsContainer game object in this inventory slot. 
     /// Also, set it to be a child of this slot. Call this when creating a new container in ths slot or
     /// when player drags an existing container from another slot into this one. 
@@ -181,6 +194,10 @@ public class InventorySlot : MonoBehaviour
             if (HasItems())
             {
                 _itemsContainer.GetComponent<InventoryItemContainer>().EquipItem();
+            }
+            else
+            {
+                Player.PlayerControllerParent.GetInstance().SetAnimationTrigger("Idle");
             }
         }
     }

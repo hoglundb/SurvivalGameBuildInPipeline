@@ -89,7 +89,7 @@ public class InventoryItemContainer : MonoBehaviour
             }
         }
         _items.Add(itemTooAdd);
-
+        Debug.LogError("adding item " + itemTooAdd.name);
         if (itemTooAdd.GetItemData().isStackable)
         {
             UpdateItemCountUI();
@@ -104,7 +104,6 @@ public class InventoryItemContainer : MonoBehaviour
     {
         _itemCountChildObj.GetComponent<Text>().text = (_items.Count).ToString();
     }
-
 
 
     /// <summary>
@@ -225,12 +224,16 @@ public class InventoryItemContainer : MonoBehaviour
     /// <summary>
     /// Removes an item from the _items list. This is generally called as part of dumping items from this container into another container. 
     /// </summary>
-    public void RemoveOneItem()
+    public GameObject RemoveOneItem()
     {
+        InventoryItem itemToRemove = null;
         if (_items != null && _items.Count > 0)
         {
+             itemToRemove = _items[0];
             _items.RemoveAt(0);
-        }    
+        }
+        UpdateItemCountUI();
+        return itemToRemove.gameObject;
     }
 
 
@@ -259,9 +262,9 @@ public class InventoryItemContainer : MonoBehaviour
     /// <summary>
     /// Called on a Quick-Select slot type to tell the player to un-equip the item in this slot
     /// </summary>
-    public void UnEquipItem()
+    public void UnEquipItem(bool returnToIdle = false)
     {
-        InventoryItem itemToEquip = _items[0];
+        InventoryItem itemToEquip = _items[0]; 
         itemToEquip.GetComponent<EquipableItem>().enabled = false;
         itemToEquip.gameObject.SetActive(false);
     }

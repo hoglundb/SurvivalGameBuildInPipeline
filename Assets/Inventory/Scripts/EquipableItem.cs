@@ -15,6 +15,11 @@ public class EquipableItem : MonoBehaviour
     [SerializeField] private EquipableItemScriptableObjCreator _equipableItemData;
 
     /// <summary>
+    /// If this is true, we save the value of the game object transfor to the scriptable object that saves this data
+    /// </summary>
+    [SerializeField] private bool _isSetupMode = false;
+
+    /// <summary>
     /// Hand bone transform that will be set as this object's perent when equiped by the player. 
     /// </summary>
     private Transform _parentTransform;
@@ -25,6 +30,7 @@ public class EquipableItem : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        _isSetupMode = false;
         this.enabled = false;
     }
 
@@ -34,6 +40,8 @@ public class EquipableItem : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
+        _isSetupMode = false;
+
         // Disable the rigidbody
         GetComponent<Rigidbody>().isKinematic = true;
 
@@ -50,6 +58,14 @@ public class EquipableItem : MonoBehaviour
 
         Player.PlayerControllerParent.GetInstance().SetAnimationTrigger(_equipableItemData.equipItemAnimationTrigger);
         transform.parent = _parentTransform;
+        transform.localPosition = _equipableItemData.handPosOffset;
+        transform.localRotation = Quaternion.Euler(_equipableItemData.handRotOffset);
+
+        // Enable the component responsible for the player interacting with the equipable item
+        if (GetComponent<BowItem>())
+        {
+            GetComponent<BowItem>().OnEquipBow();
+        }
     }
 
 
@@ -58,11 +74,11 @@ public class EquipableItem : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (_parentTransform != null)
-        {
-            transform.localPosition = _equipableItemData.handPosOffset * .0001f;
-            transform.localRotation = Quaternion.Euler(_equipableItemData.handRotOffset * .25f);
-        }
+        //if (_parentTransform != null && _isSetupMode)
+        //{
+        //    _equipableItemData.handPosOffset = transform.localPosition;
+        //    _equipableItemData.handRotOffset = transform.localRotation.eulerAngles;
+        //}
     }
 
 
@@ -71,10 +87,16 @@ public class EquipableItem : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
+        // If bow was equipped, tell the bow to return the equipped arrow to the backpack
+        if (GetComponent<BowItem>())
+        {
+            GetComponent<BowItem>().OnUnEquipBow();
+        }
+
         // Enable the rigidbody
         transform.parent = null;
         GetComponent<Rigidbody>().isKinematic = true;
         _parentTransform = null;
-        Player.PlayerControllerParent.GetInstance().SetAnimationTrigger("Idle");
+  
     }
 }

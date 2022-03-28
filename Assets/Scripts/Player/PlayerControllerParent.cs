@@ -85,8 +85,6 @@ namespace Player
             SaveGame.GetInstance().LoadGameFromPlayerPrefs();
 
             DisableInventoryCraftingUI();
-
-            SetAnimationTrigger("Idle");
         }
 
 
