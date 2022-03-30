@@ -96,7 +96,6 @@ public class BowItem : MonoBehaviour
                 _equippedArrow.GetComponent<AmmoItem>().enabled = true;             
                 _equippedArrow.GetComponent<AmmoItem>().Fire(Player.PlayerControllerParent.GetInstance().playerMovementComponent.GetLookDirection(), _bowData.arrowSpeed);            
                 _equippedArrow = null;
-                _LoadArrowFromInventory();
                 StartCoroutine(_LoadArrowCoroutine());
                 return;
             }
@@ -172,7 +171,6 @@ public class BowItem : MonoBehaviour
         {
             InventoryController.instance.AddItemToInventory(_equippedArrow.GetComponent<InventoryItem>());
         }
-        else Debug.LogError("No equipped arrow");
     }
 
 

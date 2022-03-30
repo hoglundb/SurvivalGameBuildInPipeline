@@ -9,28 +9,43 @@ using UnityEngine;
 [RequireComponent(typeof(InventoryItem))]
 public class AmmoItem : MonoBehaviour
 {
+    /// <summary>
+    /// The rigid body component on this game object
+    /// </summary>
     private Rigidbody _rb;
-    private bool _hasBeenFired = false;
+
+
+    /// <summary>
+    /// Initialize component references and disable this script intially.
+    /// </summary>
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         enabled = false;
     }
-    public void Fire(Vector3 direction, float speed)
-    {
-         transform.parent = null;
-        _rb.useGravity = true;
-        _rb.isKinematic = false;
-        _rb.velocity = direction * speed;
-        _hasBeenFired = true;
-    }
+
 
     private void Update()
     {
-        if (_hasBeenFired)
-        {
-            transform.up = _rb.velocity.normalized;                 
-        }
-
+        transform.up = _rb.velocity.normalized;
     }
+
+
+    /// <summary>
+    /// Called from the bow class to shoot this
+    /// </summary>
+    /// <param name="direction">A normalized vector specifying the direction to launch the projectile</param>
+    /// <param name="speed">A float specifying the magintute of the arrow's initial velocity.</param>
+    public void Fire(Vector3 direction, float speed)
+    {
+        // have the arrow start a tiny bit out front so it looks better comming off the bow
+        transform.position = transform.position + transform.up * .5f;
+
+        transform.parent = null;
+        _rb.useGravity = true;
+        _rb.isKinematic = false;       
+        _rb.velocity = transform.up * speed;
+        _hasBeenFired = true;
+    }
+
 }
