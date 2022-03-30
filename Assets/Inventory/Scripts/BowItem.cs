@@ -15,7 +15,6 @@ public class BowItem : MonoBehaviour
     /// </summary>
     [SerializeField] private BowItemScriptableObjectCreator _bowData;
 
-    public float foo;
     /// <summary>
     /// Reference the scriptable object for the arrow item. Allows us to tell the Inventory that we want to pull an
     /// item with this name identifier out of the player's backpack. 
@@ -38,6 +37,15 @@ public class BowItem : MonoBehaviour
     /// </summary>
     private Rigidbody _rb;
 
+    /// <summary>
+    /// The amount the bow is drawn, scaled from 0 to 1.
+    /// </summary>
+    private float _bowDrawAmount;
+
+
+    /// <summary>
+    /// Initialize components and local variables.
+    /// </summary>
     private void Awake()
     {
         // Calculate the arrow drawn position based on the parameters in the _bowData scriptable object. 
@@ -46,8 +54,12 @@ public class BowItem : MonoBehaviour
 
         _rb = GetComponent<Rigidbody>();
     }
+   
 
-    private float _bowDrawAmount;
+    /// <summary>
+    /// Handle the player drawing/aiming/firing the bow. Trigger the appropriate animation based on the parameters in
+    /// the _bowData scriptable object. Use the animation state to determine the draw amount/arrow position.
+    /// </summary>
     private void Update()
     {
         if (_equippedArrow == null) return;
@@ -65,7 +77,6 @@ public class BowItem : MonoBehaviour
         {
             _bowDrawAmount = 0f;
         }
-        foo = _bowDrawAmount;
 
         // player the appropriate bow animation based on player input
         if (Input.GetKeyDown(KeyCode.Mouse0)) // player begins to draw the bow on key press (only allowed if idle)
@@ -80,12 +91,12 @@ public class BowItem : MonoBehaviour
         {
             if (_bowDrawAmount > 0)
             {
-                _equippedArrow.transform.parent = null;
                 player.SetAnimationTrigger(_bowData.fireBowAnimationTrigger);
                 _bowDrawAmount = 0f;
                 _equippedArrow.GetComponent<AmmoItem>().enabled = true;             
                 _equippedArrow.GetComponent<AmmoItem>().Fire(Player.PlayerControllerParent.GetInstance().playerMovementComponent.GetLookDirection(), _bowData.arrowSpeed);            
                 _equippedArrow = null;
+                _LoadArrowFromInventory();
                 StartCoroutine(_LoadArrowCoroutine());
                 return;
             }
@@ -97,6 +108,7 @@ public class BowItem : MonoBehaviour
         }
   
     }
+
 
     /// <summary>
     /// Called by the EquipItem component on the bow to tell this component the player just equiped the bow. 
@@ -150,19 +162,25 @@ public class BowItem : MonoBehaviour
     }
 
 
-    //Called when player puts away the bow. Returns the currently equiped arrow to the player's inventory. 
+    /// <summary>
+    /// Called when player puts away the bow. Returns the currently equiped arrow to the player's inventory.
+    /// </summary>
     public void _ReturnEquippedArrowToInventory()
     {
 
         if (_equippedArrow != null)
         {
-            Debug.LogError("returning arrow to inventory");
             InventoryController.instance.AddItemToInventory(_equippedArrow.GetComponent<InventoryItem>());
         }
         else Debug.LogError("No equipped arrow");
     }
 
 
+    /// <summary>
+    /// Coroutine to wait a small amount of time before calling the _LoadArrowFromInventory function.
+    /// Time this to happen when the bow is out of the camera view during the reload phase of the shoot animation.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator _LoadArrowCoroutine()
     {
         yield return new WaitForSeconds(.25f);
