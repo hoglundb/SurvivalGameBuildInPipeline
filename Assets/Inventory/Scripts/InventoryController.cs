@@ -171,9 +171,9 @@ public class InventoryController : MonoBehaviour
             InventoryItem equippedItem = _GetEquippedItem();
             if (equippedItem != null)
             {
-                if (itemToAdd.gameObject.GetComponent<BowItem>())
+                if (equippedItem.gameObject.GetComponent<BowItem>())
                 {
-                    itemToAdd.gameObject.GetComponent<BowItem>().OnPickupArrow();
+                    equippedItem.gameObject.GetComponent<BowItem>().OnPickupArrow();
                 }
             }           
         }   

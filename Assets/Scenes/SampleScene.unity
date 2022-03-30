@@ -4360,6 +4360,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -82.359
       objectReference: {fileID: 0}
+    - target: {fileID: 3845032190932078837, guid: 75e7edfe00623394ca1b2d84455164f7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845032190932078837, guid: 75e7edfe00623394ca1b2d84455164f7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845032190932078837, guid: 75e7edfe00623394ca1b2d84455164f7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6815114021468980780, guid: 75e7edfe00623394ca1b2d84455164f7, type: 3}
       propertyPath: m_Name
       value: SimpleArrowPrefab (1)
@@ -11715,6 +11727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bowData: {fileID: 11400000, guid: 98625acd626823641970148ed0b7708e, type: 2}
+  foo: 0
   _arrowData: {fileID: 11400000, guid: d77d2cc536781cf42afea7ae33e73c43, type: 2}
 --- !u!4 &1208990773 stripped
 Transform:

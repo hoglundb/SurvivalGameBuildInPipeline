@@ -116,6 +116,15 @@ namespace Player
         }
         #endregion
 
+
+        /// <summary>
+        /// Allows other components to check the direction the camera is facing. 
+        /// </summary>
+        /// <returns>Returns a Vector3 representing the direction the camera is facing as a normalized vector</returns>
+        public Vector3 GetLookDirection()
+        {
+            return _mainCamera.transform.forward;
+        }
     }
 }
 

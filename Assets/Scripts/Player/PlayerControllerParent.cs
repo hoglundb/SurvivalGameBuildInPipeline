@@ -195,10 +195,25 @@ namespace Player
         }
 
 
+        /// <summary>
+        /// Checks if the current animator state machine matches the specified one. 
+        /// </summary>
+        /// <param name="stateName">String represtenting the name of the animator state we are checking for.</param>
+        /// <returns>True if the animator state matches the "stateName". Returns false otherwise.</returns>
+        public bool IsAnimatorAtState(string stateName)
+        {
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
         //Returns the normalized time through the current animation clip on the player avatar. 
         public float GetPercentThroughCurrentAnimation()
         {
-            return 0f;
+           return _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         }
 
         #endregion

@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd8c8b40a54d8b147aabf22b8cd2a5f4, type: 3}
   m_Name: BowItemData
   m_EditorClassIdentifier: 
-  drawBowAnimationTrigger: 
-  looseArrowAnimationTrigger: 
-  arrowEquippedPosition: {x: 0, y: 0, z: 0}
-  arrowEquippedEulers: {x: 0, y: 0, z: 0}
+  drawBowAnimationTrigger: DrawBow
+  drawBowAnimationStateName: DrawBow
+  aimBowAnimationStateName: AimBow
+  fireBowAnimationTrigger: FireBow
+  bowIdleAniamationStateName: BowIdle
+  arrowEquippedPosition: {x: -0.003, y: 0.041, z: 0.094}
+  arrowEquippedEulers: {x: 90, y: 0, z: 0}
+  drawArrowPosOffset: -0.24
+  arrowSpeed: 25

@@ -9,8 +9,12 @@ using UnityEngine;
 public class BowItemScriptableObjectCreator : ScriptableObject
 {
     [SerializeField] public string drawBowAnimationTrigger;
-    [SerializeField] public string looseArrowAnimationTrigger;
-
+    [SerializeField] public string drawBowAnimationStateName;
+    [SerializeField] public string aimBowAnimationStateName;
+    [SerializeField] public string fireBowAnimationTrigger;
+    [SerializeField] public string bowIdleAniamationStateName;
     [SerializeField] public Vector3 arrowEquippedPosition;
     [SerializeField] public Vector3 arrowEquippedEulers;
+    [SerializeField] public float drawArrowPosOffset;
+    [SerializeField] public float arrowSpeed;
 }

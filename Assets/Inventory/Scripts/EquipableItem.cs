@@ -96,7 +96,6 @@ public class EquipableItem : MonoBehaviour
         // Enable the rigidbody
         transform.parent = null;
         GetComponent<Rigidbody>().isKinematic = true;
-        _parentTransform = null;
-  
+        _parentTransform = null;  
     }
 }

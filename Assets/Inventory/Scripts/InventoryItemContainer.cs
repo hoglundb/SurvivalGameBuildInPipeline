@@ -89,7 +89,6 @@ public class InventoryItemContainer : MonoBehaviour
             }
         }
         _items.Add(itemTooAdd);
-        Debug.LogError("adding item " + itemTooAdd.name);
         if (itemTooAdd.GetItemData().isStackable)
         {
             UpdateItemCountUI();

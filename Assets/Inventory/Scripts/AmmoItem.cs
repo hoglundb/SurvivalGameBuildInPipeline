@@ -9,5 +9,28 @@ using UnityEngine;
 [RequireComponent(typeof(InventoryItem))]
 public class AmmoItem : MonoBehaviour
 {
+    private Rigidbody _rb;
+    private bool _hasBeenFired = false;
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+        enabled = false;
+    }
+    public void Fire(Vector3 direction, float speed)
+    {
+         transform.parent = null;
+        _rb.useGravity = true;
+        _rb.isKinematic = false;
+        _rb.velocity = direction * speed;
+        _hasBeenFired = true;
+    }
 
+    private void Update()
+    {
+        if (_hasBeenFired)
+        {
+            transform.up = _rb.velocity.normalized;                 
+        }
+
+    }
 }
