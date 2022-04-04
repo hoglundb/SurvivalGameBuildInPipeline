@@ -3600,6 +3600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b46c445163c274284effd1dd4a1e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meleeItemData: {fileID: 0}
 --- !u!114 &312355526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15762,18 +15763,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2177073533895621756, guid: 47c3b8864d0ae71438a477fc896397cc, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.2124001
-      objectReference: {fileID: 0}
-    - target: {fileID: 2177073533895621756, guid: 47c3b8864d0ae71438a477fc896397cc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2124
-      objectReference: {fileID: 0}
-    - target: {fileID: 2177073533895621756, guid: 47c3b8864d0ae71438a477fc896397cc, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.2124001
-      objectReference: {fileID: 0}
-    - target: {fileID: 2177073533895621756, guid: 47c3b8864d0ae71438a477fc896397cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 325.34607
       objectReference: {fileID: 0}
@@ -21063,6 +21052,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleAxePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5293632803398662975, guid: d8f6e7b7f43ed5d41961eac1f72afffd, type: 3}
+      propertyPath: _meleeItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: de472880197b28f438756569e61eb1a0, type: 2}
     - target: {fileID: 5356004531858685947, guid: d8f6e7b7f43ed5d41961eac1f72afffd, type: 3}
       propertyPath: m_Enabled
       value: 1

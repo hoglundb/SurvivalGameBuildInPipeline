@@ -53,6 +53,8 @@ public class BowItem : MonoBehaviour
         _drawnPos.z += _bowData.drawArrowPosOffset;
 
         _rb = GetComponent<Rigidbody>();
+
+        enabled = false;
     }
    
 
@@ -126,6 +128,7 @@ public class BowItem : MonoBehaviour
     public void OnUnEquipBow()
     {
         _ReturnEquippedArrowToInventory();
+        enabled = false;
     }
 
 

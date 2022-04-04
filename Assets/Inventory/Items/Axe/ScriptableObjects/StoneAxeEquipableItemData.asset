@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2907d1aea3947794796ff3f17268281b, type: 3}
   m_Name: StoneAxeEquipableItemData
   m_EditorClassIdentifier: 
-  handPosOffset: {x: 4.7, y: 8.96, z: 0.89}
-  handRotOffset: {x: 23.1, y: 332, z: 306.6}
+  handPosOffset: {x: 0.00039, y: 0.00078, z: -0.00005}
+  handRotOffset: {x: 18.288813, y: 81.79802, z: 68.125175}
   primaryHand: 1
   equipItemAnimationTrigger: EquipAxe

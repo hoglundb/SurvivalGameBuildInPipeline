@@ -30,12 +30,15 @@ namespace Player
         /// </summary>
         private Camera _mainCamera;
 
+
+        public static EnvironmentDetector intance;
         
         /// <summary>
         /// Initialize reference to other game objects
         /// </summary>
         private void Awake()
         {
+            intance = this;
             _uiPromptToPickItemUp = GameObject.Find("PickupItemPrompt");
             _uiPromptToPickItemUp.SetActive(false);
             _playerControllerParentComponent = GetComponent<PlayerControllerParent>();

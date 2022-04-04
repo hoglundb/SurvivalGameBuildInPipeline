@@ -55,7 +55,6 @@ public class EquipableItem : MonoBehaviour
         {
             _parentTransform = Player.PlayerControllerParent.GetInstance().GetRightHandBone();
         }
-
         Player.PlayerControllerParent.GetInstance().SetAnimationTrigger(_equipableItemData.equipItemAnimationTrigger);
         transform.parent = _parentTransform;
         transform.localPosition = _equipableItemData.handPosOffset;
@@ -64,7 +63,13 @@ public class EquipableItem : MonoBehaviour
         // Enable the component responsible for the player interacting with the equipable item
         if (GetComponent<BowItem>())
         {
+            GetComponent<BowItem>().enabled = true;
             GetComponent<BowItem>().OnEquipBow();
+        }
+        else if (GetComponent<MeleeItem>())
+        {
+            GetComponent<MeleeItem>().enabled = true;
+            GetComponent<MeleeItem>().OnEquipMeleeWeapon();
         }
     }
 
@@ -91,6 +96,10 @@ public class EquipableItem : MonoBehaviour
         if (GetComponent<BowItem>())
         {
             GetComponent<BowItem>().OnUnEquipBow();
+        }
+        else if (GetComponent<MeleeItem>())
+        {
+            GetComponent<MeleeItem>().OnUnEquipMeleeWeapon();
         }
 
         // Enable the rigidbody
