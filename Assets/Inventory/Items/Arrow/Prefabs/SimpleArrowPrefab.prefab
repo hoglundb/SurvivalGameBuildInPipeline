@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3208790768584673669}
   - component: {fileID: 4227811757786061896}
   - component: {fileID: 3091877118664258389}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SimpleArrowPrefab
   m_TagString: PickupableItem
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!65 &3208790768584673669
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -89,6 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58d7d6c89a0e4a4d8465315fa7e1110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ignoreCollisionsWith:
+    serializedVersion: 2
+    m_Bits: 65
 --- !u!1001 &6345868368380786077
 PrefabInstance:
   m_ObjectHideFlags: 0

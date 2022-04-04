@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 5152256010956875535}
   - component: {fileID: 7935384467872433911}
   - component: {fileID: 1888721264757146680}
-  m_Layer: 0
+  - component: {fileID: 1207503435}
+  m_Layer: 6
   m_Name: BowPrefab
   m_TagString: PickupableItem
   m_Icon: {fileID: 0}
@@ -104,6 +105,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _equipableItemData: {fileID: 11400000, guid: e34ac1611bf0c3e47a3fff5ed215371b, type: 2}
   _isSetupMode: 0
+--- !u!114 &1207503435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4264718604112650194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753d51b7a92c750499f0a68e3cf7c741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bowData: {fileID: 11400000, guid: 98625acd626823641970148ed0b7708e, type: 2}
+  _arrowData: {fileID: 11400000, guid: d77d2cc536781cf42afea7ae33e73c43, type: 2}
 --- !u!1001 &3062952919190858372
 PrefabInstance:
   m_ObjectHideFlags: 0
