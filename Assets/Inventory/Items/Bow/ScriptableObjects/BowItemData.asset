@@ -20,4 +20,4 @@ MonoBehaviour:
   arrowEquippedPosition: {x: -0.003, y: 0.041, z: 0.094}
   arrowEquippedEulers: {x: 90, y: 0, z: 0}
   drawArrowPosOffset: -0.24
-  arrowSpeed: 25
+  arrowSpeed: 35

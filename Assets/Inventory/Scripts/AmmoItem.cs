@@ -65,7 +65,6 @@ public class AmmoItem : MonoBehaviour
     {
         GetComponent<Collider>().isTrigger = true;
         _rb.isKinematic = true;
-        _rb.interpolation = RigidbodyInterpolation.Interpolate;
         _hasHitSomething = false;
 
         // have the arrow start a tiny bit out front so it looks better comming off the bow
@@ -89,25 +88,18 @@ public class AmmoItem : MonoBehaviour
             return;
         }
         _hasHitSomething = true;
-        Vector3 velAtHit = _rb.velocity;
-        Vector3 aveAtHit =  (_rb.velocity.normalized + transform.up.normalized) * .5f;
-        _rb.velocity = Vector3.zero;
-        transform.parent = other.transform;
-        transform.position = _posPrevFrame;
-        _rb.isKinematic = true;
+        Vector3 raycastStart = transform.position - _rb.velocity.normalized * 1.75f;
 
-        // The projectile might not quite be in the object it hit. Raycast to figure out exactly where to put it.
+        //// The projectile might not quite be in the object it hit. Raycast to figure out exactly where to put it.
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, aveAtHit, out hit, Mathf.Infinity))
+        if (Physics.Raycast(raycastStart, _rb.velocity.normalized, out hit, Mathf.Infinity))
         {
-            _posPrevFrame = hit.point - aveAtHit * .1f;
-            transform.position = _posPrevFrame;
-            if (hit.rigidbody)
-            {
-                hit.rigidbody.AddForceAtPosition(velAtHit * .1f, hit.point, ForceMode.Impulse);
-            }
+            transform.position = hit.point - _rb.velocity.normalized * .2f;
         }
 
+        _rb.isKinematic = true;
+        _rb.velocity = Vector3.zero;
+        transform.parent = other.transform;
         enabled = false;
     }
 
